@@ -1,17 +1,28 @@
-﻿@model CultureITS.Models.Login
+﻿@model CultureITS.Models.LoginModel
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Вход в систему";
 }
 
-<h2>Login</h2>
+<h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Login</legend>
+        <legend>Учётные данные</legend>
+
+        <div class="login-description">
+            <p>Введите ваши учётные данные в поля, расположенные на данной странице.</p>
+            <p>Если Вы по каким-либо причинам не можете выполнить вход, проверьте следующие условия:</p>
+            <ol>
+                <li>Вы набираете пароль в правильной раскладке;</li>
+                <li>Клавиша <span class="button">Caps Lock</span> находится в выключенном состоянии.</li>
+            </ol>
+            <p>Если несмотря на это Вы не можете авторизоваться, обратитесь к администратору системы.</p>
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserName)
@@ -30,14 +41,10 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <button class="button">Выполнить вход</button>
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

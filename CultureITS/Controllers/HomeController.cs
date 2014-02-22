@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CultureITS.Controllers
 {
+    [AuthorizeFilterAttribute]
     public class HomeController : Controller
     {
         //

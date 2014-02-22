@@ -11,7 +11,7 @@ namespace CultureITS.Models
         None, Student, Teacher, Admin
     }
 
-    public class Login
+    public class LoginModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Введите логин")]
         [Display(Name = "Логин")]

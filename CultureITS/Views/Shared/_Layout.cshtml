@@ -9,16 +9,17 @@
 </head>
 <body>
     <header>
-        <div class="loginform">
-            @Helpers.LoginForm()
+        <div id="headerWrap">
+            <div class="loginform">
+                @Helpers.LoginForm()
+            </div>
+            <nav>
+                <ul>
+                    <li class="brand">@Html.ActionLink("CultureITS", "Index", "Home")</li>
+                    @Helpers.TopMenu()
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li class="brand">CultureITS</li>
-                <li>Home</li>
-                <li>Stats</li>
-            </ul>
-        </nav>
     </header>
 
     <article>

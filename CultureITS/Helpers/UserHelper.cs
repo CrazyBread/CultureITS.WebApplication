@@ -21,6 +21,12 @@ namespace CultureITS.Helpers
             session["User"] = user;
         }
 
+        // Добавляет метод по закрытию пользовательской сессии
+        public static void Logout(this HttpSessionState session)
+        {
+            session["User"] = null;
+        }
+
         // Добавляет метод по проверке на то, авторизован ли пользователь
         public static bool IsAuthorized(this HttpSessionState session)
         {

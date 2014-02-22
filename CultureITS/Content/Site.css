@@ -1,6 +1,8 @@
 ﻿@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,500&subset=latin,cyrillic);
 
 body {
+    margin: 0;
+    padding: 0;
     font-size: 15px;
     font-family: 'Ubuntu',sans-serif;
     color: #f0f0f0;
@@ -17,21 +19,42 @@ header, footer, nav, section {
     display: block;
 }
 
-body > header,
-body > article,
-body > footer {
+#headerWrap,
+article,
+footer {
     width: 968px;
     margin: 0 auto;
 }
 
+article {
+    overflow: auto;
+}
+
+header {
+    background-color: #222;
+    box-shadow: #555 0 0 10px;
+}
+
+    header a {
+        text-decoration: none;
+    }
+
 .loginform {
     float: right;
-    width: 100px;
+    width: 300px;
+    margin-top: 15px;
+    text-align: right;
 }
 
 nav {
-    margin-right: 110px;
+    margin-right: 310px;
+    font-size: 1.3em;
 }
+
+    nav .brand {
+        font-weight: 500;
+        padding-left: 0;
+    }
 
     nav > ul {
         padding: 0;
@@ -41,6 +64,7 @@ nav {
         nav > ul > li {
             list-style-type: none;
             display: inline-block;
+            padding: 15px;
         }
 
 
@@ -63,12 +87,41 @@ input, textarea {
     padding: 2px;
 }
 
+    input[type="text"],
+    input[type="password"] {
+        width: 200px;
+    }
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #606060;
+    padding: 3px;
+}
+
+th {
+    background-color: #666;
+    font-weight: normal;
+}
+
+td {
+    background-color: #444;
+}
+
+footer {
+    margin-top: 50px;
+    color: #999;
+}
+
 .button {
     color: #333;
     background-color: #f0f0f0;
     padding: 5px 10px;
     margin: 3px;
-    border: 1px solid #ccc;
+    border: 1px solid #666;
     border-radius: 3px;
     text-decoration: none;
 }
@@ -81,10 +134,20 @@ input, textarea {
 
 .button-green {
     background-color: #b0ffad;
+    border-color: #030;
 }
 
     .button-green:hover {
         background-color: #7eff79;
+    }
+
+.button-red {
+    background-color: #f00;
+    border-color: #300;
+}
+
+    .button-red:hover {
+        background-color: #d00000;
     }
 
 .post-image {
@@ -100,17 +163,34 @@ input, textarea {
     float: right;
 }
 
+/* STYLE FOR SINGLE PAGES */
+.login-description {
+    float: right;
+    width: 400px;
+    border-left: 1px solid #666;
+    padding-left: 15px;
+}
+
+fieldset.user-info {
+    float: right;
+    width: 200px;
+}
+    fieldset.user-info table {
+        width: 100%;
+    }
+
 /* Styles for basic forms
 -----------------------------------------------------------*/
 fieldset {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
+    border: 1px solid #ccc;
+    padding: 1.5em;
     margin: 0 0 1.5em 0;
 }
 
 legend {
-    font-size: 1.2em;
-    font-weight: bold;
+    color: #ccc;
+    font-size: 1.1em;
+    font-weight: 500;
 }
 
 textarea {
@@ -137,13 +217,16 @@ textarea {
 }
 
 .input-validation-error {
-    border: 1px solid #f00;
-    background-color: #fee;
+    border: 1px solid #900;
 }
 
 .validation-summary-errors {
-    font-weight: bold;
-    color: #f00;
+    padding: 5px;
+    margin: 15px 0;
+    background-color: #933;
+    border:1px solid #f00;
+    border-radius: 5px;
+    color: #fff;
 }
 
 .validation-summary-valid {

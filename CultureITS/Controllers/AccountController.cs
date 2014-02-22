@@ -31,7 +31,7 @@ namespace CultureITS.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
-        public ActionResult Login(Login model)
+        public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -52,6 +52,7 @@ namespace CultureITS.Controllers
         // GET: /Account/Logout
         public ActionResult Logout()
         {
+            System.Web.HttpContext.Current.Session.Logout();
             return RedirectToAction("Index", "Home");
         }
     }

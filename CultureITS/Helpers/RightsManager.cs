@@ -6,13 +6,17 @@ using System.Web;
 
 namespace CultureITS.Helpers
 {
-    public class RightsManager
+    public static class RightsManager
     {
         public static bool IsAllow(string controller, string action, AccountStatus status)
         {
-            if ((controller == "Account") && (action == "Login"))
+            if (controller == "Home")
                 return true;
-            return false;
+
+            if (status == AccountStatus.None)
+                return ((controller == "Account") && (action == "Login"));
+
+            return !((controller == "Account") && (action == "Login"));
         }
     }
 }

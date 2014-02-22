@@ -1,14 +1,28 @@
 ﻿@using System.Web
+@using System.Web.Mvc.Html
 @using CultureITS.Helpers
 
 @helper LoginForm()
 {
+    var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+
     if (HttpContext.Current.Session.IsAuthorized())
     {
-    <a href="#">Logoff</a>   
+    @Html.ActionLink("Выход", "Logout", "Account", null, new { @class = "button" })
     }
     else
     {
-    <p>login</p>
+    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "button" })
+    @Html.ActionLink("Зарегистрироваться", "Register", "Account", null, new { @class = "button" })
+    }
+}
+
+@helper TopMenu()
+{
+    var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+
+    foreach (var i in HttpContext.Current.Session.GetMenu())
+    {
+    <ll>@Html.ActionLink(i.Title, i.Action, i.Controller)</ll>   
     }
 }
