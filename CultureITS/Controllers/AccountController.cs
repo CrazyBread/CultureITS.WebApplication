@@ -41,7 +41,7 @@ namespace CultureITS.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    Session.Authorize(user as User);
+                    System.Web.HttpContext.Current.Session.Authorize(user as User);
                     return RedirectToAction("Index");
                 }
             }

@@ -8,8 +8,26 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+    <header>
+        <div class="loginform">
+            @Helpers.LoginForm()
+        </div>
+        <nav>
+            <ul>
+                <li class="brand">CultureITS</li>
+                <li>Home</li>
+                <li>Stats</li>
+            </ul>
+        </nav>
+    </header>
 
+    <article>
+        @RenderBody()
+    </article>
+
+    <footer>
+        &copy;2014 — CoolFaggots Inc.
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>

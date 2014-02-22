@@ -1,0 +1,14 @@
+﻿@using System.Web
+@using CultureITS.Helpers
+
+@helper LoginForm()
+{
+    if (HttpContext.Current.Session.IsAuthorized())
+    {
+    <a href="#">Logoff</a>   
+    }
+    else
+    {
+    <p>login</p>
+    }
+}

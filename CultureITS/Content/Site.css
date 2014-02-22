@@ -1,14 +1,104 @@
-﻿body {
-    font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+﻿@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,500&subset=latin,cyrillic);
+
+body {
+    font-size: 15px;
+    font-family: 'Ubuntu',sans-serif;
+    color: #f0f0f0;
+    background-color: #333;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
 }
 
 header, footer, nav, section {
     display: block;
 }
 
+body > header,
+body > article,
+body > footer {
+    width: 968px;
+    margin: 0 auto;
+}
+
+.loginform {
+    float: right;
+    width: 100px;
+}
+
+nav {
+    margin-right: 110px;
+}
+
+    nav > ul {
+        padding: 0;
+        margin: 0;
+    }
+
+        nav > ul > li {
+            list-style-type: none;
+            display: inline-block;
+        }
+
+
+p {
+    text-align: justify;
+}
+
+a {
+    color: #f0f0f0;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+input, textarea {
+    border: 1px solid #333;
+    background-color: #666;
+    color: #f0f0f0;
+    padding: 2px;
+}
+
+.button {
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    margin: 3px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+    .button:hover {
+        color: #000;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+.button-green {
+    background-color: #b0ffad;
+}
+
+    .button-green:hover {
+        background-color: #7eff79;
+    }
+
+.post-image {
+    padding: 5px;
+    margin: 5px;
+}
+
+.image-left {
+    float: left;
+}
+
+.image-right {
+    float: right;
+}
 
 /* Styles for basic forms
 -----------------------------------------------------------*/

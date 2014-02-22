@@ -32,7 +32,7 @@ namespace CultureITS
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            HttpSessionStateBase session = filterContext.HttpContext.Session;
+            var session = HttpContext.Current.Session;//filterContext.HttpContext.Session;
             string actionName = filterContext.ActionDescriptor.ActionName;
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
 
