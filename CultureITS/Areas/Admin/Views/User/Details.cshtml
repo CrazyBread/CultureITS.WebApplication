@@ -1,0 +1,36 @@
+﻿@model CultureITS.Models.User
+
+@{
+    ViewBag.Title = "Информация о пользователе";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserRole)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserRole)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.UserName }, new { @class = "button" })
+    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+</p>

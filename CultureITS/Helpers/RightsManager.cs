@@ -23,14 +23,6 @@ namespace CultureITS.Helpers
             db.SaveChanges();
 
             return true;
-            /*
-            if (controller == "Home")
-                return true;
-
-            if (status == AccountStatus.None)
-                return ((controller == "Account") && (action == "Login"));
-
-            return !((controller == "Account") && (action == "Login"));*/
         }
     }
 }

@@ -3,3 +3,28 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<fieldset>
+    <legend>Пользователи</legend>
+
+    <ul>
+        <li>@Html.ActionLink("Добавить", "Edit", "User")</li>
+        <li>@Html.ActionLink("Список и редактирование", "Index", "User")</li>
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Тесты</legend>
+
+    <ul>
+        <li>@Html.ActionLink("Добавить", "Create", "Test")</li>
+        <li>@Html.ActionLink("Список и редактирование", "Index", "Test")</li>
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Материалы</legend>
+
+    <ul>
+        <li>@Html.ActionLink("Список и редактирование", "Index", "Article")</li>
+    </ul>
+</fieldset>

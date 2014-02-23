@@ -1,0 +1,57 @@
+﻿@model CultureITS.Areas.Admin.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Создание записи о пользователе";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Item.UserName)
+            @Html.ValidationMessageFor(model => model.Item.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Item.Password)
+            @Html.ValidationMessageFor(model => model.Item.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Item.Name)
+            @Html.ValidationMessageFor(model => model.Item.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.UserRole)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Item.UserRole, Model.Roles)
+            @Html.ValidationMessageFor(model => model.Item.UserRole)
+        </div>
+
+        <button class="button button-green">Отправить</button>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

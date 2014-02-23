@@ -11,13 +11,13 @@ namespace CultureITS.Models
         None, Student, Teacher, Admin
     }
 
-    public class LoginModel
+    public class UserLogin
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите логин")]
+        [Required(ErrorMessage = "Введите логин")]
         [Display(Name = "Логин")]
         public string UserName { set; get; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите пароль")]
+        [Required(ErrorMessage = "Введите пароль")]
         [Display(Name = "Пароль")]
         public string Password { set; get; }
     }
@@ -25,15 +25,20 @@ namespace CultureITS.Models
     public class User
     {
         [Key]
+        [Required(ErrorMessage = "Введите логин")]
+        [Display(Name = "Логин")]
         public string UserName { set; get; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите пароль")]
+        [Display(Name = "Пароль")]
         public string Password { set; get; }
 
         [Required]
+        [Display(Name = "Роль")]
         public AccountStatus UserRole { set; get; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите ваше настоящее имя")]
+        [Display(Name = "ФИО")]
         public string Name { set; get; }
     }
 }

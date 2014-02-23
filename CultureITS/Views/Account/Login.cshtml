@@ -1,4 +1,4 @@
-﻿@model CultureITS.Models.LoginModel
+﻿@model CultureITS.Models.UserLogin
 
 @{
     ViewBag.Title = "Вход в систему";
@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(false)
 
     <fieldset>
         <legend>Учётные данные</legend>

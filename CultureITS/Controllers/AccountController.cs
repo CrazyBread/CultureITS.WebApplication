@@ -28,13 +28,14 @@ namespace CultureITS.Controllers
         {
             return View();
         }
-        
+
         //
         // POST: /Account/Login
-        [HttpPost]
-        public ActionResult Login(LoginModel model)
+        [HttpPost, ActionName("Login")]
+        public ActionResult LoginPost()
         {
-            if (ModelState.IsValid)
+            var model = new UserLogin();
+            if (TryUpdateModel(model, new string[] { "UserName", "Password" }))
             {
                 var user = db.Users.SingleOrDefault(i => ((i.UserName == model.UserName) && (i.Password == model.Password)));
                 if (user == null)
