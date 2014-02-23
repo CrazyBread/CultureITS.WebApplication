@@ -28,6 +28,7 @@ footer {
 
 article {
     overflow: auto;
+    padding: 3px;
 }
 
 header {
@@ -173,7 +174,7 @@ footer {
 
 fieldset.user-info {
     float: right;
-    width: 200px;
+    width: 300px;
 }
     fieldset.user-info table {
         width: 100%;

@@ -8,12 +8,12 @@
 
     if (HttpContext.Current.Session.IsAuthorized())
     {
-    @Html.ActionLink("Выход", "Logout", "Account", null, new { @class = "button" })
+    @Html.ActionLink("Выход", "Logout", "Account", new { Area = "" }, new { @class = "button" })
     }
     else
     {
-    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "button" })
-    @Html.ActionLink("Зарегистрироваться", "Register", "Account", null, new { @class = "button" })
+    @Html.ActionLink("Войти", "Login", "Account", new { Area = "" }, new { @class = "button" })
+    @Html.ActionLink("Зарегистрироваться", "Register", "Account", new { Area = "" }, new { @class = "button" })
     }
 }
 
@@ -23,6 +23,6 @@
 
     foreach (var i in HttpContext.Current.Session.GetMenu())
     {
-    <li>@Html.ActionLink(i.Title, i.Action, i.Controller)</li>   
+    <li>@Html.ActionLink(i.Title, i.Action, i.Controller, new { Area = i.Area ?? "" }, null)</li>   
     }
 }

@@ -15,6 +15,9 @@ namespace CultureITS.Models
         [Required]
         public string Title { set; get; }
 
+        [Display(Name = "Область")]
+        public string Area { set; get; }
+
         [Display(Name = "Контроллер")]
         [Required]
         public string Controller { set; get; }

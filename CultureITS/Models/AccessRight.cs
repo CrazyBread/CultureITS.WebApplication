@@ -11,6 +11,8 @@ namespace CultureITS.Models
         [Key]
         public int Id { set; get; }
 
+        public string Area { set; get; }
+
         [Required]
         public string Controller { set; get; }
 

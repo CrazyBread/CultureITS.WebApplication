@@ -35,11 +35,12 @@ namespace CultureITS
             var session = HttpContext.Current.Session;
             string actionName = filterContext.ActionDescriptor.ActionName;
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+            string areaName = filterContext.RouteData.DataTokens["area"] as string;
 
-            if (!RightsManager.IsAllow(controllerName, actionName, session.GetUserRole()))
+            if (!RightsManager.IsAllow(areaName, controllerName, actionName, session.GetUserRole()))
             {
                 filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary { { "controller", "Account" }, { "action", "Login" } });
+                    new RouteValueDictionary { { "controller", "Account" }, { "action", "Login" }, { "area", null } });
             }
 
             base.OnActionExecuting(filterContext);

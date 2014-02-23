@@ -11,14 +11,15 @@ namespace CultureITS.Helpers
     {
         public static DataContext db = new DataContext();
 
-        public static bool IsAllow(string controller, string action, AccountStatus status)
+        public static bool IsAllow(string area, string controller, string action, AccountStatus status)
         {
-            var result = db.AccessRights.SingleOrDefault(i => ((controller == i.Controller) && (action == i.Action) && (status == i.Role)));
+            var result = db.AccessRights.SingleOrDefault(i => ((controller == i.Controller) && (action == i.Action) && (status == i.Role) && 
+                ((area == i.Area) || ((area == null) && (i.Area == null)))));
 
             if (result != null)
                 return result.IsAllowed;
 
-            db.AccessRights.Add(new AccessRight() { Controller = controller, Action = action, Role = status, IsAllowed = true });
+            db.AccessRights.Add(new AccessRight() { Area = area, Controller = controller, Action = action, Role = status, IsAllowed = true });
             db.SaveChanges();
 
             return true;
