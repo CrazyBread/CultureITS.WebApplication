@@ -23,6 +23,6 @@
 
     foreach (var i in HttpContext.Current.Session.GetMenu())
     {
-    <ll>@Html.ActionLink(i.Title, i.Action, i.Controller)</ll>   
+    <li>@Html.ActionLink(i.Title, i.Action, i.Controller)</li>   
     }
 }

@@ -10,6 +10,7 @@ namespace CultureITS.Models.Context
     {
         public DbSet<User> Users { set; get; }
         public DbSet<MenuItem> MenuItems { set; get; }
+        public DbSet<AccessRight> AccessRights { set; get; }
     }
 
     public class DataContextInitializer : IDatabaseInitializer<DataContext>

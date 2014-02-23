@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CultureITS.ViewModels.AccountViewModel
+
+@{
     ViewBag.Title = "Профиль пользователя";
 }
 
@@ -9,15 +11,15 @@
     <table>
         <tr>
             <th>Имя</th>
-            <td>-</td>
+            <td>@Model.Item.Name</td>
         </tr>
         <tr>
             <th>Логин</th>
-            <td>-</td>
+            <td>@Model.Item.UserName</td>
         </tr>
         <tr>
             <th>Роль</th>
-            <td>-</td>
+            <td>@Model.Item.UserRole.ToString()</td>
         </tr>
     </table>
 </fieldset>

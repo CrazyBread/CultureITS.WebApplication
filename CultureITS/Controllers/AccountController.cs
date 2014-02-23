@@ -1,6 +1,7 @@
 ﻿using CultureITS.Helpers;
 using CultureITS.Models;
 using CultureITS.Models.Context;
+using CultureITS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace CultureITS.Controllers
         // GET: /Account/
         public ActionResult Index()
         {
-            return View();
+            return View(new AccountViewModel(System.Web.HttpContext.Current.Session.GetUser()));
         }
 
         //
