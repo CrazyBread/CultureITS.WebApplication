@@ -21,7 +21,8 @@ header, footer, nav, section {
 
 #headerWrap,
 article,
-footer {
+footer,
+#promoWrapper {
     width: 968px;
     margin: 0 auto;
 }
@@ -151,6 +152,11 @@ footer {
         background-color: #d00000;
     }
 
+.button-big {
+    padding: 10px;
+    font-size: 1.3em;
+}
+
 .post-image {
     padding: 5px;
     margin: 5px;
@@ -165,6 +171,33 @@ footer {
 }
 
 /* STYLE FOR SINGLE PAGES */
+#promo {
+    background-color: #FF530D;
+    /*color: #000;*/
+    height: 250px;
+    box-shadow: #FF530D 0 0 20px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-shadow: #999 1px 1px 0;
+}
+
+    #promo h1 {
+        padding: 20px 0;
+        text-align: center;
+        font-size: 2.5em;
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    #promo .sign {
+        text-align: center;
+    }
+
+#promoSpacer {
+    height: 250px;
+}
+
 .login-description {
     float: right;
     width: 400px;
@@ -176,6 +209,7 @@ fieldset.user-info {
     float: right;
     width: 300px;
 }
+
     fieldset.user-info table {
         width: 100%;
     }
@@ -225,7 +259,7 @@ textarea {
     padding: 5px;
     margin: 15px 0;
     background-color: #933;
-    border:1px solid #f00;
+    border: 1px solid #f00;
     border-radius: 5px;
     color: #fff;
 }

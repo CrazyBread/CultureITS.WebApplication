@@ -2,5 +2,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>@ViewBag.Title</h2>
-@Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+<div id="promo">
+    <div id="promoWrapper">
+        <h1>Впервые на нашем сайте?</h1>
+        <h2>@ViewBag.Title</h2>
+        @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+        <div class="sign">
+            @Html.ActionLink("Зарегистрируйтесь", "Register", "Account", null, new { @class = "button button-big" }), или 
+            @Html.ActionLink("выполните вход", "Login", "Account")
+        </div>
+    </div>
+</div>
+<div id="promoSpacer"></div>
+
+<img src="/Content/images/home.png" alt="" class="image-right" />
+<h2>Почему этот сайт?</h2>
+<p>Потому что пользоваться этим сайтом, прежде всего, удобно! Вы получите настоящее удовольствие от использования этого информационного ресурса.</p>
+
+<h2>Это бесплатно?</h2>
+<p>Весь материал, представленный на сайте, абсолютно бесплатен. Любая информация взята из общедоступных источников с разрешения авторов.</p>
+
+<h2>Вопросы?</h2>
+<p>Если у Вас появились дополнительные вопросы по поводу функционирования системой, можете перейти на страницу @Html.ActionLink("о системе", "About").</p>

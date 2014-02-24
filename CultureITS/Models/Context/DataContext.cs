@@ -29,7 +29,7 @@ namespace CultureITS.Models.Context
                 context.SaveChanges();
 
                 context.MenuItems.Add(new MenuItem() { Order = 1, Title = "Профиль", Controller = "Account", Action = "Index", AccessMask = (1 << (int)AccountStatus.Student) + (1 << (int)AccountStatus.Admin) });
-                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Администрирование", Controller = "Admin", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
+                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Администрирование", Area = "Admin", Controller = "Home", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
                 context.SaveChanges();
             }
