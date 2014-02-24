@@ -22,12 +22,16 @@
         </div>
     </header>
 
-    <article>
-        @RenderBody()
-    </article>
+    <div id="articleWrap">
+        <article>
+            @RenderBody()
+        </article>
+    </div>
 
     <footer>
-        &copy;2014 — CoolFaggots Inc.
+        <div id="footerWrap">
+            &copy;&nbsp;2014 — CoolFaggots Inc.
+        </div>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

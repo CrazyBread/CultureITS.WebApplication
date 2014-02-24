@@ -5,8 +5,9 @@
 <div id="promo">
     <div id="promoWrapper">
         <h1>Впервые на нашем сайте?</h1>
-        <h2>@ViewBag.Title</h2>
-        @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+
+        <p>Текст про то, как хорошо живётся на этом свете.</p>
+
         <div class="sign">
             @Html.ActionLink("Зарегистрируйтесь", "Register", "Account", null, new { @class = "button button-big" }), или 
             @Html.ActionLink("выполните вход", "Login", "Account")
@@ -14,6 +15,9 @@
     </div>
 </div>
 <div id="promoSpacer"></div>
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
 
 <img src="/Content/images/home.png" alt="" class="image-right" />
 <h2>Почему этот сайт?</h2>
