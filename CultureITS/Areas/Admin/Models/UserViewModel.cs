@@ -12,16 +12,15 @@ namespace CultureITS.Areas.Admin.Models
     {
         public User Item { set; get; }
         public IEnumerable<User> List { set; get; }
-        public SelectList Roles { set; get; }
 
         public UserViewModel(DataContext db)
         {
-            Roles = new SelectList(new SelectListItem[] {
-                new SelectListItem() { Text = "Студент", Value = ((int)AccountStatus.Student).ToString() },
-                new SelectListItem() { Text = "Преподаватель", Value = ((int)AccountStatus.Teacher).ToString() },
-                new SelectListItem() { Text = "Администратор", Value = ((int)AccountStatus.Admin).ToString() }
-            }, "Value", "Text");
             List = db.Users;
+        }
+
+        public UserViewModel(DataContext db, User item) : this(db)
+        {
+            Item = item;
         }
     }
 }

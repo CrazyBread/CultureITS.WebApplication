@@ -25,7 +25,7 @@ namespace CultureITS.Areas.Admin.Controllers
 
         //
         // GET: /Admin/User/Details/5
-        public ActionResult Details(string id = null)
+        public ActionResult Details(int id)
         {
             User user = db.Users.Find(id);
             if (user == null)
@@ -37,38 +37,75 @@ namespace CultureITS.Areas.Admin.Controllers
 
         //
         // GET: /Admin/User/Edit
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
-            var viewModel = new UserViewModel(db);
-            if (id != null) viewModel.Item = db.Users.SingleOrDefault(i => i.UserName == id);
-            return View(viewModel);
+            User user = null;
+
+            try
+            {
+                if (id.HasValue)
+                {
+                    user = db.Users.SingleOrDefault(i => i.Id == id);
+                    if (user == null)
+                        throw new ArgumentException("Пользователь не найден");
+                }
+                else
+                {
+                    user = new User();
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            return View(new UserViewModel(db, user));
         }
 
         //
         // POST: /Admin/User/Edit
         [HttpPost, ActionName("Edit")]
-        public ActionResult CreatePost(string id)
+        public ActionResult EditPost(int? id)
         {
-            User user = (id == null) ? new User() : db.Users.SingleOrDefault(i => i.UserName == id);
-            TryUpdateModel(user, "Item", new[] { "UserName", "Password", "Name", "UserRole" });
+            User user = null;
 
-            if (ModelState.IsValid)
+            try
             {
-                if (id == null)
-                    db.Users.Add(user);
+                if (id.HasValue)
+                {
+                    user = db.Users.SingleOrDefault(i => i.Id == id);
+                    if (user == null)
+                        throw new ArgumentException("Пользователь не найден");
+                    TryUpdateModel(user, "Item", new[] { "Login", "Name", "UserRole" });
+                }
                 else
-                    db.Entry<User>(user).State = EntityState.Modified;
+                {
+                    user = new User();
+                    TryUpdateModel(user, "Item", new[] { "Login", "Password", "Name", "UserRole" });
+                }
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        db.Users.Add(user);
+                    else
+                        db.Entry<User>(user).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
             }
 
-            return View(new UserViewModel(db) { Item = user });
+            return View(new UserViewModel(db, user));
         }
 
         //
         // GET: /Admin/User/Delete/5
-        public ActionResult Delete(string id = null)
+        public ActionResult Delete(int id)
         {
             var user = db.Users.Find(id);
             if (user == null)
@@ -81,7 +118,7 @@ namespace CultureITS.Areas.Admin.Controllers
         //
         // POST: /Admin/User/Delete/5
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeletePost(string id)
+        public ActionResult DeletePost(int id)
         {
             var user = db.Users.Find(id);
             db.Users.Remove(user);

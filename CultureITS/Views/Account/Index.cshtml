@@ -14,12 +14,12 @@
             <td>@Model.Item.Name</td>
         </tr>
         <tr>
-            <th>Логин</th>
-            <td>@Model.Item.UserName</td>
+            <th>E-mail</th>
+            <td>@Model.Item.Login</td>
         </tr>
         <tr>
             <th>Роль</th>
-            <td>@Model.Item.UserRole.ToString()</td>
+            <td>@Model.Item.UserRole.ToDescription()</td>
         </tr>
     </table>
 </fieldset>

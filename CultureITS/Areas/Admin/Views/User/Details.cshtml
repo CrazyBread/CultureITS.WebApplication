@@ -10,10 +10,10 @@
     <legend>User</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserName)
+         @Html.DisplayNameFor(model => model.Login)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
+        @Html.DisplayFor(model => model.Login)
     </div>
 
     <div class="display-label">
@@ -27,10 +27,10 @@
          @Html.DisplayNameFor(model => model.UserRole)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.UserRole)
+        @Model.UserRole.ToDescription()
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.UserName }, new { @class = "button" })
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
     @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
 </p>

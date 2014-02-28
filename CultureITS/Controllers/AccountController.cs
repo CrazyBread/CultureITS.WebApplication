@@ -35,9 +35,9 @@ namespace CultureITS.Controllers
         public ActionResult LoginPost()
         {
             var model = new UserLogin();
-            if (TryUpdateModel(model, new string[] { "UserName", "Password" }))
+            if (TryUpdateModel(model, new string[] { "Login", "Password" }))
             {
-                var user = db.Users.SingleOrDefault(i => ((i.UserName == model.UserName) && (i.Password == model.Password)));
+                var user = db.Users.SingleOrDefault(i => ((i.Login == model.Login) && (i.Password == model.Password)));
                 if (user == null)
                     ModelState.AddModelError(string.Empty, "Пользователь с указанными учётными данными не существует");
 

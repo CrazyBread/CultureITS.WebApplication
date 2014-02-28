@@ -6,27 +6,32 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
+    @Html.HiddenFor(i => i.Item.Id)
 
     <fieldset>
         <legend>User</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Item.UserName)
+            @Html.LabelFor(model => model.Item.Login)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Item.UserName)
-            @Html.ValidationMessageFor(model => model.Item.UserName)
+            @Html.EditorFor(model => model.Item.Login)
+            @Html.ValidationMessageFor(model => model.Item.Login)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Item.Password)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(model => model.Item.Password)
-            @Html.ValidationMessageFor(model => model.Item.Password)
-        </div>
+        @if (Model.Item.Id == 0)
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Item.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.Item.Password)
+                @Html.ValidationMessageFor(model => model.Item.Password)
+            </div>
+        }
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Item.Name)
@@ -40,7 +45,7 @@
             @Html.LabelFor(model => model.Item.UserRole)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Item.UserRole, Model.Roles)
+            @Html.EnumDropDownListFor(model => model.Item.UserRole)
             @Html.ValidationMessageFor(model => model.Item.UserRole)
         </div>
 

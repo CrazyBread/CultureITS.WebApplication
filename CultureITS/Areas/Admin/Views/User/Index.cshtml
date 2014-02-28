@@ -12,7 +12,7 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(i => i.Item.UserName)
+            @Html.DisplayNameFor(i => i.Item.Login)
         </th>
         <th>
             @Html.DisplayNameFor(i => i.Item.Name)
@@ -26,18 +26,18 @@
 @foreach (var item in Model.List) {
     <tr>
         <td>
-            @Html.DisplayFor(i => item.UserName)
+            @Html.DisplayFor(i => item.Login)
         </td>
         <td>
             @Html.DisplayFor(i => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(i => item.UserRole)
+            @item.UserRole.ToDescription()
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserName }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserName }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserName })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Детали", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
