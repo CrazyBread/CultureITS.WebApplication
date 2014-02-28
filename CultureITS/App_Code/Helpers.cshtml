@@ -21,6 +21,7 @@
 {
     var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
 
+    <li class="brand">@Html.ActionLink(System.Configuration.ConfigurationManager.AppSettings["ApplicationTitle"], "Index", "Home", new { area = "" }, null)</li>
     foreach (var i in HttpContext.Current.Session.GetMenu())
     {
     <li>@Html.ActionLink(i.Title, i.Action, i.Controller, new { Area = i.Area ?? "" }, null)</li>   
