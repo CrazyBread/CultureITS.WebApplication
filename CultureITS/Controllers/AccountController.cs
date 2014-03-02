@@ -51,6 +51,38 @@ namespace CultureITS.Controllers
         }
 
         //
+        // GET: /Account/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost, ActionName("Register")]
+        public ActionResult RegisterPost()
+        {
+            var item = new Student() { UserRole = AccountStatus.Student };
+
+            try
+            {
+                TryUpdateModel(item, "RegisterItem", new string[] { "Login", "Name", "Password", "Group", "Course", "Age" });
+                if (ModelState.IsValid)
+                {
+                    db.Students.Add(item);
+                    db.SaveChanges();
+                    System.Web.HttpContext.Current.Session.Authorize(item);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            return View(new AccountViewModel(item));
+        }
+
+        //
         // GET: /Account/Logout
         public ActionResult Logout()
         {

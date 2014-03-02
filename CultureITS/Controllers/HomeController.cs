@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CultureITS.Helpers;
+using CultureITS.Models;
+using CultureITS.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +16,15 @@ namespace CultureITS.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            return View();
+            var model = new HomeViewModel();
+            var user = System.Web.HttpContext.Current.Session.GetUser();
+
+            if (user == null)
+                model.ShowPromo = true;
+            if (user is Student)
+                model.ShowGameButton = true;
+
+            return View(model);
         }
 
         //

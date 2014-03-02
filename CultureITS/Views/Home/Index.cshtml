@@ -1,20 +1,41 @@
-﻿@{
+﻿@model CultureITS.ViewModels.HomeViewModel
+
+@{
     ViewBag.Title = "Index";
 }
 
-<div id="promo">
-    <div id="promoWrapper">
-        <h1>Впервые на нашем сайте?</h1>
+@if (Model.ShowPromo)
+{
+    <div id="promo">
+        <div id="promoWrapper">
+            <h1>Впервые на нашем сайте?</h1>
 
-        <p>Текст про то, как хорошо живётся на этом свете.</p>
+            <p>Текст про то, как хорошо живётся на этом свете.</p>
 
-        <div class="sign">
-            @Html.ActionLink("Зарегистрируйтесь", "Register", "Account", null, new { @class = "button button-big" }), или 
+            <div class="sign">
+                @Html.ActionLink("Зарегистрируйтесь", "Register", "Account", null, new { @class = "button button-big" }), или 
             @Html.ActionLink("выполните вход", "Login", "Account")
+            </div>
         </div>
     </div>
-</div>
-<div id="promoSpacer"></div>
+    <div id="promoSpacer"></div>
+}
+
+@if (Model.ShowGameButton)
+{
+    <div id="promo">
+        <div id="promoWrapper">
+            <h1>Готовы посетить наш музей?</h1>
+
+            <p>Текст про то, как здорово живётся на этом свете.</p>
+
+            <div class="sign">
+                @Html.ActionLink("В музей", "Index", "Game", null, new { @class = "button button-big" })
+            </div>
+        </div>
+    </div>
+    <div id="promoSpacer"></div>
+}
 
 <h2>@ViewBag.Title</h2>
 @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })

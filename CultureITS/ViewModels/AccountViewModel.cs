@@ -9,13 +9,17 @@ namespace CultureITS.ViewModels
 {
     public class AccountViewModel
     {
-        //private DataContext db = new DataContext();
-
         public User Item { set; get; }
+        public Student RegisterItem { set; get; }
 
         public AccountViewModel(User item)
         {
             Item = item;
+        }
+
+        public AccountViewModel(Student item)
+        {
+            RegisterItem = item;
         }
     }
 }
