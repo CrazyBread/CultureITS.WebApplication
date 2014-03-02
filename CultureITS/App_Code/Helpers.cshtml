@@ -1,19 +1,21 @@
 ﻿@using System.Web
 @using System.Web.Mvc.Html
 @using CultureITS.Helpers
+@using CultureITS.Models
 
 @helper LoginForm()
 {
     var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+    var Url = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Url;
 
     if (HttpContext.Current.Session.IsAuthorized())
     {
-    @Html.ActionLink("Выход", "Logout", "Account", new { Area = "" }, new { @class = "button" })
+    <a href="@Url.Action("Logout", "Account", new { Area = "" })" class="button"><i class='fa fa-code'></i>&nbsp;Выход</a>
     }
     else
     {
-    @Html.ActionLink("Войти", "Login", "Account", new { Area = "" }, new { @class = "button" })
-    @Html.ActionLink("Зарегистрироваться", "Register", "Account", new { Area = "" }, new { @class = "button" })
+    <a href="@Url.Action("Login", "Account", new { Area = "" })" class="button"><i class='fa fa-user'></i>&nbsp;Вход</a>
+    <a href="@Url.Action("Register", "Account", new { Area = "" })" class="button"><i class='fa fa-users'></i>&nbsp;Регистрация</a>
     }
 }
 
@@ -26,4 +28,55 @@
     {
     <li>@Html.ActionLink(i.Title, i.Action, i.Controller, new { Area = i.Area ?? "" }, null)</li>   
     }
+}
+
+@helper WriteUserInfoTable(User user)
+{
+    <table>
+        <tr>
+            <th>Имя</th>
+            <td>@user.Name</td>
+        </tr>
+        <tr>
+            <th>E-mail</th>
+            <td>@user.Login</td>
+        </tr>
+        @if (user is Student)
+        {
+            <tr>
+                <th>Курс</th>
+                <td>@((user as Student).Course)</td>
+            </tr>   
+            <tr>
+                <th>Возраст</th>
+                <td>@((user as Student).Age)</td>
+            </tr>   
+            <tr>
+                <th>Группа</th>
+                <td>@((user as Student).Group ?? "не указана")</td>
+            </tr>   
+        }
+        @if (user is Teacher)
+        {
+            <tr>
+                <th>Учебное заведение</th>
+                <td>@((user as Teacher).University)</td>
+            </tr>   
+            <tr>
+                <th>Структурное подразделение</th>
+                <td>@((user as Teacher).Department)</td>
+            </tr> 
+        }
+        @if (user is Administrator)
+        {
+            <tr>
+                <th>Публичный e-mail</th>
+                <td>@((user as Administrator).Email)</td>
+            </tr>   
+            <tr>
+                <th>Телефон</th>
+                <td>@((user as Administrator).Telephone)</td>
+            </tr> 
+        }
+    </table>
 }

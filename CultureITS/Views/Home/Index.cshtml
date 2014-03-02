@@ -13,7 +13,7 @@
             <p>Текст про то, как хорошо живётся на этом свете.</p>
 
             <div class="sign">
-                @Html.ActionLink("Зарегистрируйтесь", "Register", "Account", null, new { @class = "button button-big" }), или 
+                <a href="@Url.Action("Register", "Account")" class="button button-big"><i class="fa fa-users"></i>&nbsp;Зарегистрируйтесь</a>, или 
             @Html.ActionLink("выполните вход", "Login", "Account")
             </div>
         </div>
@@ -30,7 +30,7 @@
             <p>Текст про то, как здорово живётся на этом свете.</p>
 
             <div class="sign">
-                @Html.ActionLink("В музей", "Index", "Game", null, new { @class = "button button-big" })
+                <a href="@Url.Action("Index", "Game")" class="button button-big"><i class="fa fa-arrow-circle-up"></i>&nbsp;В музей</a>
             </div>
         </div>
     </div>

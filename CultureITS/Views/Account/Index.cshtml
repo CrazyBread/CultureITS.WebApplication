@@ -8,18 +8,6 @@
 <p>Добро пожаловать на страницу Вашего профиля. Здесь можно посмотреть основную информацию об учётной записи, статистику по использованию системы, а также есть возможнсть сменить некоторые данные.</p>
 <fieldset class="user-info">
     <legend>Информация о пользователе</legend>
-    <table>
-        <tr>
-            <th>Имя</th>
-            <td>@Model.Item.Name</td>
-        </tr>
-        <tr>
-            <th>E-mail</th>
-            <td>@Model.Item.Login</td>
-        </tr>
-        <tr>
-            <th>Роль</th>
-            <td>@Model.Item.UserRole.ToDescription()</td>
-        </tr>
-    </table>
+
+    @Helpers.WriteUserInfoTable(Model.Item)
 </fieldset>
