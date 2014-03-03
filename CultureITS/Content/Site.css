@@ -19,6 +19,15 @@ header, footer, nav, section {
     display: block;
 }
 
+a.external:after {
+    content: ' \f08e';
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 0.7em;
+    text-decoration: none;
+}
+
 #headerWrap,
 article,
 #footerWrap,
@@ -33,7 +42,6 @@ article,
 }
 
 article {
-    overflow: auto;
     padding: 3px;
 }
 
@@ -181,6 +189,10 @@ footer {
 
 .image-right {
     float: right;
+}
+
+.none {
+    display: none;
 }
 
 /* STYLE FOR SINGLE PAGES */

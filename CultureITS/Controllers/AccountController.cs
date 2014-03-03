@@ -67,6 +67,10 @@ namespace CultureITS.Controllers
             try
             {
                 TryUpdateModel(item, "RegisterItem", new string[] { "Login", "Name", "Password", "Group", "Course", "Age" });
+
+                if (db.Users.Count(i => i.Login == item.Login) > 0)
+                    throw new ArgumentException("Пользователь с таким e-mail уже существует.");
+
                 if (ModelState.IsValid)
                 {
                     db.Students.Add(item);

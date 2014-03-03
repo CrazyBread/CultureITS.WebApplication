@@ -12,7 +12,7 @@
     @Html.HiddenFor(i => i.Item.Id)
 
     <fieldset>
-        <legend>User</legend>
+        <legend>Основная информация</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Item.Login)
@@ -48,9 +48,77 @@
             @Html.EnumDropDownListFor(model => model.Item.UserRole)
             @Html.ValidationMessageFor(model => model.Item.UserRole)
         </div>
-
-        <button class="button button-green">Отправить</button>
     </fieldset>
+    
+    <fieldset id="AdditionalInfo">
+        <legend>Дополнительная информация</legend>
+
+        <div id="StudentInfo" class="none">
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Student).Age)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Student).Age)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Student).Age)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Student).Group)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Student).Group)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Student).Group)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Student).Course)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Student).Course)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Student).Course)
+            </div>
+        </div>
+
+        <div id="TeacherInfo" class="none">
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Teacher).University)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Teacher).University)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Teacher).University)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Teacher).Department)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Teacher).Department)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Teacher).Department)
+            </div>
+        </div>
+
+        <div id="AdminInfo" class="none">
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Administrator).Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Administrator).Email)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Administrator).Email)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => (model.Item as CultureITS.Models.Administrator).Telephone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => (model.Item as CultureITS.Models.Administrator).Telephone)
+                @Html.ValidationMessageFor(model => (model.Item as CultureITS.Models.Administrator).Telephone)
+            </div>
+        </div>
+    </fieldset>
+    
+    <p>
+        <button class="button">Отправить</button>
+    </p>
 }
 
 <div>
@@ -59,4 +127,22 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+            $('#Item_UserRole').change(function () {
+                $('#AdditionalInfo > div').hide();
+
+                if ($(this).val() === '@CultureITS.Models.AccountStatus.Admin')
+                    $('#AdminInfo').show();
+                if ($(this).val() === '@CultureITS.Models.AccountStatus.Teacher')
+                    $('#TeacherInfo').show();
+                if ($(this).val() === '@CultureITS.Models.AccountStatus.Student')
+                    $('#StudentInfo').show();
+            }).change();
+
+            if(@Model.Item.Id > 0)
+                $('#Item_UserRole').prop('disabled', true);
+        });
+    </script>
 }

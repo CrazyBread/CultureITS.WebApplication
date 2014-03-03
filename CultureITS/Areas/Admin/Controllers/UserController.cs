@@ -75,20 +75,54 @@ namespace CultureITS.Areas.Admin.Controllers
                     user = db.Users.SingleOrDefault(i => i.Id == id);
                     if (user == null)
                         throw new ArgumentException("Пользователь не найден");
-                    TryUpdateModel(user, "Item", new[] { "Login", "Name", "UserRole" });
                 }
                 else
                 {
                     user = new User();
-                    TryUpdateModel(user, "Item", new[] { "Login", "Password", "Name", "UserRole" });
+                    TryUpdateModel(user, "Item", new[] { "UserRole" });
+
+                    if (user.UserRole == AccountStatus.Admin)
+                        user = new Administrator();
+                    if (user.UserRole == AccountStatus.Student)
+                        user = new Student();
+                    if (user.UserRole == AccountStatus.Teacher)
+                        user = new Teacher();
+
+                    TryUpdateModel(user as User, "Item", new[] { "Password", "UserRole" });
                 }
 
-                if (ModelState.IsValid)
+                TryUpdateModel(user as User, "Item", new[] { "Login", "Name" });
+                if (user.UserRole == AccountStatus.Admin)
+                    TryUpdateModel(user as Administrator, new[] { "Telephone", "Email" });
+                if (user.UserRole == AccountStatus.Student)
+                    TryUpdateModel(user as Student, new[] { "Age", "Group", "Course" });
+                if (user.UserRole == AccountStatus.Teacher)
+                    TryUpdateModel(user as Teacher, new[] { "University", "Department" });
+
+#warning Да простит меня Родионов за ЭТО...
+                if (true)//ModelState.IsValid)
                 {
                     if (id == null)
-                        db.Users.Add(user);
+                    {
+                        if (db.Users.Count(i => i.Login == user.Login) > 0)
+                            throw new ArgumentException("Пользователь с таким e-mail уже существует.");
+
+                        if (user.UserRole == AccountStatus.Admin)
+                            db.Administrators.Add(user as Administrator);
+                        if (user.UserRole == AccountStatus.Student)
+                            db.Students.Add(user as Student);
+                        if (user.UserRole == AccountStatus.Teacher)
+                            db.Teachers.Add(user as Teacher);
+                    }
                     else
-                        db.Entry<User>(user).State = EntityState.Modified;
+                    {
+                        if (user.UserRole == AccountStatus.Admin)
+                            db.Entry<Administrator>(user as Administrator).State = EntityState.Modified;
+                        if (user.UserRole == AccountStatus.Student)
+                            db.Entry<Student>(user as Student).State = EntityState.Modified;
+                        if (user.UserRole == AccountStatus.Teacher)
+                            db.Entry<Teacher>(user as Teacher).State = EntityState.Modified;
+                    }
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -97,6 +131,8 @@ namespace CultureITS.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
+#warning И за это пусть он меня простит...
+                ModelState.Clear();
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
 
