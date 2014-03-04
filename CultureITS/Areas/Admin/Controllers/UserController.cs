@@ -47,7 +47,7 @@ namespace CultureITS.Areas.Admin.Controllers
                 {
                     item = db.Users.SingleOrDefault(i => i.Id == id);
                     if (item == null)
-                        throw new ArgumentException("Пользователь не найден");
+                        throw new ArgumentException("Пользователь не найден.");
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace CultureITS.Areas.Admin.Controllers
                 {
                     user = db.Users.SingleOrDefault(i => i.Id == id);
                     if (user == null)
-                        throw new ArgumentException("Пользователь не найден");
+                        throw new ArgumentException("Пользователь не найден.");
                 }
                 else
                 {

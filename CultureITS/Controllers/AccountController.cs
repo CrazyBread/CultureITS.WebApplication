@@ -39,7 +39,7 @@ namespace CultureITS.Controllers
             {
                 var user = db.Users.SingleOrDefault(i => ((i.Login == model.Login) && (i.Password == model.Password)));
                 if (user == null)
-                    ModelState.AddModelError(string.Empty, "Пользователь с указанными учётными данными не существует");
+                    ModelState.AddModelError(string.Empty, "Пользователь с указанными учётными данными не существует.");
 
                 if (ModelState.IsValid)
                 {

@@ -34,7 +34,7 @@ namespace CultureITS.Areas.Admin.Controllers
                 {
                     item = db.GameObjects.SingleOrDefault(i => i.Id == id);
                     if (item == null)
-                        throw new ArgumentException("Объект не найден");
+                        throw new ArgumentException("Объект не найден.");
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace CultureITS.Areas.Admin.Controllers
                 {
                     item = db.GameObjects.SingleOrDefault(i => i.Id == id);
                     if (item == null)
-                        throw new ArgumentException("Объект не найден");
+                        throw new ArgumentException("Объект не найден.");
                 }
                 else
                 {
