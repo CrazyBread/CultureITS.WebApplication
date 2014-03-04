@@ -89,5 +89,33 @@ namespace CultureITS.Areas.Admin.Controllers
 
             return View(new GameObjectViewModel(db, item));
         }
+
+        //
+        // GET: /Admin/GameObject/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var item = db.GameObjects.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index");
+
+            return View(new GameObjectViewModel(db, item));
+        }
+
+        //
+        // POST: /Admin/GameObject/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeletePost(int id)
+        {
+            var item = db.GameObjects.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index");
+
+            db.GameObjects.Remove(item);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

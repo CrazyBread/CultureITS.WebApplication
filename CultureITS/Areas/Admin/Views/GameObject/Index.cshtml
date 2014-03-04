@@ -26,7 +26,8 @@ else
         {
             <tr>
                 <td class="top">
-                    <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>|
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
                 </td>
                 <td class="top">@item.Name</td>
                 <td>@Html.Raw(item.Description)</td>
