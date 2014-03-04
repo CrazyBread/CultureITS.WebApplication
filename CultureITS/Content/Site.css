@@ -201,6 +201,14 @@ footer {
     display: none;
 }
 
+.top {
+    vertical-align: top;
+}
+
+.cnt {
+    text-align: center;
+}
+
 /* STYLE FOR SINGLE PAGES */
 #promo {
     background: #ffa84c; /* Old browsers */

@@ -1,0 +1,62 @@
+﻿@model CultureITS.Areas.Admin.Models.GameObjectViewModel
+
+@{
+    ViewBag.Title = "Создание или редактирование игрового объекта";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Информация об игровом объекте</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Item.Name)
+            @Html.ValidationMessageFor(model => model.Item.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Item.Description)
+            @Html.ValidationMessageFor(model => model.Item.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.CanNotified)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.Item.CanNotified)
+            @Html.ValidationMessageFor(model => model.Item.CanNotified)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item.FullDescription)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Item.FullDescription)
+            @Html.ValidationMessageFor(model => model.Item.FullDescription)
+        </div>
+    </fieldset>
+    
+    <p>
+        <button class="button">Отправить</button>
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/tinymce/tinymce.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/tinymce/jquery.tinymce.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/tinymce/tinymce.init.js")" type="text/javascript"></script>
+}

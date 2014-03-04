@@ -39,26 +39,26 @@ namespace CultureITS.Areas.Admin.Controllers
         // GET: /Admin/User/Edit
         public ActionResult Edit(int? id)
         {
-            User user = null;
+            User item = null;
 
             try
             {
                 if (id.HasValue)
                 {
-                    user = db.Users.SingleOrDefault(i => i.Id == id);
-                    if (user == null)
+                    item = db.Users.SingleOrDefault(i => i.Id == id);
+                    if (item == null)
                         throw new ArgumentException("Пользователь не найден");
                 }
                 else
                 {
-                    user = new User();
+                    item = new User();
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(new UserViewModel(db, user));
+            return View(new UserViewModel(db, item));
         }
 
         //
