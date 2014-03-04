@@ -178,6 +178,12 @@ footer {
     font-size: 1.3em;
 }
 
+.button-small {
+    padding: 3px;
+    margin: 3px;
+    font-size: 0.9em;
+}
+
 .post-image {
     padding: 5px;
     margin: 5px;

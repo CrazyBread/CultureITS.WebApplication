@@ -1,0 +1,37 @@
+﻿@model CultureITS.Areas.Admin.Models.RightsViewModel
+
+@{
+    ViewBag.Title = "Права пользователей";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model.List == null || Model.List.Count() == 0)
+{
+    <p>Нет данных.</p>
+}
+else
+{
+    <table>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Область</th>
+            <th>Контроллер</th>
+            <th>Действие</th>
+            <th>Роль</th>
+        </tr>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Remove", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a> |
+                    <a href="@Url.Action("Change", new { id = item.Id })" class="button button-small">@(item.IsAllowed ? "+" : "-")</a>
+                </td>
+                <td>@(item.Area ?? "-")</td>
+                <td>@item.Controller</td>
+                <td>@item.Action</td>
+                <td>@(string.IsNullOrEmpty(item.Role.ToDescription()) ? "Гость" : item.Role.ToDescription())</td>
+            </tr>
+        }
+    </table>
+}

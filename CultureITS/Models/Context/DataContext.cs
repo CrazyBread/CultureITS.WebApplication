@@ -16,6 +16,8 @@ namespace CultureITS.Models.Context
         public DbSet<MenuItem> MenuItems { set; get; }
         public DbSet<AccessRight> AccessRights { set; get; }
 
+        public DbSet<GameObject> GameObjects { set; get; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -45,6 +47,10 @@ namespace CultureITS.Models.Context
                 context.MenuItems.Add(new MenuItem() { Order = 1, Title = "Профиль", Controller = "Account", Action = "Index", AccessMask = (1 << (int)AccountStatus.Student) + (1 << (int)AccountStatus.Admin) });
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Администрирование", Area = "Admin", Controller = "Home", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
+                context.SaveChanges();
+
+                context.GameObjects.Add(new GameObject() { Name = "Свиток Судьбы", Description = "<p>Какая-та херь</p>", CanNotified = false });
+                context.GameObjects.Add(new GameObject() { Name = "Свиток Верности", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
                 context.SaveChanges();
             }
         }
