@@ -30,15 +30,18 @@
             <p>Текст про то, как здорово живётся на этом свете.</p>
 
             <div class="sign">
-                <a href="@Url.Action("Index", "Game")" class="button button-big"><i class="fa fa-arrow-circle-up"></i>&nbsp;В музей</a>
+                <a href="@Url.Action("Index", "Unity")" class="button button-big"><i class="fa fa-arrow-circle-up"></i>&nbsp;В музей</a>
             </div>
         </div>
     </div>
     <div id="promoSpacer"></div>
 }
 
-<h2>@ViewBag.Title</h2>
-@Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+@if (Model.ShowGameButton)
+{
+    <h2>@ViewBag.Title</h2>
+    @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+}
 
 <img src="/Content/images/home.png" alt="" class="image-right" />
 <h2>Почему этот сайт?</h2>

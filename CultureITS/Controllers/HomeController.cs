@@ -23,6 +23,8 @@ namespace CultureITS.Controllers
                 model.ShowPromo = true;
             if (user is Student)
                 model.ShowGameButton = true;
+            if (user is Administrator)
+                model.ShowStylePageLink = true;
 
             return View(model);
         }

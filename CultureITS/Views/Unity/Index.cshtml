@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Unity Testing Page";
+}
+
+<h2>@ViewBag.Title</h2>
+<div id="UnityFake">
+    <a href="#" id="GameObjectMark1" class="button">GameObjectMark1</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        //main function
+        Request = function (command, data, result) {
+            $.post("@Url.Action("")/" + command, data, result);
+        };
+
+        //command function
+        GameObjectMark = function (id) {
+            Request("GameObjectMark", { id: id }, function (data) {
+                if (data.success)
+                    alert('ok');
+                else
+                    alert(data.message);
+            });
+        };
+
+        //fake functions
+        $('#GameObjectMark1').click(function () { GameObjectMark(1); });
+    </script>
+}

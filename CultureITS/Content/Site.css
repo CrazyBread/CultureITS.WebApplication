@@ -252,13 +252,20 @@ footer {
 }
 
 fieldset.user-info {
-    float: right;
-    width: 300px;
+    width: 400px;
 }
 
     fieldset.user-info table {
         width: 100%;
     }
+
+#UnityFake {
+    width: 968px;
+    height: 700px;
+    background-color: #666;
+    border: 3px dashed #999;
+    overflow: hidden;
+}
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
