@@ -63,13 +63,13 @@ header {
 
 .loginform {
     float: right;
-    width: 300px;
+    width: 250px;
     margin-top: 15px;
     text-align: right;
 }
 
 nav {
-    margin-right: 310px;
+    margin-right: 260px;
     font-size: 1.3em;
 }
 
@@ -201,6 +201,14 @@ footer {
     display: none;
 }
 
+/* for lists */
+.clear {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* for table cells */
 .top {
     vertical-align: top;
 }
@@ -209,7 +217,7 @@ footer {
     text-align: center;
 }
 
-/* STYLE FOR SINGLE PAGES */
+/* STYLES FOR SINGLE PAGES */
 #promo {
     background: #ffa84c; /* Old browsers */
     background: -moz-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%); /* FF3.6+ */

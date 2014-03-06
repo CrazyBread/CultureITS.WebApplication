@@ -22,6 +22,13 @@ namespace CultureITS.Controllers
         }
 
         //
+        // GET: /Unity/Api
+        public ActionResult Api()
+        {
+            return View();
+        }
+
+        //
         // POST: /Unity/GameObjectMark/5
         [HttpPost]
         public JsonResult GameObjectMark(int id)
