@@ -4,7 +4,9 @@
 
 <h2>@ViewBag.Title</h2>
 <div id="UnityFake">
-    <a href="#" id="GameObjectMark1" class="button">GameObjectMark1</a>
+    <a href="#" id="markGameObject1" class="button">markGameObject1</a>
+    <a href="#" id="checkGameObject1" class="button">checkGameObject1</a>
+    <a href="#" id="getGameObjectInfo1" class="button">getGameObjectInfo1</a>
 </div>
 
 @section Scripts {
@@ -12,12 +14,12 @@
     <script type="text/javascript">
         //main function
         Request = function (command, data, result) {
-            $.post("@Url.Action("")/" + command, data, result);
+            $.post("@Url.Action("", "Api")/" + command, data, result);
         };
 
         //command function
-        GameObjectMark = function (id) {
-            Request("GameObjectMark", { id: id }, function (data) {
+        markGameObject = function (id) {
+            Request("markGameObject", { id: id }, function (data) {
                 if (data.success)
                     alert('ok');
                 else
@@ -25,7 +27,27 @@
             });
         };
 
+        checkGameObject = function (id) {
+            Request("checkGameObject", { id: id }, function (data) {
+                if (data.success)
+                    alert(data.state);
+                else
+                    alert(data.message);
+            });
+        };
+
+        getGameObjectInfo = function (id, full) {
+            Request("getGameObjectInfo", { id: id, full: full }, function (data) {
+                if (data.success)
+                    alert(data.name + " " + data.canNotified + " " + data.description);
+                else
+                    alert(data.message);
+            });
+        };
+
         //fake functions
-        $('#GameObjectMark1').click(function () { GameObjectMark(1); });
+        $('#markGameObject1').click(function () { markGameObject(1); });
+        $('#checkGameObject1').click(function () { checkGameObject(1); });
+        $('#getGameObjectInfo1').click(function () { getGameObjectInfo(1, false); });
     </script>
 }

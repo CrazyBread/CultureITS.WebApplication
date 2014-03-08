@@ -209,7 +209,7 @@ footer {
 }
 
 /* for table cells */
-.top {
+table.top td {
     vertical-align: top;
 }
 
