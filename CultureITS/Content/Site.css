@@ -267,14 +267,6 @@ fieldset.user-info {
         width: 100%;
     }
 
-#UnityFake {
-    width: 968px;
-    height: 700px;
-    background-color: #666;
-    border: 3px dashed #999;
-    overflow: hidden;
-}
-
 /* Styles for basic forms
 -----------------------------------------------------------*/
 fieldset {
