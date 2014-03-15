@@ -4,10 +4,6 @@
 
 <h2>@ViewBag.Title</h2>
 <div id="unityPlayer">
-    <a href="#" id="markGameObject1" class="button">markGameObject1</a>
-    <a href="#" id="checkGameObject1" class="button">checkGameObject1</a>
-    <a href="#" id="getGameObjectInfo1" class="button">getGameObjectInfo1</a>
-
     <div class="missing">
         <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
             <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
@@ -19,6 +15,10 @@
         </a>
     </div>
 </div>
+
+<a href="#" id="markGameObject1" class="button">markGameObject1</a>
+<a href="#" id="checkGameObject1" class="button">checkGameObject1</a>
+<a href="#" id="getGameObjectInfo1" class="button">getGameObjectInfo1</a>
 
 @section Scripts {
     <script type="text/javascript" src="@Url.Content("~/Scripts/UnityObject2.js")"></script>
@@ -33,48 +33,48 @@
     </script>
 
     <script type="text/javascript">
-    var config = {
-        width: 960,
-        height: 600,
-        params: { enableDebugging: "0" }
+        var config = {
+            width: 960,
+            height: 600,
+            params: { enableDebugging: "0" }
 
-    };
-    var u = new UnityObject2(config);
+        };
+        var u = new UnityObject2(config);
 
-    jQuery(function () {
-        var $missingScreen = jQuery("#unityPlayer").find(".missing");
-        var $brokenScreen = jQuery("#unityPlayer").find(".broken");
-        $missingScreen.hide();
-        $brokenScreen.hide();
+        jQuery(function () {
+            var $missingScreen = jQuery("#unityPlayer").find(".missing");
+            var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+            $missingScreen.hide();
+            $brokenScreen.hide();
 
-        u.observeProgress(function (progress) {
-            switch (progress.pluginStatus) {
-                case "broken":
-                    $brokenScreen.find("a").click(function (e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        u.installPlugin();
-                        return false;
-                    });
-                    $brokenScreen.show();
-                    break;
-                case "missing":
-                    $missingScreen.find("a").click(function (e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        u.installPlugin();
-                        return false;
-                    });
-                    $missingScreen.show();
-                    break;
-                case "installed":
-                    $missingScreen.remove();
-                    break;
-                case "first":
-                    break;
-            }
-        });
-        u.initPlugin(jQuery("#unityPlayer")[0], '@Url.Content("~/Content/Unity.bin")');
+            u.observeProgress(function (progress) {
+                switch (progress.pluginStatus) {
+                    case "broken":
+                        $brokenScreen.find("a").click(function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            u.installPlugin();
+                            return false;
+                        });
+                        $brokenScreen.show();
+                        break;
+                    case "missing":
+                        $missingScreen.find("a").click(function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            u.installPlugin();
+                            return false;
+                        });
+                        $missingScreen.show();
+                        break;
+                    case "installed":
+                        $missingScreen.remove();
+                        break;
+                    case "first":
+                        break;
+                }
+            });
+            u.initPlugin(jQuery("#unityPlayer")[0], '@Url.Content("~/Content/Unity.bin")');
     });
     </script>
 }

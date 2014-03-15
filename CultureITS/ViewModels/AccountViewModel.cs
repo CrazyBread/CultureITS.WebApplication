@@ -9,16 +9,12 @@ namespace CultureITS.ViewModels
 {
     public class AccountViewModel
     {
-        public User Item { set; get; }
+        public Student Item { set; get; }
         public Student RegisterItem { set; get; }
-
-        public AccountViewModel(User item)
-        {
-            Item = item;
-        }
 
         public AccountViewModel(Student item)
         {
+            Item = item;
             RegisterItem = item;
         }
     }

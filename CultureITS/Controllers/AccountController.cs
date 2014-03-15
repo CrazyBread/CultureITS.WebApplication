@@ -19,7 +19,8 @@ namespace CultureITS.Controllers
         // GET: /Account/
         public ActionResult Index()
         {
-            return View(new AccountViewModel(System.Web.HttpContext.Current.Session.GetUser()));
+            var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+            return View(new AccountViewModel(user));
         }
 
         //
@@ -44,7 +45,7 @@ namespace CultureITS.Controllers
                 if (ModelState.IsValid)
                 {
                     System.Web.HttpContext.Current.Session.Authorize(user as User);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return View(model);
@@ -91,6 +92,16 @@ namespace CultureITS.Controllers
         public ActionResult Logout()
         {
             System.Web.HttpContext.Current.Session.Logout();
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // GET: /Account/AutoLogOn
+        public ActionResult AutoLogOn(string login)
+        {
+            var user = db.Users.FirstOrDefault(i => i.Login == login);
+            if(user != null)
+                System.Web.HttpContext.Current.Session.Authorize(user);
             return RedirectToAction("Index", "Home");
         }
     }
