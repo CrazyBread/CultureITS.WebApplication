@@ -258,6 +258,11 @@ table.top td {
     padding-left: 15px;
 }
 
+#unityPlayer {
+    width: 960px;
+    height: 600px;
+}
+
 fieldset.user-info {
     width: 400px;
 }

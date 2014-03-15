@@ -151,6 +151,16 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\css\jquery.fancybox.css" />
+    <Content Include="Content\images\blank.gif" />
+    <Content Include="Content\images\fancybox_loading%402x.gif" />
+    <Content Include="Content\images\fancybox_loading.gif" />
+    <Content Include="Content\images\fancybox_overlay.png" />
+    <Content Include="Content\images\fancybox_sprite%402x.png" />
+    <Content Include="Content\images\fancybox_sprite.png" />
+    <Content Include="Scripts\fancybox.config.js" />
+    <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.fancybox.pack.js" />
     <Content Include="Scripts\UnityAPI.js" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

@@ -19,7 +19,30 @@
 }
 else
 {
-    <p>adf</p>   
+    <table>
+        <tr>
+            <th>Название</th>
+            <th>Местоположение</th>
+            <th>&nbsp;</th>
+        </tr>
+        @foreach (var item in Model.Item.GameObjects)
+        {
+            <tr>
+                <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
+                <td>@item.Location</td>
+                <td>
+                    <a href="#" class="button">Подробная информация</a>
+                </td>
+            </tr>
+        }
+    </table>
+    foreach (var item in Model.Item.GameObjects)
+    {
+        <div id="description_@item.Id" class="none">
+            <h2>@item.Name</h2>
+            @Html.Raw(item.Description)
+        </div>
+    }
 }
 
 <h3>Тестирование</h3>

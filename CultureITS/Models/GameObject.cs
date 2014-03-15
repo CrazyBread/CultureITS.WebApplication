@@ -15,11 +15,15 @@ namespace CultureITS.Models
         [Required]
         [Display(Name = "Название")]
         public string Name { set; get; }
-        
+
         [Required]
         [AllowHtml]
         [Display(Name = "Описание")]
         public string Description { set; get; }
+
+        [Required]
+        [Display(Name = "Местоположение")]
+        public string Location { set; get; }
 
         [Required]
         [Display(Name = "Может быть отмечено пользователем")]

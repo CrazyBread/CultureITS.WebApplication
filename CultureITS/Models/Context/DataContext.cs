@@ -50,8 +50,8 @@ namespace CultureITS.Models.Context
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
                 context.SaveChanges();
 
-                context.GameObjects.Add(new GameObject() { Name = "Свиток Судьбы", Description = "<p>Какая-та херь</p>", CanNotified = false });
-                context.GameObjects.Add(new GameObject() { Name = "Свиток Верности", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
+                context.GameObjects.Add(new GameObject() { Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
+                context.GameObjects.Add(new GameObject() { Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
                 context.SaveChanges();
             }
         }

@@ -10,6 +10,10 @@ namespace CultureITS
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fancybox").Include(
+                        "~/Scripts/jquery.fancybox.js",
+                        "~/Scripts/fancybox.config.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
@@ -22,7 +26,8 @@ namespace CultureITS
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/site.css",
-                        "~/Content/css/font-awesome.css"));
+                        "~/Content/css/font-awesome.css",
+                        "~/Content/css/jquery.fancybox.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
