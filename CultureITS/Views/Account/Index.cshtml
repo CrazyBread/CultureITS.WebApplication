@@ -12,20 +12,22 @@
     @Helpers.WriteUserInfoTable(Model.Item)
 </fieldset>
 
-<h3>Вы отметили для себя</h3>
-@if (Model.Item.GameObjects.Count == 0)
+@if (Model.ItemStudent != null)
 {
+    <h3>Вы отметили для себя</h3>
+    if (Model.ItemStudent.GameObjects.Count == 0)
+    {
     <p>Здесь будут показываться предметы музея, которые вы отметили для себя. Отмечайте экспонаты музея, чтобы прочитать про них подробную информацию!</p>
-}
-else
-{
+    }
+    else
+    {
     <table>
         <tr>
             <th>Название</th>
             <th>Местоположение</th>
             <th>&nbsp;</th>
         </tr>
-        @foreach (var item in Model.Item.GameObjects)
+        @foreach (var item in Model.ItemStudent.GameObjects)
         {
             <tr>
                 <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
@@ -36,14 +38,15 @@ else
             </tr>
         }
     </table>
-    foreach (var item in Model.Item.GameObjects)
-    {
-        <div id="description_@item.Id" class="none">
-            <h2>@item.Name</h2>
-            @Html.Raw(item.Description)
-        </div>
+        foreach (var item in Model.ItemStudent.GameObjects)
+        {
+    <div id="description_@item.Id" class="none">
+        <h2>@item.Name</h2>
+        @Html.Raw(item.Description)
+    </div>
+        }
     }
-}
 
-<h3>Тестирование</h3>
-<p>Здесь будут показаны результаты тестирования. Его можно пройти в каждой комнате музея у специального стенда. Также Вы можете посмотреть детальную статистику прохождения тестирования.</p>
+    <h3>Тестирование</h3>
+    <p>Здесь будут показаны результаты тестирования. Его можно пройти в каждой комнате музея у специального стенда. Также Вы можете посмотреть детальную статистику прохождения тестирования.</p>
+}

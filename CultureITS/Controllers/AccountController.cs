@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Helpers;
 
 namespace CultureITS.Controllers
 {
@@ -19,7 +20,7 @@ namespace CultureITS.Controllers
         // GET: /Account/
         public ActionResult Index()
         {
-            var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+            var user = db.Users.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
             return View(new AccountViewModel(user));
         }
 
@@ -61,7 +62,7 @@ namespace CultureITS.Controllers
         //
         // POST: /Account/Register
         [HttpPost, ActionName("Register")]
-        public ActionResult RegisterPost()
+        public ActionResult RegisterPost(HttpPostedFileBase Photo)
         {
             var item = new Student() { UserRole = AccountStatus.Student };
 
@@ -74,6 +75,13 @@ namespace CultureITS.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    if (Photo != null && Photo.IsImage())
+                    {
+                        item.PhotoMime = Photo.ContentType;
+                        item.Photo = new WebImage(Photo.InputStream).Resize(300, 300).GetBytes(item.PhotoMime);
+                        Photo.InputStream.Read(item.Photo, 0, Photo.ContentLength);
+                    }
+
                     db.Students.Add(item);
                     db.SaveChanges();
                     System.Web.HttpContext.Current.Session.Authorize(item);
@@ -96,11 +104,55 @@ namespace CultureITS.Controllers
         }
 
         //
+        // GET: /Account/Users/1
+        public FileContentResult GetImage(int id)
+        {
+            var user = db.Users.Find(id);
+            if (user == null)
+                return null;
+            if (user.PhotoMime == null)
+                return null;
+            return File(user.Photo, user.PhotoMime);
+        }
+
+        //
+        // GET: /Account/RemoveImage
+        public ActionResult RemoveImage()
+        {
+            var user = db.Users.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+            if (user.PhotoMime != null)
+            {
+                user.PhotoMime = null;
+                user.Photo = null;
+                db.Entry(user).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        //
+        // POST: /Account/ChangeImage
+        [HttpPost]
+        public ActionResult ChangeImage(HttpPostedFileBase Photo)
+        {
+            var user = db.Users.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+            if (Photo.IsImage())
+            {
+                user.PhotoMime = Photo.ContentType;
+                user.Photo = new WebImage(Photo.InputStream).Resize(300, 300).GetBytes(user.PhotoMime);
+                Photo.InputStream.Read(user.Photo, 0, Photo.ContentLength);
+                db.Entry(user).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        //
         // GET: /Account/AutoLogOn
         public ActionResult AutoLogOn(string login)
         {
             var user = db.Users.FirstOrDefault(i => i.Login == login);
-            if(user != null)
+            if (user != null)
                 System.Web.HttpContext.Current.Session.Authorize(user);
             return RedirectToAction("Index", "Home");
         }

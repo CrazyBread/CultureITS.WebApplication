@@ -19,20 +19,27 @@ else
         <tr>
             <th>&nbsp;</th>
             <th>Название</th>
-            <th>Краткое описание</th>
+            <th>Местоположение</th>
             <th>Может быть отмечен</th>
         </tr>
         @foreach (var item in Model.List)
         {
             <tr>
-                <td class="top">
+                <td>
                     <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>|
                     <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
                 </td>
-                <td class="top">@item.Name</td>
-                <td>@Html.Raw(item.Description)</td>
+                <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
+                <td>@item.Location</td>
                 <td class="cnt top">@(item.CanNotified ? "+" : "-")</td>
             </tr>
         }
     </table>  
+    foreach (var item in Model.List)
+    {
+        <div id="description_@item.Id" class="none">
+            <h2>@item.Name</h2>
+            @Html.Raw(item.Description)
+        </div>
+    }
 }

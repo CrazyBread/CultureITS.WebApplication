@@ -49,6 +49,9 @@ namespace CultureITS.Models
         [Required(ErrorMessage = "Введите ваше настоящее имя")]
         [Display(Name = "ФИО")]
         public string Name { set; get; }
+
+        public byte[] Photo { set; get; }
+        public string PhotoMime { set; get; }
     }
 
     public class Student : User

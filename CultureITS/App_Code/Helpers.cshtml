@@ -32,6 +32,21 @@
 
 @helper WriteUserInfoTable(User user)
 {
+    var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+    var Url = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Url;
+
+    if (user.PhotoMime != null)
+    {
+    <img src="@Url.Action("GetImage", "Account", new { id = user.Id })" alt="" />
+    <div>
+        <a href="@Url.Action("RemoveImage", "Account")">Удалить изображение</a> |
+        <a href="#PhotoUpload" class="fancybox">Изменить изображение</a>
+    </div>
+    }
+    else
+    {
+    <a href="#PhotoUpload" class="fancybox">Добавить изображение</a>   
+    }
     <table>
         <tr>
             <th>Имя</th>
@@ -79,4 +94,15 @@
             </tr> 
         }
     </table>
+    <div class="none" id="PhotoUpload">
+        <h2>Изображение профиля</h2>
+        <p>В этом окне вы можете изменить или добавить изображение собственного профиля. Сделать это можно ниже.</p>
+        @using (Html.BeginForm("ChangeImage", "Account", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" id="Photo" name="Photo" />
+            <div>
+                <button>Загрузить</button>
+            </div>
+        }
+    </div>
 }

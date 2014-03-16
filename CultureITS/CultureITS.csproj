@@ -50,6 +50,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -136,12 +137,14 @@
     <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\GameObjectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UnityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Helpers\RightsManager.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
@@ -163,6 +166,7 @@
     <Content Include="Scripts\jquery.fancybox.pack.js" />
     <Content Include="Scripts\UnityAPI.js" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\GameObjectViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +284,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Unity\Index.cshtml" />
     <Content Include="Views\Api\Index.cshtml" />
+    <Content Include="Views\GameObject\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,27 @@
+﻿@model CultureITS.ViewModels.GameObjectViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Предметы музея</h2>
+@if (Model.List.Count() == 0)
+{
+    <p>Нет данных</p>
+}
+else
+{
+    <table>
+        <tr>
+            <th>Название</th>
+            <th>Местоположение</th>
+        </tr>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Location</td>
+            </tr>
+        }
+    </table>
+}

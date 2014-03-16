@@ -21,6 +21,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Item.Location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Item.Location)
+            @Html.ValidationMessageFor(model => model.Item.Location)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Item.Description)
         </div>
         <div class="editor-field">
