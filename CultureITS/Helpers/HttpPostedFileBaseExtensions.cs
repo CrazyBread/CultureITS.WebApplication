@@ -13,6 +13,9 @@ namespace CultureITS.Helpers
 
         public static bool IsImage(this HttpPostedFileBase postedFile)
         {
+            if (postedFile == null)
+                return false;
+
             //-------------------------------------------
             //  Check the image mime types
             //-------------------------------------------
