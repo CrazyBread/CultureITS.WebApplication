@@ -4,7 +4,6 @@
     ViewBag.Title = "Профиль пользователя";
 }
 
-<h2>@ViewBag.Title</h2>
 <p>Добро пожаловать на страницу Вашего профиля. Здесь можно посмотреть основную информацию об учётной записи, статистику по использованию системы, а также есть возможнсть сменить некоторые данные.</p>
 <fieldset class="user-info">
     <legend>Информация о пользователе</legend>
@@ -21,7 +20,7 @@
     }
     else
     {
-    <table>
+    <table class="little-table">
         <tr>
             <th>Название</th>
             <th>Местоположение</th>
@@ -38,15 +37,40 @@
             </tr>
         }
     </table>
-        foreach (var item in Model.ItemStudent.GameObjects)
-        {
-    <div id="description_@item.Id" class="none">
-        <h2>@item.Name</h2>
-        @Html.Raw(item.Description)
-    </div>
-        }
+        
     }
 
     <h3>Тестирование</h3>
     <p>Здесь будут показаны результаты тестирования. Его можно пройти в каждой комнате музея у специального стенда. Также Вы можете посмотреть детальную статистику прохождения тестирования.</p>
+}
+
+@section popup_windows {
+    @foreach (var item in Model.ItemStudent.GameObjects)
+    {
+        <div id="description_@item.Id" class="popup_window">
+            <div class="popup_head">
+                @item.Name
+                <div class="popup_close">Х</div>
+            </div>
+            <div class="popup_cont">
+                @Html.Raw(item.Description)
+            </div>
+        </div>
+    }
+    <div class="popup_window" id="PhotoUpload">
+        <div class="popup_head">
+            Изображение профиля
+            <div class="popup_close">Х</div>
+        </div>
+        <div class="popup_cont">
+            <p>В этом окне вы можете изменить или добавить изображение собственного профиля. Сделать это можно ниже.</p>
+            @using (Html.BeginForm("ChangeImage", "Account", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" id="Photo" name="Photo" />
+                <div>
+                    <button>Загрузить</button>
+                </div>
+            }
+        </div>
+    </div>
 }

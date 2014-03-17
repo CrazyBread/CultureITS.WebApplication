@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+@*
 @if (Model.ShowPromo)
 {
     <div id="promo">
@@ -45,12 +46,7 @@
 
 <img src="/Content/images/home.png" alt="" class="image-right" />
 
-<h2>Автологин</h2>
-<ul>
-    <li>@Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "external" })</li>
-    <li>@Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "external" })</li>
-    <li>@Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "external" })</li>
-</ul>
+
 
 <h2>Почему этот сайт?</h2>
 <p>Потому что пользоваться этим сайтом, прежде всего, удобно! Вы получите настоящее удовольствие от использования этого информационного ресурса.</p>
@@ -60,3 +56,196 @@
 
 <h2>Вопросы?</h2>
 <p>Если у Вас появились дополнительные вопросы по поводу функционирования системой, можете перейти на страницу @Html.ActionLink("о системе", "About").</p>
+*@
+
+<div class="cont big_img">
+    <div class="bi_text">
+        <span class="bi_title">CultureITS. Христианство в 3D</span>
+    </div>
+    <div class="bi_text2">
+        Данная информационная система направлена на получение информации о христианстве, изучении ее основ и прочей лабуды. Будет очень много поелезного и интересного, особенно в 3D. так что не упустите шанс и поиграйте в наши квесты.
+       
+    </div>
+    @if (Model.ShowGameButton)
+    {
+        <a href="@Url.Action("Index", "Unity")" class="bi_btn">Перейти в музей</a>
+    }
+    else if (Model.ShowPromo)
+    {
+        <a href="@Url.Action("Register", "Account")" class="bi_btn">Регистрация</a>
+    }
+    else
+    {
+        <a href="@Url.Action("About", "Home")" class="bi_btn">Знакомство с сайтом</a>
+    }
+</div>
+
+<div class="advant cont">
+    <div class="advant_item">
+        <div class="item_icon advant1">&nbsp;</div>
+        <p class="advant_title">
+            Мы вкусные
+           
+        </p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+           
+        </p>
+        <a href="#popup1" class="advant_more_btn fancybox">Подробнее</a>
+    </div>
+    <div class="advant_item">
+        <div class="item_icon advant2">&nbsp;</div>
+        <p class="advant_title">
+            Мы вкусные
+           
+        </p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+           
+        </p>
+        <a href="#popup2" class="advant_more_btn fancybox">Подробнее</a>
+    </div>
+    <div class="advant_item">
+        <div class="item_icon advant3">&nbsp;</div>
+        <p class="advant_title">
+            Мы вкусные
+           
+        </p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+           
+        </p>
+        <a href="" class="advant_more_btn">Подробнее</a>
+    </div>
+    <div class="advant_item">
+        <div class="item_icon advant4">&nbsp;</div>
+        <p class="advant_title">
+            Мы вкусные
+           
+        </p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+           
+        </p>
+        <a href="" class="advant_more_btn">Подробнее</a>
+    </div>
+</div>
+
+@if (Model.ShowStylePageLink)
+{
+    <h2>Администраторские штучки</h2>
+    @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+}
+
+<h2>Автологин</h2>
+<ul>
+    <li>@Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "external" })</li>
+    <li>@Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "external" })</li>
+    <li>@Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "external" })</li>
+</ul>
+
+<div class="cont">
+    <div class="column1">
+        <h3 class="headline">Headline</h3>
+        <p>
+            Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+           
+        </p>
+    </div>
+    <hr />
+    <div class="column2">
+        <h3 class="headline">Headline</h3>
+        <p>
+            Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+           
+        </p>
+    </div>
+    <div class="column2">
+        <h3 class="headline">Headline</h3>
+        <p>
+            Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+                Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика Вкусный текст для красавчика
+              
+        </p>
+    </div>
+</div>
+<hr />
+<div class="cont">
+    <table class="little-table">
+        <tr>
+            <th>Lorem ipsum dolor.</th>
+            <th>Itaque, laborum temporibus!</th>
+            <th>Modi, quam sequi.</th>
+            <th>Animi, laborum, quia!</th>
+            <th>Facilis numquam, sint!</th>
+            <th>Accusamus, expedita, veritatis?</th>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Cumque dolorem laboriosam rem veniam?</td>
+            <td>Cumque obcaecati similique voluptas voluptate!</td>
+            <td>Delectus esse exercitationem sit unde!</td>
+            <td>Doloremque ipsum maxime natus quam?</td>
+            <td>Cum dignissimos iste nostrum obcaecati?</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Aut blanditiis laboriosam magnam sint!</td>
+            <td>Consectetur mollitia omnis tempora voluptates!</td>
+            <td>Ducimus error eveniet necessitatibus numquam.</td>
+            <td>Aliquid distinctio explicabo temporibus voluptatibus!</td>
+            <td>Illo necessitatibus velit voluptates voluptatibus.</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Accusamus inventore nam officiis ullam.</td>
+            <td>Dignissimos natus neque sunt ullam.</td>
+            <td>Delectus ipsum quam repellat totam.</td>
+            <td>Distinctio facilis officia sunt ullam.</td>
+            <td>Aperiam assumenda excepturi neque vel?</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Blanditiis cumque cupiditate delectus voluptate.</td>
+            <td>Aliquam dolore eaque illo rerum.</td>
+            <td>Cupiditate dolorum esse ex perferendis.</td>
+            <td>Atque dolor nihil quisquam tempore.</td>
+            <td>Corporis natus obcaecati sit tempora.</td>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Alias dolorum est mollitia totam.</td>
+            <td>Autem deleniti expedita necessitatibus numquam!</td>
+            <td>Asperiores expedita natus nihil placeat?</td>
+            <td>Accusantium debitis labore quidem veniam!</td>
+            <td>Aspernatur esse labore veniam vitae?</td>
+        </tr>
+    </table>
+</div>
+<div class="cont">
+    <div class="column2">
+        <ul>
+            <li>Вкусный вкусный текст</li>
+            <li>Вкусный вкусный текст</li>
+            <li>Вкусный вкусный текст</li>
+            <li>Вкусный вкусный текст</li>
+            <li>Вкусный вкусный текст</li>
+        </ul>
+    </div>
+    <div class="column2">
+        <ol>
+            <li>Lorem ipsum dolor sit.</li>
+            <li>Blanditiis dolorum iste tempora.</li>
+            <li>Earum minus officia quaerat!</li>
+            <li>Blanditiis eius eveniet excepturi.</li>
+            <li>Aliquid cumque odit totam?</li>
+            <li>Dolore natus quas ut?</li>
+        </ol>
+    </div>
+</div>

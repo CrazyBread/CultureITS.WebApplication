@@ -1,39 +1,115 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
-        <div id="headerWrap">
-            <div class="loginform">
-                @Helpers.LoginForm()
+    <div class="popup">
+        @*<div class="popup_window" id="popup1">
+            <div class="popup_head">
+                Lorem ipsum dolor sit amet, consectetur.
+               
+                <div class="popup_close">Х</div>
             </div>
-            <nav>
-                <ul>
+            <div class="popup_cont">
+                <p class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci at autem corporis debitis dolores ipsum itaque nulla, quisquam voluptate? Delectus deleniti iste maiores necessitatibus nulla quibusdam repudiandae tempora. Accusamus error fugit sit voluptatibus?
+               
+                </p>
+                <p class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci at autem corporis debitis dolores ipsum itaque nulla, quisquam voluptate? Delectus deleniti iste maiores necessitatibus nulla quibusdam repudiandae tempora. Accusamus error fugit sit voluptatibus?
+               
+                </p>
+                <p class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci at autem corporis debitis dolores ipsum itaque nulla, quisquam voluptate? Delectus deleniti iste maiores necessitatibus nulla quibusdam repudiandae tempora. Accusamus error fugit sit voluptatibus?
+               
+                </p>
+            </div>
+        </div>
+        <div class="popup_window" id="popup2">
+            <div class="popup_head">
+                Popup2
+               
+                <div class="popup_close">Х</div>
+            </div>
+            <div class="popup_cont">
+                <p class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci at autem corporis debitis dolores ipsum itaque nulla, quisquam voluptate? Delectus deleniti iste maiores necessitatibus nulla quibusdam repudiandae tempora. Accusamus error fugit sit voluptatibus?
+               
+                </p>
+                <p class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci at autem corporis debitis dolores ipsum itaque nulla, quisquam voluptate? Delectus deleniti iste maiores necessitatibus nulla quibusdam repudiandae tempora. Accusamus error fugit sit voluptatibus?
+               
+                </p>
+                <p class="headline">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci at autem corporis debitis dolores ipsum itaque nulla, quisquam voluptate? Delectus deleniti iste maiores necessitatibus nulla quibusdam repudiandae tempora. Accusamus error fugit sit voluptatibus?
+               
+                </p>
+            </div>
+        </div>*@
+        @RenderSection("popup_windows", required: false)
+    </div>
+    <div class="head">
+        <div class="cont">
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home", new { area = "" })"><b>Culture</b>ITS</a>
+            </div>
+            <ul class="head_menu">
+                @Helpers.TopMenu()
+                @Helpers.LoginForm()
+            </ul>
+        </div>
+    </div>
+    <div class="line2">
+        <div class="cont">
+            <h1 class="title">
+                @ViewBag.Title
+            </h1>
+            <div class="breadcrumbs">
+                @*<a href="">Главная страница</a><span> / </span><a href="">Название раздела</a><span> / Название статьи</span>*@
+                @Html.Raw(ViewBag.BreadCrumbs)
+            </div>
+            <div class="line2_angle">&nbsp;</div>
+        </div>
+    </div>
+    <div class="cont">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="cont">
+            <div class="contact">
+                <span class="logo"><b>Culture</b>ITS</span>
+                <p class="descript_foot">
+                    &copy&nbsp;2014 — CoolFaggots Inc. Все авторские и смежные права защищены законодательством Российской Федерации, а также международными договорами в области авторского права, принятыми Российской Федерацией.
+                </p>
+            </div>
+            <div class="razdel_b">
+                <p class="foot_title">Разделы сайта</p>
+                <ul class="razdel">
                     @Helpers.TopMenu()
                 </ul>
-            </nav>
+            </div>
+            <div class="razdel_b">
+                <p class="foot_title">Авторы</p>
+                <ul class="razdel">
+                    <li>Загайчук Иван <span class="mini">(ФИСТ, ИСТбд-31)</span></li>
+                    <li>Желепов Алексей <span class="mini">(ФИСТ, ИСТбд-31)</span></li>
+                    <li>Моисеев Владислав <span class="mini">(ФИСТ, ИСТбд-31)</span></li>
+                    <li>Прохоров Евгений <span class="mini">(ФИСТ, ИСТбд-31)</span></li>
+                </ul>
+            </div>
         </div>
-    </header>
-
-    <div id="articleWrap">
-        <article>
-            @RenderBody()
-        </article>
     </div>
-
-    <footer>
-        <div id="footerWrap">
-            &copy;&nbsp;2014 — CoolFaggots Inc.
-        </div>
-    </footer>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/fancybox")
     @RenderSection("scripts", required: false)
 </body>
 </html>

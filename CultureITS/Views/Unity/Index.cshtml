@@ -21,9 +21,12 @@
 <a href="#" id="getGameObjectInfo1" class="button">getGameObjectInfo1</a>
 
 <a class="fancybox" href="#FancyTest">Popup test</a>
-<div class="none" id="FancyTest">
-    ?????
-</div>
+
+@section popup_windows {
+    <div class="popup_window" id="FancyTest">
+        ?????
+    </div>
+}
 
 @section Scripts {
     <script type="text/javascript" src="@Url.Content("~/Scripts/UnityObject2.js")"></script>
@@ -39,8 +42,8 @@
 
     <script type="text/javascript">
         var config = {
-            width: 960,
-            height: 600,
+            width: 1170,
+            height: 700,
             params: { enableDebugging: "0" }
 
         };
@@ -80,6 +83,6 @@
                 }
             });
             u.initPlugin(jQuery("#unityPlayer")[0], '@Url.Content("~/Content/Unity.bin")');
-    });
+        });
     </script>
 }

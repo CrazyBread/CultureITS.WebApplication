@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BreadCrumbsBuilder.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
@@ -154,16 +155,22 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Content\css\jquery.fancybox.css" />
-    <Content Include="Content\images\blank.gif" />
-    <Content Include="Content\images\fancybox_loading%402x.gif" />
-    <Content Include="Content\images\fancybox_loading.gif" />
-    <Content Include="Content\images\fancybox_overlay.png" />
-    <Content Include="Content\images\fancybox_sprite%402x.png" />
-    <Content Include="Content\images\fancybox_sprite.png" />
-    <Content Include="Scripts\fancybox.config.js" />
-    <Content Include="Scripts\jquery.fancybox.js" />
-    <Content Include="Scripts\jquery.fancybox.pack.js" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\advant1.png" />
+    <Content Include="Content\images\advant2.png" />
+    <Content Include="Content\images\advant3.png" />
+    <Content Include="Content\images\advant4.png" />
+    <Content Include="Content\images\footer_bg.png" />
+    <Content Include="Content\images\head_bg.png" />
+    <Content Include="Content\images\head_big_img.jpg" />
+    <Content Include="Content\images\head_big_img1.jpg" />
+    <Content Include="Content\images\head_big_img2.jpg" />
+    <Content Include="Content\images\head_big_img3.jpg" />
+    <Content Include="Content\images\line2_angle.png" />
+    <Content Include="Content\images\ul_bg.png" />
+    <Content Include="Content\images\ul_foot_bg.png" />
+    <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\UnityAPI.js" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\GameObjectViewModel.cs" />
@@ -174,7 +181,6 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\about.jpg" />
-    <Content Include="Content\images\home.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -230,7 +236,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="App_Code\Helpers.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -248,6 +253,9 @@
     <Content Include="Areas\Admin\Views\GameObject\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\GameObject\Delete.cshtml" />
     <Content Include="Content\Unity.bin" />
+    <Content Include="Content\fonts\OpenSans-Bold.ttf" />
+    <Content Include="Content\fonts\OpenSans-ExtraBold.ttf" />
+    <Content Include="Content\fonts\OpenSans-Regular.ttf" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -285,11 +293,11 @@
     <Content Include="Views\Unity\Index.cshtml" />
     <Content Include="Views\Api\Index.cshtml" />
     <Content Include="Views\GameObject\Index.cshtml" />
+    <Content Include="Views\GameObject\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

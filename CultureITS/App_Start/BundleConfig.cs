@@ -8,11 +8,8 @@ namespace CultureITS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/fancybox").Include(
-                        "~/Scripts/jquery.fancybox.js",
-                        "~/Scripts/fancybox.config.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/UserScript.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -25,7 +22,8 @@ namespace CultureITS
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/site.css",
+                        "~/Content/css/reset.css",
+                        "~/Content/css/style.css",
                         "~/Content/css/font-awesome.css",
                         "~/Content/css/jquery.fancybox.css"));
 

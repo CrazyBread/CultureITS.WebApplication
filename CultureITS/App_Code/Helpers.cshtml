@@ -10,12 +10,12 @@
 
     if (HttpContext.Current.Session.IsAuthorized())
     {
-    <a href="@Url.Action("Logout", "Account", new { Area = "" })" class="button"><i class='fa fa-code'></i>&nbsp;Выход</a>
+    <li><a href="@Url.Action("Logout", "Account", new { Area = "" })"><i class='fa fa-code'></i>&nbsp;Выход</a></li>
     }
     else
     {
-    <a href="@Url.Action("Login", "Account", new { Area = "" })" class="button"><i class='fa fa-user'></i>&nbsp;Вход</a>
-    <a href="@Url.Action("Register", "Account", new { Area = "" })" class="button"><i class='fa fa-users'></i>&nbsp;Регистрация</a>
+    <li><a href="@Url.Action("Login", "Account", new { Area = "" })"><i class='fa fa-user'></i>&nbsp;Вход</a></li>
+    <li><a href="@Url.Action("Register", "Account", new { Area = "" })"><i class='fa fa-users'></i>&nbsp;Регистрация</a></li>
     }
 }
 
@@ -23,7 +23,6 @@
 {
     var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
 
-    <li class="brand">@Html.ActionLink(System.Configuration.ConfigurationManager.AppSettings["ApplicationTitle"], "Index", "Home", new { area = "" }, null)</li>
     foreach (var i in HttpContext.Current.Session.GetMenu())
     {
     <li>@Html.ActionLink(i.Title, i.Action, i.Controller, new { Area = i.Area ?? "" }, null)</li>   
@@ -47,7 +46,7 @@
     {
     <a href="#PhotoUpload" class="fancybox">Добавить изображение</a>   
     }
-    <table>
+    <table class="little-table">
         <tr>
             <th>Имя</th>
             <td>@user.Name</td>
@@ -94,15 +93,4 @@
             </tr> 
         }
     </table>
-    <div class="none" id="PhotoUpload">
-        <h2>Изображение профиля</h2>
-        <p>В этом окне вы можете изменить или добавить изображение собственного профиля. Сделать это можно ниже.</p>
-        @using (Html.BeginForm("ChangeImage", "Account", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <input type="file" id="Photo" name="Photo" />
-            <div>
-                <button>Загрузить</button>
-            </div>
-        }
-    </div>
 }
