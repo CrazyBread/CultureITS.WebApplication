@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CultureITS.Models.Test;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -66,6 +67,7 @@ namespace CultureITS.Models
         public int Age { set; get; }
 
         public virtual ICollection<GameObject> GameObjects { set; get; }
+        public virtual ICollection<Result> TestResults { set; get; }
     }
 
     public class Teacher : User

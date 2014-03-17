@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CultureITS.Models.Test;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace CultureITS.Models.Context
         public DbSet<AccessRight> AccessRights { set; get; }
 
         public DbSet<GameObject> GameObjects { set; get; }
+
+        public DbSet<TestMain> TestMain { set; get; }
+        public DbSet<Question> TestQuestion { set; get; }
+        public DbSet<Answer> TestAnswer { set; get; }
+        public DbSet<Result> TestResult { set; get; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -52,6 +58,21 @@ namespace CultureITS.Models.Context
 
                 context.GameObjects.Add(new GameObject() { Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
                 context.GameObjects.Add(new GameObject() { Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
+                context.SaveChanges();
+
+                var test = new TestMain() { Author = "Бобик Ёбик", Title = "Проверочный тест", Topic = "Публичная жизни Вручтель Серафимы" };
+                context.TestMain.Add(test);
+                var question1 = new Question() { Test = test, Text = "Как зовут кошку Симы?" };
+                var question2 = new Question() { Test = test, Text = "У Симы есть кошка?" };
+                context.TestQuestion.Add(question1);
+                context.TestQuestion.Add(question2);
+                context.TestAnswer.Add(new Answer() { Question = question1, Right = true, Text = "Люська." });
+                context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Муська." });
+                context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Пуська." });
+                context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Барабуська." });
+                context.TestAnswer.Add(new Answer() { Question = question2, Right = true, Text = "Конечно!" });
+                context.TestAnswer.Add(new Answer() { Question = question2, Right = false, Text = "Нет." });
+                context.TestAnswer.Add(new Answer() { Question = question2, Right = false, Text = "А что это?" });
                 context.SaveChanges();
             }
         }

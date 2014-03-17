@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Api";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) }).Generate(ViewBag.Title);
 }
 
 <h3>Взаимодействие JavaScript и ASP.NET</h3>
@@ -67,7 +68,7 @@
                 <li><strong>state</strong> — статус отметки игрового объекта.</li>
             </ul>
         </td>
-        <td>Отмечает/убирает отметку о том, что пользователь отметил объект.</td>
+        <td>Проверяет, отметил ли пользователь объект.</td>
     </tr>
     <tr>
         <td><code>getGameObjectInfo</code></td>
@@ -86,6 +87,109 @@
             </ul>
         </td>
         <td>Получает информацию об игровом объекте.</td>
+    </tr>
+    <tr>
+        <th colspan="4">Работа с подсистемой тестирования</th>
+    </tr>
+    <tr>
+        <td><code>getTestInfo</code></td>
+        <td>
+            <ul class="clear">
+                <li><strong>id</strong> — идентификатор теста.</li>
+            </ul>
+        </td>
+        <td>
+            <ul class="clear">
+                <li><strong>title</strong> — заголовок.</li>
+                <li><strong>topic</strong> — тема тестирования.</li>
+                <li><strong>author</strong> — автор теста.</li>
+                <li><strong>questionsCount</strong> — число вопросов.</li>
+                <li><strong>resultsCount</strong> — число попыток.</li>
+                <li><strong>dateLastResult</strong> — число последней попытки.</li>
+                <li><strong>isOpened</strong> — есть ли незавершенное тестирование.</li>
+            </ul>
+        </td>
+        <td>Получает основную информацию о тесте.</td>
+    </tr>
+    <tr>
+        <td><code>startTest</code></td>
+        <td>
+            <ul class="clear">
+                <li><strong>id</strong> — идентификатор теста.</li>
+            </ul>
+        </td>
+        <td>
+            <ul class="clear">
+                <li><strong>testSessionId</strong> — идентификатор сеанса тестирования.</li>
+                <li><strong>questionLeft</strong> — оставшееся число вопросов.</li>
+            </ul>
+        </td>
+        <td>Начинает тест. Фактически заводит информацию в БД, что пользователь начал проходить тестирование.</td>
+    </tr>
+    <tr>
+        <td><code>getTestQuestion</code></td>
+        <td>
+            <ul class="clear">
+                <li><strong>testSessionId</strong> — идентификатор сеанса тестирования.</li>
+                <li><strong>questionNumber</strong> — номер вопроса.</li>
+            </ul>
+        </td>
+        <td>
+            <ul class="clear">
+                <li><strong>id</strong> — идентификатор вопроса.</li>
+                <li><strong>text</strong> — номер вопроса.</li>
+                <li><strong>hasImage</strong> — есть ли иллюстрация.</li>
+                <li><strong>allowMultiChoise</strong> — позволяет выбрать множество объектов.</li>
+                <li><strong>answers</strong> — массив номеров ответов.</li>
+            </ul>
+            <p class="alignleft">Элементы массива <strong>answers</strong>:</p>
+            <ul class="clear">
+                <li><strong>id</strong> — идентификатор ответа.</li>
+                <li><strong>text</strong> — номер вопроса.</li>
+                <li><strong>hasImage</strong> — есть ли иллюстрация.</li>
+            </ul>
+        </td>
+        <td>Получает вопрос со списком ответов.</td>
+    </tr>
+    <tr>
+        <td><code>setTestAnswer</code></td>
+        <td>
+            <ul class="clear">
+                <li><strong>testSessionId</strong> — идентификатор сеанса тестирования.</li>
+                <li><strong>questionId</strong> — идентификатор вопроса.</li>
+                <li><strong>answersNumbers</strong> — массив номеров ответов.</li>
+            </ul>
+        </td>
+        <td>
+            <ul class="clear">
+                <li><strong>result</strong> — результат ответа.</li>
+                <li><strong>questionNext</strong> — номер следующего вопроса (если <code>result = 1</code>).</li>
+            </ul>
+            <p class="alignleft">Если <code>result != 1</code>, то прохождение теста окончено.</p>
+        </td>
+        <td>Возвращает ответ пользователя на сервер.</td>
+    </tr>
+    <tr>
+        <td><code>getTestResult</code></td>
+        <td>
+            <ul class="clear">
+                <li><strong>testSessionId</strong> — идентификатор сеанса тестирования.</li>
+            </ul>
+        </td>
+        <td>
+            <ul class="clear">
+                <li><strong>date</strong> — дата прохождения тестирования.</li>
+                <li><strong>questionsResults</strong> — массив, содержащий баллы за каждый вопрос.</li>
+            </ul>
+            <p class="alignleft">Элементы массива <strong>questionsResults</strong>:</p>
+            <ul class="clear">
+                <li><strong>number</strong> — номер вопроса.</li>
+                <li><strong>result</strong> — полученное число баллов.</li>
+                <li><strong>maxResult</strong> — максимальное число баллов.</li>
+            </ul>
+
+        </td>
+        <td>Получает отчёт о проведении тестирования.</td>
     </tr>
 </table>
 
@@ -123,5 +227,15 @@
             </ul>
         </td>
         <td>Показывает всплывающее окно, в котором располагается информация об игровом объекте.</td>
+    </tr>
+    <tr>
+        <td>showTestPopup</td>
+        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td>
+            <ul class="clear">
+                <li><strong>id</strong> — идентификатор теста.</li>
+            </ul>
+        </td>
+        <td>Показывает всплывающее окно, в котором располагается тест.</td>
     </tr>
 </table>

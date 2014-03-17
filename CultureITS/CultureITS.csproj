@@ -153,6 +153,10 @@
     <Compile Include="Models\Context\DataContext.cs" />
     <Compile Include="Models\GameObject.cs" />
     <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\Test\Answer.cs" />
+    <Compile Include="Models\Test\Question.cs" />
+    <Compile Include="Models\Test\Result.cs" />
+    <Compile Include="Models\Test\TestMain.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\css\reset.css" />

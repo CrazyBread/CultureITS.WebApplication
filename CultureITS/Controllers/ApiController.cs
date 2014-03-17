@@ -88,5 +88,10 @@ namespace CultureITS.Controllers
                 return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified, fullDescription = item.FullDescription });
             return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified }); 
         }
+
+        public JsonResult arrayTesting(int[] array)
+        {
+            return Json(new { success = true });
+        }
     }
 }
