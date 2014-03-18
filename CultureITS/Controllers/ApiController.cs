@@ -1,5 +1,6 @@
 ﻿using CultureITS.Helpers;
 using CultureITS.Models;
+using CultureITS.Models.Api;
 using CultureITS.Models.Context;
 using Newtonsoft.Json;
 using System;
@@ -19,6 +20,13 @@ namespace CultureITS.Controllers
         //
         // GET: /Api/
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Api/Test
+        public ActionResult Test()
         {
             return View();
         }
@@ -88,14 +96,42 @@ namespace CultureITS.Controllers
 
             if (full)
                 return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified, fullDescription = item.FullDescription });
-            return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified }); 
+            return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified });
         }
 
-        public JsonResult arrayTesting(string data)
+        //
+        // POST: /Api/getTestInfo
+        [HttpPost]
+        public JsonResult getTestInfo(string data)
         {
-            var testData = "{\"array\":[{\"a\":1,\"b\":\"2\"},{\"a\":16,\"b\":\"hello\"},{\"a\":-1,\"b\":\"51\"}]}";
-            object yourObject = JsonConvert.DeserializeObject(testData);
-            return Json(new { success = true });
+            try
+            {
+                var dataIn = JsonConvert.DeserializeObject<TestInfoIn>(data);
+
+                if (System.Web.HttpContext.Current.Session.GetUserRole() != AccountStatus.Student)
+                    return Json(new { success = false, message = "Доступ разрешен только студентам." });
+                var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+
+                var test = db.TestMain.Find(dataIn.id);
+                if (test == null)
+                    return Json(new { success = false, message = "Тест с таким идентификатором не найден." });
+
+                TestInfoOut dataOut = new TestInfoOut();
+                dataOut.author = test.Author;
+                dataOut.questionsCount = test.Questions.Count();
+                dataOut.title = test.Title;
+                dataOut.topic = test.Topic;
+
+                dataOut.resultsCount = test.Results.Count(i => i.Student.Id == user.Id);
+                dataOut.isOpened = (dataOut.resultsCount == 0) ? false : (test.Results.Count(i => ((i.Student.Id == user.Id) && (!i.Complete))) > 0);
+                dataOut.dateLastResult = (dataOut.resultsCount == 0) ? DateTime.Now : test.Results.Where(i => i.Student.Id == user.Id).OrderByDescending(i => i.Date).FirstOrDefault().Date;
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
         }
     }
 }

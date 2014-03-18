@@ -36,12 +36,3 @@ getGameObjectInfo = function (id, full) {
             alert(data.message);
     });
 };
-
-arrayTesting = function () {
-    Request("arrayTesting", { array: [{ a: 1, b: "2" }, { a: 16, b: "hello" }, { a: -1, b: "51" }] }, function (data) {
-        if (data.success)
-            alert("cool");
-        else
-            alert(data.message);
-    });
-};

@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Api";
-    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) }).Generate(ViewBag.Title);
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
 }
 
 <h3>Взаимодействие JavaScript и ASP.NET</h3>
@@ -137,7 +139,7 @@
         <td>
             <ul class="clear">
                 <li><strong>id</strong> — идентификатор вопроса.</li>
-                <li><strong>text</strong> — номер вопроса.</li>
+                <li><strong>text</strong> — текст вопроса.</li>
                 <li><strong>hasImage</strong> — есть ли иллюстрация.</li>
                 <li><strong>allowMultiChoise</strong> — позволяет выбрать множество объектов.</li>
                 <li><strong>answers</strong> — массив номеров ответов.</li>
@@ -145,7 +147,7 @@
             <p class="alignleft">Элементы массива <strong>answers</strong>:</p>
             <ul class="clear">
                 <li><strong>id</strong> — идентификатор ответа.</li>
-                <li><strong>text</strong> — номер вопроса.</li>
+                <li><strong>text</strong> — текст вопроса.</li>
                 <li><strong>hasImage</strong> — есть ли иллюстрация.</li>
             </ul>
         </td>

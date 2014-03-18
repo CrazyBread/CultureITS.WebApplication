@@ -151,6 +151,7 @@
     <Compile Include="Helpers\RightsManager.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Models\AccessRight.cs" />
+    <Compile Include="Models\Api\TestSubsystem.cs" />
     <Compile Include="Models\Context\DataContext.cs" />
     <Compile Include="Models\GameObject.cs" />
     <Compile Include="Models\MenuItem.cs" />
@@ -296,6 +297,7 @@
     <Content Include="Views\Api\Index.cshtml" />
     <Content Include="Views\GameObject\Index.cshtml" />
     <Content Include="Views\GameObject\Details.cshtml" />
+    <Content Include="Views\Api\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Проверка API";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "API", Uri = @Url.Action("Index", "Api") })
+        .Generate(ViewBag.Title);
+}
+
+<table class="little-table">
+    <tr>
+        <th>Название</th>
+        <th>Поле</th>
+        <th>Описание</th>
+    </tr>
+    <tr>
+        <td>Название функции</td>
+        <td>
+            <input type="text" id="functionText" /></td>
+        <td>Сюда следует писать название функции, которую вы хотите вызвать.</td>
+    </tr>
+    <tr>
+        <td>Данные</td>
+        <td>
+            <textarea id="commandText">
+            </textarea>
+        </td>
+        <td>Данные оформляются в виде JSON-строки.</td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <button id="sendButton">Отправить</button>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="3">Ответ:</th>
+    </tr>
+    <tr>
+        <td colspan="3"><div id="response"></div></td>
+    </tr>
+</table>
+
+@section Scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/UnityAPI.js")"></script>
+    <script type="text/javascript">
+        $('#sendButton').click(function () {
+            Request($('#functionText').val(), JSON.parse($('#commandText').val()), function (data) {
+                $('#response').text(JSON.stringify(data));
+            });
+        });
+    </script>
+}
