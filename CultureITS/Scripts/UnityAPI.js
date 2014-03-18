@@ -3,7 +3,7 @@ Request = function (command, data, result) {
     $.ajax({
         type: "POST",
         url: "/Api/" + command,
-        data: data,
+        data: { data: JSON.stringify(data) },
         traditional: true,
         success: result
     });
@@ -38,7 +38,7 @@ getGameObjectInfo = function (id, full) {
 };
 
 arrayTesting = function () {
-    Request("arrayTesting", { array: [1, 2, 3, 650565, 165, 156151, 1561] }, function (data) {
+    Request("arrayTesting", { array: [{ a: 1, b: "2" }, { a: 16, b: "hello" }, { a: -1, b: "51" }] }, function (data) {
         if (data.success)
             alert("cool");
         else

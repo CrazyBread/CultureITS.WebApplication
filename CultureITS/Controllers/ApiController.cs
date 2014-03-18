@@ -1,11 +1,13 @@
 ﻿using CultureITS.Helpers;
 using CultureITS.Models;
 using CultureITS.Models.Context;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace CultureITS.Controllers
 {
@@ -89,8 +91,10 @@ namespace CultureITS.Controllers
             return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified }); 
         }
 
-        public JsonResult arrayTesting(int[] array)
+        public JsonResult arrayTesting(string data)
         {
+            var testData = "{\"array\":[{\"a\":1,\"b\":\"2\"},{\"a\":16,\"b\":\"hello\"},{\"a\":-1,\"b\":\"51\"}]}";
+            object yourObject = JsonConvert.DeserializeObject(testData);
             return Json(new { success = true });
         }
     }
