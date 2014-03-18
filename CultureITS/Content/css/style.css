@@ -157,14 +157,14 @@ a {
 }
 
     .line2 .title {
-        padding-top: 15px;
+        padding-top: 20px;
         display: inline-block;
     }
 
     .line2 .breadcrumbs {
         float: right;
         font-size: 12px;
-        margin: 35px 0px 0px 0px;
+        margin: 37px 0px 0px 0px;
     }
 
         .line2 .breadcrumbs a {

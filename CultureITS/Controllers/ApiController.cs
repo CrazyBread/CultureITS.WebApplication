@@ -117,6 +117,8 @@ namespace CultureITS.Controllers
                     return Json(new { success = false, message = "Тест с таким идентификатором не найден." });
 
                 TestInfoOut dataOut = new TestInfoOut();
+                dataOut.success = true;
+
                 dataOut.author = test.Author;
                 dataOut.questionsCount = test.Questions.Count();
                 dataOut.title = test.Title;

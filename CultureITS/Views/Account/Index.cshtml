@@ -37,7 +37,6 @@
             </tr>
         }
     </table>
-        
     }
 
     <h3>Тестирование</h3>
@@ -45,8 +44,10 @@
 }
 
 @section popup_windows {
-    @foreach (var item in Model.ItemStudent.GameObjects)
+    @if (Model.ItemStudent != null)
     {
+        foreach (var item in Model.ItemStudent.GameObjects)
+        {
         <div id="description_@item.Id" class="popup_window">
             <div class="popup_head">
                 @item.Name
@@ -56,6 +57,7 @@
                 @Html.Raw(item.Description)
             </div>
         </div>
+        }
     }
     <div class="popup_window" id="PhotoUpload">
         <div class="popup_head">
