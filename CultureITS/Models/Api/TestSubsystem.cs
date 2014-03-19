@@ -46,7 +46,7 @@ namespace CultureITS.Models.Api
     {
         public bool success { set; get; }
 
-        public int id { set; get; }
+        public int number { set; get; }
         public string text { set; get; }
         public bool hasImage { set; get; }
         public bool allowMultiChoise { set; get; }
@@ -94,6 +94,19 @@ namespace CultureITS.Models.Api
         public int number { set; get; }
         public int result { set; get; }
         public int maxResult { set; get; }
+    }
+
+    public struct TestData
+    {
+        public TestDataItem[] Queue { set; get; }
+    }
+
+    public struct TestDataItem
+    {
+        public int id { set; get; }
+        public int result { set; get; }
+        public int maxResult { set; get; }
+        public bool complete { set; get; }
     }
     #endregion
 }

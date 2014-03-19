@@ -12,9 +12,11 @@ namespace CultureITS.Models.Test
         public int Id { set; get; }
 
         public string Data { set; get; }
-        public bool Complete { set; get; }
         public DateTime Date { set; get; }
         public double Percent { set; get; }
+
+        public bool Complete { set; get; }
+        public int QuestionsLeft { set; get; }
 
         public Student Student { set; get; }
         public TestMain Test { set; get; }
