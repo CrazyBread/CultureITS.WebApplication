@@ -1,62 +1,8 @@
 ﻿@model CultureITS.ViewModels.HomeViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Главная страница";
 }
-
-@*
-@if (Model.ShowPromo)
-{
-    <div id="promo">
-        <div id="promoWrapper">
-            <h1>Впервые на нашем сайте?</h1>
-
-            <p>Текст про то, как хорошо живётся на этом свете.</p>
-
-            <div class="sign">
-                <a href="@Url.Action("Register", "Account")" class="button button-big"><i class="fa fa-users"></i>&nbsp;Зарегистрируйтесь</a>, или 
-            @Html.ActionLink("выполните вход", "Login", "Account")
-            </div>
-        </div>
-    </div>
-    <div id="promoSpacer"></div>
-}
-
-@if (Model.ShowGameButton)
-{
-    <div id="promo">
-        <div id="promoWrapper">
-            <h1>Готовы посетить наш музей?</h1>
-
-            <p>Текст про то, как здорово живётся на этом свете.</p>
-
-            <div class="sign">
-                <a href="@Url.Action("Index", "Unity")" class="button button-big"><i class="fa fa-arrow-circle-up"></i>&nbsp;В музей</a>
-            </div>
-        </div>
-    </div>
-    <div id="promoSpacer"></div>
-}
-
-@if (Model.ShowStylePageLink)
-{
-    <h2>@ViewBag.Title</h2>
-    @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
-}
-
-<img src="/Content/images/home.png" alt="" class="image-right" />
-
-
-
-<h2>Почему этот сайт?</h2>
-<p>Потому что пользоваться этим сайтом, прежде всего, удобно! Вы получите настоящее удовольствие от использования этого информационного ресурса.</p>
-
-<h2>Это бесплатно?</h2>
-<p>Весь материал, представленный на сайте, абсолютно бесплатен. Любая информация взята из общедоступных источников с разрешения авторов.</p>
-
-<h2>Вопросы?</h2>
-<p>Если у Вас появились дополнительные вопросы по поводу функционирования системой, можете перейти на страницу @Html.ActionLink("о системе", "About").</p>
-*@
 
 <div class="cont big_img">
     <div class="bi_text">
