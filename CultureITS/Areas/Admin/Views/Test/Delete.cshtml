@@ -1,0 +1,42 @@
+﻿@model CultureITS.Areas.Admin.Models.TestViewModel
+
+@{
+    ViewBag.Title = "Удаление теста";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Тесты", Uri = @Url.Action("Index", "Test", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
+}
+
+<h3>Вы уверены, что хотите удалить запись об этом тесте?</h3>
+<fieldset>
+    <legend>TestMain</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Item.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Item.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Item.Topic)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Item.Topic)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Item.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Item.Author)
+    </div>
+</fieldset>
+
+@using (Html.BeginForm()) {
+    <p>
+        <button class="button">Удалить</button>
+        @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+    </p>
+}

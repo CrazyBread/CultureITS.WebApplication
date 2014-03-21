@@ -77,20 +77,22 @@
     </div>
 </div>
 
-@if (Model.ShowStylePageLink)
-{
-    <h2>Администраторские штучки</h2>
-    @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
-}
-
-<h2>Автологин</h2>
-<ul>
-    <li>@Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "external" })</li>
-    <li>@Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "external" })</li>
-    <li>@Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "external" })</li>
-</ul>
-
 <div class="cont">
+
+    @if (Model.ShowStylePageLink)
+    {
+        <h2>Администраторские штучки</h2>
+        @Html.ActionLink("Страница стилей", "Styles", null, new { @class = "button" })
+    }
+
+    <h2>Автологин</h2>
+    <ul>
+        <li>@Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "external" })</li>
+        <li>@Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "external" })</li>
+        <li>@Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "external" })</li>
+    </ul>
+
+
     <div class="column1">
         <h3 class="headline">Headline</h3>
         <p>

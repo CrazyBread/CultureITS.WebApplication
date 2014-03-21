@@ -453,6 +453,19 @@ hr {
             background: #f8f8f8;
         }
 
+            .little-table tr td.warning {
+                background: #fffff0;
+            }
+
+            .little-table tr td.error {
+                background: #fff0f0;
+            }
+
+            .little-table tr td.success {
+                background: #f0fff0;
+            }
+
+
         .little-table tr.even td {
             background: #f6f6f6;
             background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
@@ -605,3 +618,107 @@ ul {
         .popup .popup_window .popup_cont {
             padding: 10px;
         }
+
+input[type="text"], input[type="password"], input[type="number"] {
+    width: 250px;
+    padding: 10px 15px;
+    border: none;
+    margin: 10px 0px;
+    background-color: #fff;
+    color: #7f8c8c;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 3px 0px #e5e6e6;
+    -moz-box-shadow: 0px 3px 0px #e5e6e6;
+    box-shadow: 0px 3px 0px #e5e6e6;
+}
+
+button, input[type="submit"], .button {
+    padding: 10px 15px;
+    margin: 10px 0px;
+    cursor: pointer;
+    color: #fff !important;
+    border: none;
+    font-family: OpenSans, Arial, sans-serif !important;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #76c7c0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 5px 0px #62b9b0;
+    -moz-box-shadow: 0px 5px 0px #62b9b0;
+    box-shadow: 0px 5px 0px #62b9b0;
+}
+
+    input[type="submit"]:hover, .button:hover {
+        color: #fff;
+        background-color: #e8645a;
+        -webkit-box-shadow: 0px 5px 0px #e2534b;
+        -moz-box-shadow: 0px 5px 0px #e2534b;
+        box-shadow: 0px 5px 0px #e2534b;
+    }
+
+.button-small {
+    padding: 5px 8px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: none;
+}
+
+    input[type="checkbox"] + label,
+    input[type="radio"] + label {
+        font-family: OpenSans, Arial, sans-serif;
+        font-size: 16px;
+        color: #7f8c8c;
+        cursor: pointer;
+    }
+
+        input[type="checkbox"] + label::before,
+        input[type="radio"] + label::before {
+            content: "";
+            display: inline-block;
+            height: 18px;
+            width: 18px;
+            margin: 0 5px 0 0;
+            background-image: url("../images/checkradio_sprite.png");
+            background-repeat: no-repeat;
+        }
+
+        input[type="checkbox"] + label::before {
+            background-position: 0px 0px;
+        }
+
+        input[type="radio"] + label::before {
+            background-position: 0px -19px;
+        }
+
+    input[type="checkbox"]:checked + label::before {
+        background-position: -19px -0px;
+    }
+
+    input[type="radio"]:checked + label::before {
+        background-position: -19px -19px;
+    }
+
+    input[type="checkbox"]:disabled + label::before {
+        background-position: -38px 0px;
+    }
+
+    input[type="checkbox"]:checked:disabled + label::before {
+        background-position: -57px 0px;
+    }
+
+    input[type="radio"]:disabled + label::before {
+        background-position: -38px -19px;
+    }
+
+    input[type="radio"]:checked:disabled + label::before {
+        background-position: -56px -19px;
+    }
+
+​

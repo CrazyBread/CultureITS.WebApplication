@@ -271,7 +271,7 @@ namespace CultureITS.Controllers
                     throw new Exception("Сеанс тестирования не найден.");
 
                 TestData testData = JsonConvert.DeserializeObject<TestData>(testSession.Data);
-                if ((dataIn.questionNumber > testData.Queue.Count()) || (dataIn.questionNumber < 1))
+                if ((dataIn.questionNumber > testSession.Test.Questions.Count()) || (dataIn.questionNumber < 1))
                     throw new Exception("Неправильный номер вопроса.");
 
                 TestDataItem testDataItem = testData.Queue[dataIn.questionNumber - 1];

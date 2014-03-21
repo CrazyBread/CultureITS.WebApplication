@@ -18,7 +18,9 @@ namespace CultureITS.Models.Test
         public bool Complete { set; get; }
         public int QuestionsLeft { set; get; }
 
-        public Student Student { set; get; }
-        public TestMain Test { set; get; }
+        [Required]
+        public virtual Student Student { set; get; }
+        [Required]
+        public virtual TestMain Test { set; get; }
     }
 }

@@ -1,0 +1,39 @@
+﻿@model CultureITS.Areas.Admin.Models.TestViewModel
+
+@{
+    ViewBag.Title = "Работа с вопросами";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Тесты", Uri = @Url.Action("Index", "Test", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TestMain</legend>
+
+        @Html.HiddenFor(model => model.Question.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Question.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Question.Text)
+            @Html.ValidationMessageFor(model => model.Question.Text)
+        </div>
+    </fieldset>
+    <p>
+        <button class="button">Отправить</button>
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Questions", new { id = Model.Item.Id }, new { @class = "button" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

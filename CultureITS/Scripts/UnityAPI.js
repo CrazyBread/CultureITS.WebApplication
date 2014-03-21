@@ -108,8 +108,9 @@ getTestQuestion = function (sessionId, questionNumber) {
             $('#TestMainAnswers *').remove();
             data.answers.forEach(function (item) {
                 $('#TestMainAnswers').append(
-                    $('<li>').append(
-                        $('<input>').attr('id', item.id).attr('name', 'testAnswer').attr('type', testConfig["MultiChoise"] ? 'checkbox' : 'radio')).append(item.text)
+                    $('<li>')
+                    .append($('<input>').attr('id', item.id).attr('name', 'testAnswer').attr('type', testConfig["MultiChoise"] ? 'checkbox' : 'radio'))
+                    .append($('<label>').attr('for', item.id).text(item.text))
                 );
                 // ++++++ Application
             });
@@ -146,14 +147,27 @@ getTestResult = function (sessionId) {
     Request("getTestResult", { testSessionId: sessionId }, function (data) {
         if (data.success) {
             $table = $('#TestResultTable');
+            $('#TestResultTable *').remove();
+            var $row1 = $('<tr>').append($('<th>').text("Вопрос"));
+            var $row2 = $('<tr>').append($('<th>').text("Баллов"));
+            var $row3 = $('<tr>').append($('<th>').text("Максимально"));
+
             data.questionsResults.forEach(function (item) {
-                $table.append(
-                    $('<tr>')
-                        .append($('<td>').text(item.number))
-                        .append($('<td>').text(item.result))
-                        .append($('<td>').text(item.maxResult))
-                );
+                var $cellQuestion = $('<td>').text(item.number);
+                if (item.result == 0)
+                    $cellQuestion.addClass('error');
+                else if (item.result == item.maxResult)
+                    $cellQuestion.addClass('success');
+                else
+                    $cellQuestion.addClass('warning');
+
+                $row1.append($cellQuestion);
+                $row2.append($('<td>').text(item.result));
+                $row3.append($('<td>').text(item.maxResult));
             });
+            $table.append($row1);
+            $table.append($row2);
+            $table.append($row3);
         } else {
             alert(data.message);
         }

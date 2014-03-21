@@ -34,7 +34,7 @@ namespace CultureITS.Areas.Admin.Controllers
                 {
                     item = db.Exhibits.SingleOrDefault(i => i.Id == id);
                     if (item == null)
-                        throw new ArgumentException("Объект не найден.");
+                        throw new ArgumentException("Экспонат не найден.");
                 }
                 else
                 {
@@ -45,6 +45,7 @@ namespace CultureITS.Areas.Admin.Controllers
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
+
             return View(new ExhibitViewModel(db, item));
         }
 
@@ -61,7 +62,7 @@ namespace CultureITS.Areas.Admin.Controllers
                 {
                     item = db.Exhibits.SingleOrDefault(i => i.Id == id);
                     if (item == null)
-                        throw new ArgumentException("Объект не найден.");
+                        throw new ArgumentException("Экспонат не найден.");
                 }
                 else
                 {
@@ -80,7 +81,6 @@ namespace CultureITS.Areas.Admin.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-
             }
             catch (Exception ex)
             {

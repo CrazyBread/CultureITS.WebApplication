@@ -11,13 +11,18 @@ namespace CultureITS.Models.Test
         [Key]
         public int Id { set; get; }
 
+        [Required]
+        [Display(Name = "Текст ответа")]
         public string Text { set; get; }
+
+        [Required]
+        [Display(Name = "Ответ правильный")]
+        public bool Right { set; get; }
 
         public string ApplicationType { set; get; }
         public byte[] ApplicationData { set; get; }
 
-        public bool Right { set; get; }
-
+        [Required]
         public virtual Question Question { set; get; }
     }
 }

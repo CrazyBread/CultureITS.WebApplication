@@ -132,9 +132,11 @@
     <Compile Include="Areas\Admin\Controllers\ExhibitController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\RightsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\ExhibitViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RightsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TestViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
@@ -259,6 +261,15 @@
     <Content Include="Content\fonts\OpenSans-Bold.ttf" />
     <Content Include="Content\fonts\OpenSans-ExtraBold.ttf" />
     <Content Include="Content\fonts\OpenSans-Regular.ttf" />
+    <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Questions.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\EditQuestion.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\DeleteQuestion.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Answers.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\EditAnswer.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\DeleteAnswer.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -322,7 +333,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>51641</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:64203/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

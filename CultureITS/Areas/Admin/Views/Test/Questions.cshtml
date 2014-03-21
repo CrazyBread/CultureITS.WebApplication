@@ -1,0 +1,40 @@
+﻿@model CultureITS.Areas.Admin.Models.TestViewModel
+
+@{
+    ViewBag.Title = "Вопросы";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Тесты", Uri = @Url.Action("Index", "Test", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
+}
+
+<p>
+    <a href="@Url.Action("EditQuestion", new { testId = Model.Item.Id })" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
+</p>
+<table class="little-table">
+    <tr>
+        <th>&nbsp;</th>
+        <th>
+            @Html.DisplayNameFor(i => i.Question.Text)
+        </th>
+        <th>Число ответов
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Item.Questions)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("EditQuestion", new { testId = Model.Item.Id, id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
+                <a href="@Url.Action("DeleteQuestion", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                <a href="@Url.Action("Answers", new { id = item.Id })" class="button button-small"><i class="fa fa-list-ol"></i></a>
+            </td>
+            <td>@item.Text</td>
+            <td>@item.Answers.Count</td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+</p>
