@@ -11,61 +11,61 @@ using System.Web.Mvc;
 namespace CultureITS.Areas.Admin.Controllers
 {
     [AuthorizeFilterAttribute]
-    public class GameObjectController : Controller
+    public class ExhibitController : Controller
     {
         private DataContext db = new DataContext();
 
         //
-        // GET: /Admin/GameObject/
+        // GET: /Admin/Exhibit/
         public ActionResult Index()
         {
-            return View(new GameObjectViewModel(db));
+            return View(new ExhibitViewModel(db));
         }
 
         //
-        // GET: /Admin/GameObject/Edit
+        // GET: /Admin/Exhibit/Edit
         public ActionResult Edit(int? id)
         {
-            GameObject item = null;
+            Exhibit item = null;
 
             try
             {
                 if (id.HasValue)
                 {
-                    item = db.GameObjects.SingleOrDefault(i => i.Id == id);
+                    item = db.Exhibits.SingleOrDefault(i => i.Id == id);
                     if (item == null)
                         throw new ArgumentException("Объект не найден.");
                 }
                 else
                 {
-                    item = new GameObject();
+                    item = new Exhibit();
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(new GameObjectViewModel(db, item));
+            return View(new ExhibitViewModel(db, item));
         }
 
         //
-        // POST: /Admin/GameObject/Edit
+        // POST: /Admin/Exhibit/Edit
         [HttpPost, ActionName("Edit")]
         public ActionResult EditPost(int? id)
         {
-            GameObject item = null;
+            Exhibit item = null;
 
             try
             {
                 if (id.HasValue)
                 {
-                    item = db.GameObjects.SingleOrDefault(i => i.Id == id);
+                    item = db.Exhibits.SingleOrDefault(i => i.Id == id);
                     if (item == null)
                         throw new ArgumentException("Объект не найден.");
                 }
                 else
                 {
-                    item = new GameObject();
+                    item = new Exhibit();
                 }
 
                 TryUpdateModel(item, "Item", new[] { "Name", "Description", "CanNotified", "FullDescription" });
@@ -73,9 +73,9 @@ namespace CultureITS.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     if (id == null)
-                            db.GameObjects.Add(item);
+                            db.Exhibits.Add(item);
                     else
-                        db.Entry<GameObject>(item).State = EntityState.Modified;
+                        db.Entry<Exhibit>(item).State = EntityState.Modified;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -87,32 +87,32 @@ namespace CultureITS.Areas.Admin.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
 
-            return View(new GameObjectViewModel(db, item));
+            return View(new ExhibitViewModel(db, item));
         }
 
         //
-        // GET: /Admin/GameObject/Delete/5
+        // GET: /Admin/Exhibit/Delete/5
         public ActionResult Delete(int id)
         {
-            var item = db.GameObjects.Find(id);
+            var item = db.Exhibits.Find(id);
 
             if (item == null)
                 return RedirectToAction("Index");
 
-            return View(new GameObjectViewModel(db, item));
+            return View(new ExhibitViewModel(db, item));
         }
 
         //
-        // POST: /Admin/GameObject/Delete/5
+        // POST: /Admin/Exhibit/Delete/5
         [HttpPost, ActionName("Delete")]
         public ActionResult DeletePost(int id)
         {
-            var item = db.GameObjects.Find(id);
+            var item = db.Exhibits.Find(id);
 
             if (item == null)
                 return RedirectToAction("Index");
 
-            db.GameObjects.Remove(item);
+            db.Exhibits.Remove(item);
             db.SaveChanges();
 
             return RedirectToAction("Index");

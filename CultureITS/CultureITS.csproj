@@ -129,16 +129,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\GameObjectController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExhibitController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\RightsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
-    <Compile Include="Areas\Admin\Models\GameObjectViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ExhibitViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RightsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
-    <Compile Include="Controllers\GameObjectController.cs" />
+    <Compile Include="Controllers\ExhibitController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UnityController.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,11 +153,11 @@
     <Compile Include="Models\AccessRight.cs" />
     <Compile Include="Models\Api\TestSubsystem.cs" />
     <Compile Include="Models\Context\DataContext.cs" />
-    <Compile Include="Models\GameObject.cs" />
+    <Compile Include="Models\Exhibit.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Test\Answer.cs" />
     <Compile Include="Models\Test\Question.cs" />
-    <Compile Include="Models\Test\Result.cs" />
+    <Compile Include="Models\Test\Session.cs" />
     <Compile Include="Models\Test\TestMain.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,7 +176,7 @@
     <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\UnityAPI.js" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\GameObjectViewModel.cs" />
+    <Compile Include="ViewModels\ExhibitViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -248,13 +248,13 @@
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Rights\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\GameObject\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Exhibit\Index.cshtml" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Areas\Admin\Views\GameObject\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\GameObject\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Exhibit\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Exhibit\Delete.cshtml" />
     <Content Include="Content\Unity.bin" />
     <Content Include="Content\fonts\OpenSans-Bold.ttf" />
     <Content Include="Content\fonts\OpenSans-ExtraBold.ttf" />
@@ -290,13 +290,13 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Styles.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Unity\Index.cshtml" />
     <Content Include="Views\Api\Index.cshtml" />
-    <Content Include="Views\GameObject\Index.cshtml" />
-    <Content Include="Views\GameObject\Details.cshtml" />
+    <Content Include="Views\Exhibit\Index.cshtml" />
+    <Content Include="Views\Exhibit\Details.cshtml" />
     <Content Include="Views\Api\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>

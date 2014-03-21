@@ -14,7 +14,7 @@
 @if (Model.ItemStudent != null)
 {
     <h3>Вы отметили для себя</h3>
-    if (Model.ItemStudent.GameObjects.Count == 0)
+    if (Model.ItemStudent.Exhibits.Count == 0)
     {
     <p>Здесь будут показываться предметы музея, которые вы отметили для себя. Отмечайте экспонаты музея, чтобы прочитать про них подробную информацию!</p>
     }
@@ -26,7 +26,7 @@
             <th>Местоположение</th>
             <th>&nbsp;</th>
         </tr>
-        @foreach (var item in Model.ItemStudent.GameObjects)
+        @foreach (var item in Model.ItemStudent.Exhibits)
         {
             <tr>
                 <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
@@ -40,13 +40,20 @@
     }
 
     <h3>Тестирование</h3>
+    if (Model.ItemStudent.TestSessions.Count == 0)
+    {
     <p>Здесь будут показаны результаты тестирования. Его можно пройти в каждой комнате музея у специального стенда. Также Вы можете посмотреть детальную статистику прохождения тестирования.</p>
+    }
+    else
+    {
+    <p>adfsdf</p>
+    }
 }
 
 @section popup_windows {
     @if (Model.ItemStudent != null)
     {
-        foreach (var item in Model.ItemStudent.GameObjects)
+        foreach (var item in Model.ItemStudent.Exhibits)
         {
         <div id="description_@item.Id" class="popup_window">
             <div class="popup_head">

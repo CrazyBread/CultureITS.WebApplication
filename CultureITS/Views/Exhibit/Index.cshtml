@@ -1,17 +1,17 @@
-﻿@model CultureITS.ViewModels.GameObjectViewModel
+﻿@model CultureITS.ViewModels.ExhibitViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Экспонаты музея";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Generate(ViewBag.Title);
 }
 
-<h2>Предметы музея</h2>
 @if (Model.List.Count() == 0)
 {
     <p>Нет данных</p>
 }
 else
 {
-    <table>
+    <table class="little-table">
         <tr>
             <th>Название</th>
             <th>Местоположение</th>

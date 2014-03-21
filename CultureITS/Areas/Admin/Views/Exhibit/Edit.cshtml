@@ -1,12 +1,15 @@
-﻿@model CultureITS.Areas.Admin.Models.GameObjectViewModel
+﻿@model CultureITS.Areas.Admin.Models.ExhibitViewModel
 
 @{
-    ViewBag.Title = "Создание или редактирование игрового объекта";
+    ViewBag.Title = "Работа с экспонатом";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Экспонаты", Uri = @Url.Action("Index", "Exhibit", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
 }
 
-<h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
 
     <fieldset>

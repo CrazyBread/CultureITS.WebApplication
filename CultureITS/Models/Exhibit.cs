@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace CultureITS.Models
 {
-    public class GameObject
+    public class Exhibit
     {
         [Key]
         public int Id { set; get; }

@@ -17,12 +17,12 @@ namespace CultureITS.Models.Context
         public DbSet<MenuItem> MenuItems { set; get; }
         public DbSet<AccessRight> AccessRights { set; get; }
 
-        public DbSet<GameObject> GameObjects { set; get; }
+        public DbSet<Exhibit> Exhibits { set; get; }
 
         public DbSet<TestMain> TestMain { set; get; }
         public DbSet<Question> TestQuestion { set; get; }
         public DbSet<Answer> TestAnswer { set; get; }
-        public DbSet<Result> TestResult { set; get; }
+        public DbSet<Session> TestSessions { set; get; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,14 +50,16 @@ namespace CultureITS.Models.Context
                 context.Users.Add(new Student() { Login = "student", Password = "student", Name = "Студент студентыч", UserRole = AccountStatus.Student });
                 context.SaveChanges();
 
-                context.MenuItems.Add(new MenuItem() { Order = 1, Title = "Профиль", Controller = "Account", Action = "Index", AccessMask = -2 });
+                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "В музей!", Controller = "Unity", Action = "Index", AccessMask = 1 << (int)AccountStatus.Student });
+                context.MenuItems.Add(new MenuItem() { Order = 1, Title = "Профиль", Controller = "Account", Action = "Profile", AccessMask = -2 });
+                context.MenuItems.Add(new MenuItem() { Order = 2, Title = "Экспонаты", Controller = "Exhibit", Action = "Index", AccessMask = -2 });
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Администрирование", Area = "Admin", Controller = "Home", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
-                context.MenuItems.Add(new MenuItem() { Order = 2, Title = "API", Controller = "Api", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
+                context.MenuItems.Add(new MenuItem() { Order = 3, Title = "API", Controller = "Api", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
                 context.SaveChanges();
 
-                context.GameObjects.Add(new GameObject() { Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
-                context.GameObjects.Add(new GameObject() { Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
+                context.Exhibits.Add(new Exhibit() { Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
+                context.Exhibits.Add(new Exhibit() { Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
                 context.SaveChanges();
 
                 var test = new TestMain() { Author = "Бобик Ёбик", Title = "Проверочный тест", Topic = "Публичная жизни Вручтель Серафимы" };
@@ -71,7 +73,7 @@ namespace CultureITS.Models.Context
                 context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Пуська." });
                 context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Барабуська." });
                 context.TestAnswer.Add(new Answer() { Question = question2, Right = true, Text = "Конечно!" });
-                context.TestAnswer.Add(new Answer() { Question = question2, Right = false, Text = "Нет." });
+                context.TestAnswer.Add(new Answer() { Question = question2, Right = true, Text = "Нет." });
                 context.TestAnswer.Add(new Answer() { Question = question2, Right = false, Text = "А что это?" });
                 context.SaveChanges();
             }

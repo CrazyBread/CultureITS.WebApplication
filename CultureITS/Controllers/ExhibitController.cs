@@ -8,25 +8,25 @@ using System.Web.Mvc;
 
 namespace CultureITS.Controllers
 {
-    public class GameObjectController : Controller
+    public class ExhibitController : Controller
     {
         private DataContext db = new DataContext();
 
         //
-        // GET: /GameObject/
+        // GET: /Exhibit/
         public ActionResult Index(string find, int? page)
         {
-            return View(new GameObjectViewModel(db.GameObjects, page));
+            return View(new ExhibitViewModel(db.Exhibits, page));
         }
 
         //
-        // GET: /GameObject/Details/5
+        // GET: /Exhibit/Details/5
         public ActionResult Details(int id)
         {
-            var item = db.GameObjects.Find(id);
+            var item = db.Exhibits.Find(id);
             if (item == null)
                 return RedirectToAction("Index");
-            return View(new GameObjectViewModel(item));
+            return View(new ExhibitViewModel(item));
         }
     }
 }

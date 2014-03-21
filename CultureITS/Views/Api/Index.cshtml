@@ -46,10 +46,10 @@
         <td>Получает более подробную информацию о посетителе музея.</td>
     </tr>
     <tr>
-        <th colspan="4">Работа с игровыми объектами</th>
+        <th colspan="4">Работа с музейными экспонатами и материалами, связанными с ними</th>
     </tr>
     <tr>
-        <td><code>markGameObject</code></td>
+        <td><code>markExhibit</code></td>
         <td>
             <ul class="clear">
                 <li><strong>id</strong> — идентификатор игрового объекта.</li>
@@ -59,7 +59,7 @@
         <td>Отмечает/убирает отметку о том, что пользователь отметил объект.</td>
     </tr>
     <tr>
-        <td><code>checkGameObject</code></td>
+        <td><code>checkExhibit</code></td>
         <td>
             <ul class="clear">
                 <li><strong>id</strong> — идентификатор игрового объекта.</li>
@@ -73,7 +73,7 @@
         <td>Проверяет, отметил ли пользователь объект.</td>
     </tr>
     <tr>
-        <td><code>getGameObjectInfo</code></td>
+        <td><code>getExhibitInfo</code></td>
         <td>
             <ul class="clear">
                 <li><strong>id</strong> — идентификатор игрового объекта.</li>
@@ -221,14 +221,14 @@
         <td>Сигнализирует виртуальный музей об ошибке.</td>
     </tr>
     <tr>
-        <td>showGameObjectPopup</td>
-        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td>setItemsInBag</td>
+        <td class="cnt"><span class="button button-small">Unity</span></td>
         <td>
             <ul class="clear">
-                <li><strong>id</strong> — идентификатор игрового объекта.</li>
+                <li><strong>items</strong> — строка с названиями объектов.</li>
             </ul>
         </td>
-        <td>Показывает всплывающее окно, в котором располагается информация об игровом объекте.</td>
+        <td>Получает все объекты из сумки пользователя. Формат строки — "item<sub>1</sub>|item<sub>2</sub>|...|item<sub>n</sub>".</td>
     </tr>
     <tr>
         <td>showTestPopup</td>
@@ -239,5 +239,31 @@
             </ul>
         </td>
         <td>Показывает всплывающее окно, в котором располагается тест.</td>
+    </tr>
+    <tr>
+        <td>showExhibitPopup</td>
+        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td>
+            <ul class="clear">
+                <li><strong>id</strong> — идентификатор экспоната.</li>
+            </ul>
+        </td>
+        <td>Показывает всплывающее окно, в котором содержится информация об экспонате.</td>
+    </tr>
+    <tr>
+        <td>putItemInBag</td>
+        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td>
+            <ul class="clear">
+                <li><strong>name</strong> — название объекта.</li>
+            </ul>
+        </td>
+        <td>Добавляет объект в сумку пользователя.</td>
+    </tr>
+    <tr>
+        <td>getItemsInBag</td>
+        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td>-</td>
+        <td>Отправляет запрос на получение всех объектов из сумки пользователя для Unity.</td>
     </tr>
 </table>

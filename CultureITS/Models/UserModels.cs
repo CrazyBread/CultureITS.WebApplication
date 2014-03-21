@@ -66,8 +66,8 @@ namespace CultureITS.Models
         [Display(Name = "Возраст")]
         public int Age { set; get; }
 
-        public virtual ICollection<GameObject> GameObjects { set; get; }
-        public virtual ICollection<Result> TestResults { set; get; }
+        public virtual ICollection<Exhibit> Exhibits { set; get; }
+        public virtual ICollection<Session> TestSessions { set; get; }
     }
 
     public class Teacher : User

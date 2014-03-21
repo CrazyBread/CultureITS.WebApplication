@@ -22,6 +22,8 @@ body {
 
     body > .cont {
         margin-top: 20px;
+        padding: 0 10px;
+        width: 1190px;
     }
 
 .head {

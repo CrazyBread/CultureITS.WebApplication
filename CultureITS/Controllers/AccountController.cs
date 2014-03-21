@@ -17,8 +17,8 @@ namespace CultureITS.Controllers
         private DataContext db = new DataContext();
 
         //
-        // GET: /Account/
-        public ActionResult Index()
+        // GET: /Account/Profile
+        public new ActionResult Profile()
         {
             var user = db.Users.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
             return View(new AccountViewModel(user));
@@ -85,7 +85,7 @@ namespace CultureITS.Controllers
                     db.Students.Add(item);
                     db.SaveChanges();
                     System.Web.HttpContext.Current.Session.Authorize(item);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Profile");
                 }
             }
             catch (Exception ex)
@@ -127,7 +127,7 @@ namespace CultureITS.Controllers
                 db.Entry(user).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Profile");
         }
 
         //
@@ -144,7 +144,7 @@ namespace CultureITS.Controllers
                 db.Entry(user).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Profile");
         }
 
         //

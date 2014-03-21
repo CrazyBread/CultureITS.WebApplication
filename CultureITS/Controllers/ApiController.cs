@@ -32,12 +32,13 @@ namespace CultureITS.Controllers
             return View();
         }
 
+        #region Подсистема работы с экспонатами музея
         //
-        // POST: /Api/markGameObject/5
+        // POST: /Api/markExhibit/5
         [HttpPost]
-        public JsonResult markGameObject(int id)
+        public JsonResult markExhibit(int id)
         {
-            var item = db.GameObjects.Find(id);
+            var item = db.Exhibits.Find(id);
             if (item == null)
                 return Json(new { success = false, message = "Игровой объект не найден в системе." });
 
@@ -50,21 +51,21 @@ namespace CultureITS.Controllers
                 return Json(new { success = false, message = "Пользователь не является студентом." });
 
             Student student = user as Student;
-            if (student.GameObjects.Count(i => i.Id == item.Id) > 0)
-                student.GameObjects.Remove(item);
+            if (student.Exhibits.Count(i => i.Id == item.Id) > 0)
+                student.Exhibits.Remove(item);
             else
-                student.GameObjects.Add(item);
+                student.Exhibits.Add(item);
             db.SaveChanges();
 
             return Json(new { success = true });
         }
 
         //
-        // POST: /Api/checkGameObject/5
+        // POST: /Api/checkExhibit/5
         [HttpPost]
-        public JsonResult checkGameObject(int id)
+        public JsonResult checkExhibit(int id)
         {
-            var item = db.GameObjects.Find(id);
+            var item = db.Exhibits.Find(id);
             if (item == null)
                 return Json(new { success = false, message = "Игровой объект не найден в системе." });
 
@@ -77,17 +78,17 @@ namespace CultureITS.Controllers
                 return Json(new { success = false, message = "Пользователь не является студентом." });
 
             Student student = user as Student;
-            if (student.GameObjects.Count(i => i.Id == item.Id) > 0)
+            if (student.Exhibits.Count(i => i.Id == item.Id) > 0)
                 return Json(new { success = true, state = true });
             return Json(new { success = true, state = false });
         }
 
         //
-        // POST: /Api/getGameObjectInfo/5
+        // POST: /Api/getExhibitInfo/5
         [HttpPost]
-        public JsonResult getGameObjectInfo(int id, bool full)
+        public JsonResult getExhibitInfo(int id, bool full)
         {
-            var item = db.GameObjects.Find(id);
+            var item = db.Exhibits.Find(id);
             if (item == null)
                 return Json(new { success = false, message = "Игровой объект не найден в системе." });
 
@@ -99,7 +100,9 @@ namespace CultureITS.Controllers
                 return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified, fullDescription = item.FullDescription });
             return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified });
         }
+        #endregion
 
+        #region Подсистема работы с тестированием
         //
         // POST: /Api/getTestInfo
         [HttpPost]
@@ -125,9 +128,9 @@ namespace CultureITS.Controllers
                 dataOut.title = test.Title;
                 dataOut.topic = test.Topic;
 
-                dataOut.resultsCount = test.Results.Count(i => i.Student.Id == user.Id);
-                dataOut.isOpened = (dataOut.resultsCount == 0) ? false : (test.Results.Count(i => ((i.Student.Id == user.Id) && (!i.Complete))) > 0);
-                dataOut.dateLastResult = (dataOut.resultsCount == 0) ? DateTime.Now : test.Results.Where(i => i.Student.Id == user.Id).OrderByDescending(i => i.Date).FirstOrDefault().Date;
+                dataOut.resultsCount = test.Sessions.Count(i => i.Student.Id == user.Id);
+                dataOut.isOpened = (dataOut.resultsCount == 0) ? false : (test.Sessions.Count(i => ((i.Student.Id == user.Id) && (!i.Complete))) > 0);
+                dataOut.dateLastResult = (dataOut.resultsCount == 0) ? DateTime.Now : test.Sessions.Where(i => i.Student.Id == user.Id).OrderByDescending(i => i.Date).FirstOrDefault().Date;
 
                 return Json(dataOut);
             }
@@ -157,10 +160,10 @@ namespace CultureITS.Controllers
                 TestStartOut dataOut = new TestStartOut();
                 dataOut.success = true;
 
-                var openedTestSession = test.Results.SingleOrDefault(i => ((i.Student.Id == user.Id) && (!i.Complete)));
+                var openedTestSession = test.Sessions.SingleOrDefault(i => ((i.Student.Id == user.Id) && (!i.Complete)));
                 if (openedTestSession == null)
                 {
-                    var testSession = new Result() { Complete = false, Date = DateTime.Now, QuestionsLeft = test.Questions.Count, Student = user, Test = test, Percent = 0 };
+                    var testSession = new Session() { Complete = false, Date = DateTime.Now, QuestionsLeft = test.Questions.Count, Student = user, Test = test, Percent = 0 };
 
                     TestData testData = new TestData();
                     testData.Queue = new TestDataItem[testSession.QuestionsLeft];
@@ -176,7 +179,7 @@ namespace CultureITS.Controllers
                     }
                     testSession.Data = JsonConvert.SerializeObject(testData);
 
-                    db.TestResult.Add(testSession);
+                    db.TestSessions.Add(testSession);
                     db.SaveChanges();
                     dataOut.testSessionId = testSession.Id;
                     dataOut.questionLeft = testSession.QuestionsLeft;
@@ -208,16 +211,16 @@ namespace CultureITS.Controllers
                     throw new Exception("Доступ разрешен только студентам.");
                 var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
 
-                var testSession = db.TestResult.SingleOrDefault(i => ((i.Student.Id == user.Id) && (i.Id == dataIn.testSessionId)));
+                var testSession = db.TestSessions.SingleOrDefault(i => ((i.Student.Id == user.Id) && (i.Id == dataIn.testSessionId)));
                 if (testSession == null)
                     throw new Exception("Сеанс тестирования не найден.");
 
                 TestData testData = JsonConvert.DeserializeObject<TestData>(testSession.Data);
-                if((dataIn.questionNumber > testData.Queue.Count()) || (dataIn.questionNumber < 1))
+                if ((dataIn.questionNumber > testData.Queue.Count()) || (dataIn.questionNumber < 1))
                     throw new Exception("Неправильный номер вопроса.");
 
                 TestDataItem testDataItem = testData.Queue[dataIn.questionNumber - 1];
-                if(testDataItem.complete)
+                if (testDataItem.complete)
                     throw new Exception("На вопрос уже был дан ответ.");
 
                 var testQuestion = db.TestQuestion.Find(testDataItem.id);
@@ -263,7 +266,7 @@ namespace CultureITS.Controllers
                     throw new Exception("Доступ разрешен только студентам.");
                 var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
 
-                var testSession = db.TestResult.SingleOrDefault(i => ((i.Student.Id == user.Id) && (i.Id == dataIn.testSessionId)));
+                var testSession = db.TestSessions.SingleOrDefault(i => ((i.Student.Id == user.Id) && (i.Id == dataIn.testSessionId)));
                 if (testSession == null)
                     throw new Exception("Сеанс тестирования не найден.");
 
@@ -296,7 +299,7 @@ namespace CultureITS.Controllers
                 testSession.QuestionsLeft--;
                 if (testSession.QuestionsLeft == 0)
                     testSession.Complete = true;
-                db.Entry<Result>(testSession).State = System.Data.EntityState.Modified;
+                db.Entry<Session>(testSession).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
 
                 TestAnswerOut dataOut = new TestAnswerOut();
@@ -311,7 +314,7 @@ namespace CultureITS.Controllers
                 {
                     dataOut.result = 0;
                 }
-                                
+
                 return Json(dataOut);
             }
             catch (Exception e)
@@ -333,7 +336,7 @@ namespace CultureITS.Controllers
                     throw new Exception("Доступ разрешен только студентам.");
                 var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
 
-                var testSession = db.TestResult.SingleOrDefault(i => ((i.Student.Id == user.Id) && (i.Id == dataIn.testSessionId)));
+                var testSession = db.TestSessions.SingleOrDefault(i => ((i.Student.Id == user.Id) && (i.Id == dataIn.testSessionId)));
                 if (testSession == null)
                     throw new Exception("Сеанс тестирования не найден.");
 
@@ -345,7 +348,8 @@ namespace CultureITS.Controllers
                 dataOut.date = testSession.Date;
                 dataOut.questionsResults = new TestResults[testData.Queue.Count()];
                 int j = 0;
-                foreach(var item in testData.Queue) {
+                foreach (var item in testData.Queue)
+                {
                     dataOut.questionsResults[j].result = item.result;
                     dataOut.questionsResults[j].maxResult = item.maxResult;
                     dataOut.questionsResults[j].number = j + 1;
@@ -359,5 +363,6 @@ namespace CultureITS.Controllers
                 return Json(new { success = false, message = e.Message });
             }
         }
+        #endregion
     }
 }

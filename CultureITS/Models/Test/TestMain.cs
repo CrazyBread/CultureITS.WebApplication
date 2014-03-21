@@ -16,6 +16,6 @@ namespace CultureITS.Models.Test
         public string Author { set; get; }
 
         public virtual ICollection<Question> Questions { set; get; }
-        public virtual ICollection<Result> Results { set; get; }
+        public virtual ICollection<Session> Sessions { set; get; }
     }
 }

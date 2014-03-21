@@ -18,9 +18,9 @@ showTestPopup = function (id) {
     }
 };
 
-//gameObject subsystem
-markGameObject = function (id) {
-    Request("markGameObject", { id: id }, function (data) {
+//exhibit subsystem
+markExhibit = function (id) {
+    Request("markExhibit", { id: id }, function (data) {
         if (data.success)
             alert('ok');
         else
@@ -28,8 +28,8 @@ markGameObject = function (id) {
     });
 };
 
-checkGameObject = function (id) {
-    Request("checkGameObject", { id: id }, function (data) {
+checkExhibit = function (id) {
+    Request("checkExhibit", { id: id }, function (data) {
         if (data.success)
             alert(data.state);
         else
@@ -37,15 +37,14 @@ checkGameObject = function (id) {
     });
 };
 
-getGameObjectInfo = function (id, full) {
-    Request("getGameObjectInfo", { id: id, full: full }, function (data) {
+getExhibitInfo = function (id, full) {
+    Request("getExhibitInfo", { id: id, full: full }, function (data) {
         if (data.success)
             alert(data.name + " " + data.canNotified + " " + data.description);
         else
             alert(data.message);
     });
 };
-
 
 //test subsystem
 var testConfig = [];
@@ -110,7 +109,7 @@ getTestQuestion = function (sessionId, questionNumber) {
             data.answers.forEach(function (item) {
                 $('#TestMainAnswers').append(
                     $('<li>').append(
-                        $('<input>').attr('id', 'question' + item.id).attr('value', item.id).attr('name', 'testAnswer').attr('type', testConfig["MultiChoise"] ? 'checkbox' : 'radio')).append(item.text)
+                        $('<input>').attr('id', item.id).attr('name', 'testAnswer').attr('type', testConfig["MultiChoise"] ? 'checkbox' : 'radio')).append(item.text)
                 );
                 // ++++++ Application
             });
@@ -184,7 +183,7 @@ $('#TestMainButton').click(function () {
 
     var answersArray = new Array();
     $items.each(function (i) {
-        answersArray.push($(this).val());
+        answersArray.push($(this).attr('id'));
     });
 
     setTestAnswer(testConfig["SessionId"], testConfig["CurrentQuestion"], answersArray);

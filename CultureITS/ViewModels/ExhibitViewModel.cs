@@ -6,19 +6,19 @@ using System.Web;
 
 namespace CultureITS.ViewModels
 {
-    public class GameObjectViewModel
+    public class ExhibitViewModel
     {
-        public GameObject Item { set; get; }
-        public IEnumerable<GameObject> List { set; get; }
+        public Exhibit Item { set; get; }
+        public IEnumerable<Exhibit> List { set; get; }
 
         public int? Page { set; get; }
 
-        public GameObjectViewModel(GameObject item)
+        public ExhibitViewModel(Exhibit item)
         {
             Item = item;
         }
 
-        public GameObjectViewModel(IEnumerable<GameObject> list, int? page)
+        public ExhibitViewModel(IEnumerable<Exhibit> list, int? page)
         {
             List = list;
             Page = page;

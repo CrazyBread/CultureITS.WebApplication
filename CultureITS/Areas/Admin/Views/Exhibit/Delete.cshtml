@@ -1,0 +1,39 @@
+﻿@model CultureITS.Areas.Admin.Models.ExhibitViewModel
+
+@{
+    ViewBag.Title = "Удаление экспоната";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Экспонаты", Uri = @Url.Action("Index", "Exhibit", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
+}
+
+<h3>Вы действительно хотите удалить запись об этом экспонате?</h3>
+
+<p><strong>Внимание!</strong> Удаление экспоната из системы не удалит его из музея. Экспонаты из музея удаляются отдельно другими средствами.</p>
+<p><strong>Внимание!</strong> Удаление экспоната, который представлен в музее, может привести к нарушению работы музея!</p>
+
+<fieldset>
+    <legend>Информация об экспонате</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Item.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Item.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Item.Name)
+    </div>
+    <div class="display-field">
+        @Html.Raw(Model.Item.Description)
+    </div>
+</fieldset>
+
+@using (Html.BeginForm()) {
+    <p>
+        <button class="button">Удалить</button>
+        @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+    </p>
+}

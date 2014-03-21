@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CultureITS.Models.Test
 {
-    public class Result
+    public class Session
     {
         [Key]
         public int Id { set; get; }
