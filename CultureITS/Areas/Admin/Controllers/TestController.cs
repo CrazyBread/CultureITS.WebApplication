@@ -68,7 +68,7 @@ namespace CultureITS.Areas.Admin.Controllers
                     item = new TestMain();
                 }
 
-                TryUpdateModel(item, "Item", new[] { "Title", "Topic", "Author" });
+                TryUpdateModel(item, "Item", new[] { "Title", "Topic", "Author", "Code" });
 
                 if (ModelState.IsValid)
                 {

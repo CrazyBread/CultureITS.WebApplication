@@ -17,21 +17,29 @@
     <legend>Информация об экспонате</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Item.Name)
+        @Html.DisplayNameFor(model => model.Item.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Item.Name)
     </div>
 
+    <div class="editor-label">
+        @Html.DisplayNameFor(model => model.Item.Code)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.Item.Code)
+    </div>
+
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Item.Name)
+        @Html.DisplayNameFor(model => model.Item.Name)
     </div>
     <div class="display-field">
         @Html.Raw(Model.Item.Description)
     </div>
 </fieldset>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     <p>
         <button class="button">Удалить</button>
         @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })

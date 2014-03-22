@@ -17,6 +17,9 @@
             @Html.DisplayNameFor(i => i.Item.Title)
         </th>
         <th>
+            @Html.DisplayNameFor(i => i.Item.Code)
+        </th>
+        <th>
             @Html.DisplayNameFor(i => i.Item.Topic)
         </th>
         <th>
@@ -33,6 +36,7 @@
                 <a href="@Url.Action("Questions", new { id = item.Id })" class="button button-small"><i class="fa fa-list"></i></a>
             </td>
             <td>@item.Title</td>
+            <td>@item.Code</td>
             <td>@item.Topic</td>
             <td>@item.Author</td>
         </tr>

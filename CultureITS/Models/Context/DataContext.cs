@@ -58,11 +58,11 @@ namespace CultureITS.Models.Context
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
                 context.SaveChanges();
 
-                context.Exhibits.Add(new Exhibit() { Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
-                context.Exhibits.Add(new Exhibit() { Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
+                context.Exhibits.Add(new Exhibit() { Code = "S1", Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
+                context.Exhibits.Add(new Exhibit() { Code = "S2", Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
                 context.SaveChanges();
 
-                var test = new TestMain() { Author = "Бобик Ёбик", Title = "Проверочный тест", Topic = "Публичная жизни Вручтель Серафимы" };
+                var test = new TestMain() { Code = "T1", Author = "Бобик Ёбик", Title = "Проверочный тест", Topic = "Публичная жизни Вручтель Серафимы" };
                 context.TestMain.Add(test);
                 var question1 = new Question() { Test = test, Text = "Как зовут кошку Симы?" };
                 var question2 = new Question() { Test = test, Text = "У Симы есть кошка?" };

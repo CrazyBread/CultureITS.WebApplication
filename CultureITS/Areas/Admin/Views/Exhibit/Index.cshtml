@@ -20,6 +20,7 @@ else
         <tr>
             <th>&nbsp;</th>
             <th>Название</th>
+            <th>Код</th>
             <th>Местоположение</th>
             <th>Может быть отмечен</th>
         </tr>
@@ -31,6 +32,7 @@ else
                     <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
                 </td>
                 <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
+                <td>@item.Code</td>
                 <td>@item.Location</td>
                 <td class="cnt top">@(item.CanNotified ? "+" : "-")</td>
             </tr>

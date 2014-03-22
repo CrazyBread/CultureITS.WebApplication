@@ -12,7 +12,11 @@ namespace CultureITS.Models.Test
         public int Id { set; get; }
 
         [Required]
-        [Display(Name="Заголовок")]
+        [Display(Name = "Идентификатор")]
+        public string Code { set; get; }
+
+        [Required]
+        [Display(Name = "Заголовок")]
         public string Title { set; get; }
 
         [Required]

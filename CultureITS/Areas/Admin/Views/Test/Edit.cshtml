@@ -26,6 +26,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Item.Code)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Item.Code)
+            @Html.ValidationMessageFor(model => model.Item.Code)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Item.Topic)
         </div>
         <div class="editor-field">

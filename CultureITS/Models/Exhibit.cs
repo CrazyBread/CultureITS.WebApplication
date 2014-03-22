@@ -17,6 +17,10 @@ namespace CultureITS.Models
         public string Name { set; get; }
 
         [Required]
+        [Display(Name = "Идентификатор")]
+        public string Code { set; get; }
+
+        [Required]
         [AllowHtml]
         [Display(Name = "Описание")]
         public string Description { set; get; }

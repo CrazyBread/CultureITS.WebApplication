@@ -69,7 +69,7 @@ namespace CultureITS.Areas.Admin.Controllers
                     item = new Exhibit();
                 }
 
-                TryUpdateModel(item, "Item", new[] { "Name", "Description", "CanNotified", "FullDescription" });
+                TryUpdateModel(item, "Item", new[] { "Name", "Description", "CanNotified", "FullDescription", "Code" });
 
                 if (ModelState.IsValid)
                 {
