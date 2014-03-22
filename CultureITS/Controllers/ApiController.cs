@@ -86,19 +86,17 @@ namespace CultureITS.Controllers
         //
         // POST: /Api/getExhibitInfo/5
         [HttpPost]
-        public JsonResult getExhibitInfo(int id, bool full)
+        public JsonResult getExhibitInfo(string code)
         {
-            var item = db.Exhibits.Find(id);
-            if (item == null)
-                return Json(new { success = false, message = "Игровой объект не найден в системе." });
-
             var sessionUser = System.Web.HttpContext.Current.Session.GetUser();
             if (sessionUser == null)
                 return Json(new { success = false, message = "Доступ неавторизованным пользователям запрещён." });
 
-            if (full)
-                return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified, fullDescription = item.FullDescription });
-            return Json(new { success = true, name = item.Name, description = item.Description, canNotified = item.CanNotified });
+            var item = db.Exhibits.SingleOrDefault(i => i.Code == code);
+            if (item == null)
+                return Json(new { success = false, message = "Экспонат не найден в системе." });
+            
+            return Json(new { success = true, id = item.Id, name = item.Name, description = item.Description });
         }
         #endregion
 
@@ -116,7 +114,7 @@ namespace CultureITS.Controllers
                     throw new Exception("Доступ разрешен только студентам.");
                 var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
 
-                var test = db.TestMain.Find(dataIn.id);
+                var test = db.TestMain.SingleOrDefault(i => i.Code == dataIn.code);
                 if (test == null)
                     throw new Exception("Тест с таким идентификатором не найден.");
 
@@ -124,13 +122,15 @@ namespace CultureITS.Controllers
                 dataOut.success = true;
 
                 dataOut.author = test.Author;
-                dataOut.questionsCount = test.Questions.Count();
+                dataOut.questionsCount = test.Questions.Count(i => i.Answers.Count(j => j.Right) > 0);
                 dataOut.title = test.Title;
                 dataOut.topic = test.Topic;
+                dataOut.id = test.Id;
 
                 dataOut.resultsCount = test.Sessions.Count(i => i.Student.Id == user.Id);
                 dataOut.isOpened = (dataOut.resultsCount == 0) ? false : (test.Sessions.Count(i => ((i.Student.Id == user.Id) && (!i.Complete))) > 0);
-                dataOut.dateLastResult = (dataOut.resultsCount == 0) ? DateTime.Now : test.Sessions.Where(i => i.Student.Id == user.Id).OrderByDescending(i => i.Date).FirstOrDefault().Date;
+                var dateLastResult = (dataOut.resultsCount == 0) ? DateTime.Now : test.Sessions.Where(i => i.Student.Id == user.Id).OrderByDescending(i => i.Date).FirstOrDefault().Date;
+                dataOut.dateLastResult = dateLastResult.ToString("dd.MM.yyyy");
 
                 return Json(dataOut);
             }
@@ -163,19 +163,19 @@ namespace CultureITS.Controllers
                 var openedTestSession = test.Sessions.SingleOrDefault(i => ((i.Student.Id == user.Id) && (!i.Complete)));
                 if (openedTestSession == null)
                 {
-                    var testSession = new Session() { Complete = false, Date = DateTime.Now, QuestionsLeft = test.Questions.Count, Student = user, Test = test, Percent = 0 };
+                    var testSession = new Session() { Complete = false, Date = DateTime.Now, QuestionsLeft = test.Questions.Count(i => i.Answers.Count(j => j.Right) > 0), Student = user, Test = test, Percent = 0 };
 
                     TestData testData = new TestData();
                     testData.Queue = new TestDataItem[testSession.QuestionsLeft];
 #warning Добавить перемешивание вопросов
-                    int i = 0;
-                    foreach (var item in test.Questions)
+                    int k = 0;
+                    foreach (var item in test.Questions.Where(i => i.Answers.Count(j => j.Right) > 0))
                     {
-                        testData.Queue[i].id = item.Id;
-                        testData.Queue[i].maxResult = item.Answers.Count(j => j.Right);
-                        testData.Queue[i].result = 0;
-                        testData.Queue[i].complete = false;
-                        i++;
+                        testData.Queue[k].id = item.Id;
+                        testData.Queue[k].maxResult = item.Answers.Count(j => j.Right);
+                        testData.Queue[k].result = 0;
+                        testData.Queue[k].complete = false;
+                        k++;
                     }
                     testSession.Data = JsonConvert.SerializeObject(testData);
 
@@ -271,7 +271,7 @@ namespace CultureITS.Controllers
                     throw new Exception("Сеанс тестирования не найден.");
 
                 TestData testData = JsonConvert.DeserializeObject<TestData>(testSession.Data);
-                if ((dataIn.questionNumber > testSession.Test.Questions.Count()) || (dataIn.questionNumber < 1))
+                if ((dataIn.questionNumber > testSession.Test.Questions.Count(i => i.Answers.Count(j => j.Right) > 0)) || (dataIn.questionNumber < 1))
                     throw new Exception("Неправильный номер вопроса.");
 
                 TestDataItem testDataItem = testData.Queue[dataIn.questionNumber - 1];

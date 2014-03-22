@@ -29,13 +29,6 @@
     <div class="editor-field">
         @Html.DisplayFor(model => model.Item.Code)
     </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Item.Name)
-    </div>
-    <div class="display-field">
-        @Html.Raw(Model.Item.Description)
-    </div>
 </fieldset>
 
 @using (Html.BeginForm())

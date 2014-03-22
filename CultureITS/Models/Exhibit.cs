@@ -29,14 +29,10 @@ namespace CultureITS.Models
         [Display(Name = "Местоположение")]
         public string Location { set; get; }
 
-        [Required]
-        [Display(Name = "Может быть отмечено пользователем")]
-        public bool CanNotified { set; get; }
-
-        [Display(Name = "Полное описание")]
-        [AllowHtml]
-        public string FullDescription { set; get; }
+        public string ApplicationType { set; get; }
+        public byte[] ApplicationData { set; get; }
 
         public virtual ICollection<Student> Students { set; get; }
+        public virtual ICollection<Article> Article { set; get; }
     }
 }

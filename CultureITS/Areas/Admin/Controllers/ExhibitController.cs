@@ -69,7 +69,7 @@ namespace CultureITS.Areas.Admin.Controllers
                     item = new Exhibit();
                 }
 
-                TryUpdateModel(item, "Item", new[] { "Name", "Description", "CanNotified", "FullDescription", "Code" });
+                TryUpdateModel(item, "Item", new[] { "Name", "Description", "Location", "Code" });
 
                 if (ModelState.IsValid)
                 {
@@ -116,6 +116,125 @@ namespace CultureITS.Areas.Admin.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /Admin/Exhibit/Articles/5
+        public ActionResult Articles(int id)
+        {
+            var item = db.Exhibits.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index");
+
+            return View(new ExhibitViewModel(db, item));
+        }
+
+        //
+        // GET: /Admin/Exhibit/EditArticle
+        public ActionResult EditArticle(int exhibitId, int? id)
+        {
+            Article item = null;
+            Exhibit exhibit = null;
+
+            try
+            {
+                exhibit = db.Exhibits.Find(exhibitId);
+                if (exhibit == null)
+                    throw new ArgumentException("Экспонат не найден.");
+
+                if (id.HasValue)
+                {
+                    item = db.Articles.SingleOrDefault(i => i.Id == id);
+                    if (item == null)
+                        throw new ArgumentException("Материал не найден.");
+                }
+                else
+                {
+                    item = new Article() { Exhibit = exhibit };
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return View(new ExhibitViewModel(db, exhibit, item));
+        }
+
+        //
+        // POST: /Admin/Exhibit/EditArticle
+        [HttpPost, ActionName("EditArticle")]
+        public ActionResult EditArticlePost(int exhibitId, int? id)
+        {
+            Article item = null;
+            Exhibit exhibit = null;
+
+            try
+            {
+                exhibit = db.Exhibits.Find(exhibitId);
+                if (exhibit == null)
+                    throw new ArgumentException("Экспонат не найден.");
+
+                if (id.HasValue)
+                {
+                    item = db.Articles.SingleOrDefault(i => i.Id == id);
+                    if (item == null)
+                        throw new ArgumentException("Материал не найден.");
+                }
+                else
+                {
+                    item = new Article() { Exhibit = exhibit };
+                }
+
+                TryUpdateModel(item, "Article", new[] { "Title", "Text" });
+
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        db.Articles.Add(item);
+                    else
+                        db.Entry<Article>(item).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Articles", new { id = exhibit.Id });
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return View(new ExhibitViewModel(db, exhibit, item));
+        }
+
+        //
+        // GET: /Admin/Exhibit/DeleteArticle/5
+        public ActionResult DeleteArticle(int id)
+        {
+            var item = db.Articles.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index");
+
+            return View(new ExhibitViewModel(db, item.Exhibit, item));
+        }
+
+        //
+        // POST: /Admin/Exhibit/DeleteArticle/5
+        [HttpPost, ActionName("DeleteArticle")]
+        public ActionResult DeleteArticlePost(int id)
+        {
+            var item = db.Articles.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index");
+
+            var exhibitId = item.Exhibit.Id;
+            db.Articles.Remove(item);
+            db.SaveChanges();
+
+            return RedirectToAction("Articles", new { id = exhibitId });
         }
     }
 }

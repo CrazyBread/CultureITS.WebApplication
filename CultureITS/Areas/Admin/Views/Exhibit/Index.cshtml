@@ -8,7 +8,7 @@
 }
 
 <p>
-    <a href="@Url.Action("Edit")" class="button"><i class="fa fa-plus"></i>Добавить</a>
+    <a href="@Url.Action("Edit")" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
 </p>
 @if (Model.List == null || Model.List.Count() == 0)
 {
@@ -22,19 +22,18 @@ else
             <th>Название</th>
             <th>Код</th>
             <th>Местоположение</th>
-            <th>Может быть отмечен</th>
         </tr>
         @foreach (var item in Model.List)
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>&nbsp;|
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
                     <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                    <a href="@Url.Action("Articles", new { id = item.Id })" class="button button-small"><i class="fa fa-list"></i></a>
                 </td>
                 <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
                 <td>@item.Code</td>
                 <td>@item.Location</td>
-                <td class="cnt top">@(item.CanNotified ? "+" : "-")</td>
             </tr>
         }
     </table>  

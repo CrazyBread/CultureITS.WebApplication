@@ -10,35 +10,43 @@
 <p>
     <a href="@Url.Action("Edit")" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
 </p>
-<table class="little-table">
-    <tr>
-        <th>&nbsp;</th>
-        <th>
-            @Html.DisplayNameFor(i => i.Item.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(i => i.Item.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(i => i.Item.Topic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(i => i.Item.Author)
-        </th>
-    </tr>
-
-    @foreach (var item in Model.List)
-    {
+@if (Model.List == null || Model.List.Count() == 0)
+{
+    <p>Нет данных.</p>
+}
+else
+{
+    <table class="little-table">
         <tr>
-            <td>
-                <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
-                <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
-                <a href="@Url.Action("Questions", new { id = item.Id })" class="button button-small"><i class="fa fa-list"></i></a>
-            </td>
-            <td>@item.Title</td>
-            <td>@item.Code</td>
-            <td>@item.Topic</td>
-            <td>@item.Author</td>
+            <th>&nbsp;</th>
+            <th>
+                @Html.DisplayNameFor(i => i.Item.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => i.Item.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => i.Item.Topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => i.Item.Author)
+            </th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                    <a href="@Url.Action("Questions", new { id = item.Id })" class="button button-small"><i class="fa fa-list"></i></a>
+                </td>
+                <td>@item.Title</td>
+                <td>@item.Code</td>
+                <td>@item.Topic</td>
+                <td>@item.Author</td>
+            </tr>
+        }
+    </table>
+}
+

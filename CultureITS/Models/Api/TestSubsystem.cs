@@ -7,19 +7,20 @@ namespace CultureITS.Models.Api
 {
     public struct TestInfoIn
     {
-        public int id { set; get; }
+        public string code { set; get; }
     }
 
     public struct TestInfoOut
     {
         public bool success { set; get; }
 
+        public int id { set; get; }
         public string title { set; get; }
         public string topic { set; get; }
         public string author { set; get; }
         public int questionsCount { set; get; }
         public int resultsCount { set; get; }
-        public DateTime dateLastResult { set; get; }
+        public string dateLastResult { set; get; }
         public bool isOpened { set; get; }
     }
 

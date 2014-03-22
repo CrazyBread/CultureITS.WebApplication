@@ -1,0 +1,28 @@
+﻿@model CultureITS.Areas.Admin.Models.ExhibitViewModel
+
+@{
+    ViewBag.Title = "Удаление материала";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Экспонаты", Uri = @Url.Action("Index", "Exhibit", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
+}
+
+<h3>Вы уверены, что хотите удалить запись об этом материале?</h3>
+<fieldset>
+    <legend>TestMain</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Article.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Article.Title)
+    </div>
+</fieldset>
+
+@using (Html.BeginForm()) {
+    <p>
+        <button class="button">Удалить</button>
+        @Html.ActionLink("Вернуться", "Articles", new { id = Model.Item.Id }, new { @class = "button" })
+    </p>
+}

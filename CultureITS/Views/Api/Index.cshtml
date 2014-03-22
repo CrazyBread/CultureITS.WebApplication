@@ -76,16 +76,14 @@
         <td><code>getExhibitInfo</code></td>
         <td>
             <ul class="clear">
-                <li><strong>id</strong> — идентификатор игрового объекта.</li>
-                <li><strong>full</strong> — возвращать полную информацию.</li>
+                <li><strong>code</strong> — идентификатор экспоната.</li>
             </ul>
         </td>
         <td>
             <ul class="clear">
+                <li><strong>id</strong> — системный идентификатор.</li>
                 <li><strong>name</strong> — название.</li>
                 <li><strong>description</strong> — описание.</li>
-                <li><strong>canNotified</strong> — может ли быть отмечен пользователем.</li>
-                <li><strong>fullDescription</strong> — полное описание (если <code>full=true</code>).</li>
             </ul>
         </td>
         <td>Получает информацию об игровом объекте.</td>
@@ -97,11 +95,12 @@
         <td><code>getTestInfo</code></td>
         <td>
             <ul class="clear">
-                <li><strong>id</strong> — идентификатор теста.</li>
+                <li><strong>code</strong> — идентификатор теста.</li>
             </ul>
         </td>
         <td>
             <ul class="clear">
+                <li><strong>id</strong> — системный идентификатор теста.</li>
                 <li><strong>title</strong> — заголовок.</li>
                 <li><strong>topic</strong> — тема тестирования.</li>
                 <li><strong>author</strong> — автор теста.</li>
@@ -235,7 +234,7 @@
         <td class="cnt"><span class="button button-small">JS</span></td>
         <td>
             <ul class="clear">
-                <li><strong>id</strong> — идентификатор теста.</li>
+                <li><strong>code</strong> — идентификатор теста.</li>
             </ul>
         </td>
         <td>Показывает всплывающее окно, в котором располагается тест.</td>
@@ -245,7 +244,7 @@
         <td class="cnt"><span class="button button-small">JS</span></td>
         <td>
             <ul class="clear">
-                <li><strong>id</strong> — идентификатор экспоната.</li>
+                <li><strong>code</strong> — идентификатор экспоната.</li>
             </ul>
         </td>
         <td>Показывает всплывающее окно, в котором содержится информация об экспонате.</td>

@@ -54,7 +54,7 @@
                     </tr>
                     <tr>
                         <th>Дата последней попытки</th>
-                        <td><span id="TestStartDate"></span></td>
+                        <td><span id="TestLastDate"></span></td>
                     </tr>
                     <tr>
                         <th>Продолжение предыдущей попытки?</th>
@@ -66,7 +66,7 @@
             <div id="TestMain" style="display: none">
                 <div>Вопрос <span id="TestMainQuestionNumber"></span>&nbsp;из&nbsp;<span id="TestMainQuestionCount"></span>.</div>
                 <h2><span id="TestMainText"></span></h2>
-                <ul id="TestMainAnswers"></ul>
+                <ul id="TestMainAnswers" class="clear"></ul>
                 <button class="button" id="TestMainButton">Ответить</button>
             </div>
             <div id="TestResult" style="display: none">
@@ -93,7 +93,7 @@
         $('#markGameObject1').click(function () { markGameObject(1); });
         $('#checkGameObject1').click(function () { checkGameObject(1); });
         $('#getGameObjectInfo1').click(function () { getGameObjectInfo(1, false); });
-        $('#showTestPopup1').click(function () { showTestPopup(1); });
+        $('#showTestPopup1').click(function () { showTestPopup('t1'); });
     </script>
 
     <script type="text/javascript">

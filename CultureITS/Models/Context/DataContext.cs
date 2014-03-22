@@ -18,6 +18,7 @@ namespace CultureITS.Models.Context
         public DbSet<AccessRight> AccessRights { set; get; }
 
         public DbSet<Exhibit> Exhibits { set; get; }
+        public DbSet<Article> Articles { set; get; }
 
         public DbSet<TestMain> TestMain { set; get; }
         public DbSet<Question> TestQuestion { set; get; }
@@ -58,8 +59,8 @@ namespace CultureITS.Models.Context
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
                 context.SaveChanges();
 
-                context.Exhibits.Add(new Exhibit() { Code = "S1", Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>", CanNotified = false });
-                context.Exhibits.Add(new Exhibit() { Code = "S2", Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>", CanNotified = true, FullDescription = "<p>123</p><p>1231231</p>" });
+                context.Exhibits.Add(new Exhibit() { Code = "S1", Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>" });
+                context.Exhibits.Add(new Exhibit() { Code = "S2", Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>" });
                 context.SaveChanges();
 
                 var test = new TestMain() { Code = "T1", Author = "Бобик Ёбик", Title = "Проверочный тест", Topic = "Публичная жизни Вручтель Серафимы" };

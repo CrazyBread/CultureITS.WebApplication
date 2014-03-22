@@ -10,9 +10,9 @@ Request = function (command, data, result) {
 };
 
 //unity interaction
-showTestPopup = function (id) {
+showTestPopup = function (code) {
     if (testConfig["State"] == false) {
-        getTestInfo(id);
+        getTestInfo(code);
     } else {
         alert("Вы уже проходите тестирование");
     }
@@ -51,10 +51,11 @@ var testConfig = [];
 testConfig["State"] = false;
 testConfig["Id"] = 0;
 
-getTestInfo = function (id) {
-    Request("getTestInfo", { id: id }, function (data) {
+getTestInfo = function (code) {
+    Request("getTestInfo", { code: code }, function (data) {
         if (data.success) {
-            testConfig["Id"] = id;
+            testConfig["Code"] = code;
+            testConfig["Id"] = data.id;
             testConfig["QuestionsCount"] = data.questionsCount;
 
             $('#TestHeader').text(data.title + " (" + data.topic + ")");
@@ -64,7 +65,7 @@ getTestInfo = function (id) {
             $('#TestStartAuthor').text(data.author);
             $('#TestStartQuestionsCount').text(data.questionsCount);
             $('#TestStartResultsCount').text(data.resultsCount);
-            $('#TestStartDate').text((data.resultsCount > 0) ? data.dateLastResult : "-");
+            $('#TestLastDate').text((data.resultsCount > 0) ? data.dateLastResult : "-");
             $('#TestStartOpened').text((data.isOpened) ? "Да" : "Нет");
             $('#TestMainQuestionCount').text(data.questionsCount);
 

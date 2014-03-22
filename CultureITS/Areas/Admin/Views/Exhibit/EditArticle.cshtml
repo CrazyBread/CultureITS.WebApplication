@@ -1,7 +1,7 @@
 ﻿@model CultureITS.Areas.Admin.Models.ExhibitViewModel
 
 @{
-    ViewBag.Title = "Работа с экспонатом";
+    ViewBag.Title = "Работа с материалами";
     ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
         .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Администрирование", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
         .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Экспонаты", Uri = @Url.Action("Index", "Exhibit", new { area = "Admin" }) })
@@ -13,48 +13,33 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Информация об игровом объекте</legend>
+        <legend>TestMain</legend>
+
+        @Html.HiddenFor(model => model.Article.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Item.Name)
+            @Html.LabelFor(model => model.Article.Title)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Item.Name)
-            @Html.ValidationMessageFor(model => model.Item.Name)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Item.Code)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Item.Code)
-            @Html.ValidationMessageFor(model => model.Item.Code)
+            @Html.EditorFor(model => model.Article.Title)
+            @Html.ValidationMessageFor(model => model.Article.Title)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Item.Location)
+            @Html.LabelFor(model => model.Article.Text)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Item.Location)
-            @Html.ValidationMessageFor(model => model.Item.Location)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Item.Description)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Item.Description)
-            @Html.ValidationMessageFor(model => model.Item.Description)
+            @Html.TextAreaFor(model => model.Article.Text)
+            @Html.ValidationMessageFor(model => model.Article.Text)
         </div>
     </fieldset>
-    
     <p>
         <button class="button">Отправить</button>
     </p>
 }
 
 <div>
-    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+    @Html.ActionLink("Вернуться", "Articles", new { id = Model.Item.Id }, new { @class = "button" })
 </div>
 
 @section Scripts {
