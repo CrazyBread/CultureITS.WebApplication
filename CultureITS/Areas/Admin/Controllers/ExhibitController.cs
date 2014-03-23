@@ -216,7 +216,7 @@ namespace CultureITS.Areas.Admin.Controllers
         //
         // POST: /Admin/Exhibit/EditArticle
         [HttpPost, ActionName("EditArticle")]
-        public ActionResult EditArticlePost(int exhibitId, int? id)
+        public ActionResult EditArticlePost(int exhibitId, int? id, HttpPostedFileBase Photo)
         {
             Article item = null;
             Exhibit exhibit = null;
@@ -242,6 +242,13 @@ namespace CultureITS.Areas.Admin.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    if (Photo != null && Photo.IsImage())
+                    {
+                        item.ApplicationType = Photo.ContentType;
+                        item.ApplicationData = new WebImage(Photo.InputStream).Resize(300, 300).GetBytes(item.ApplicationType);
+                        Photo.InputStream.Read(item.ApplicationData, 0, Photo.ContentLength);
+                    }
+
                     if (id == null)
                         db.Articles.Add(item);
                     else
