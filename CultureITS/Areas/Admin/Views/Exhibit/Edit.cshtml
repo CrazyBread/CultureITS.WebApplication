@@ -8,7 +8,7 @@
         .Generate(ViewBag.Title);
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Exhibit", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
 
@@ -45,6 +45,14 @@
         <div class="editor-field">
             @Html.TextAreaFor(model => model.Item.Description)
             @Html.ValidationMessageFor(model => model.Item.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Photo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+            @Html.ValidationMessageFor(model => model.Photo)
         </div>
     </fieldset>
     

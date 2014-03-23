@@ -104,7 +104,7 @@ namespace CultureITS.Controllers
         }
 
         //
-        // GET: /Account/Users/1
+        // GET: /Account/GetImage/1
         public FileContentResult GetImage(int id)
         {
             var user = db.Users.Find(id);

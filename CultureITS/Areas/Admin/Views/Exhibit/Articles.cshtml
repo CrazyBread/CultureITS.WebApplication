@@ -20,9 +20,8 @@ else
     <table class="little-table">
         <tr>
             <th>&nbsp;</th>
-            <th>
-                @Html.DisplayNameFor(i => i.Article.Title)
-            </th>
+            <th>@Html.DisplayNameFor(i => i.Article.Title)</th>
+            <th>@Html.DisplayNameFor(i => i.Photo)</th>
         </tr>
 
         @foreach (var item in Model.Item.Article)
@@ -31,8 +30,10 @@ else
                 <td>
                     <a href="@Url.Action("EditArticle", new { exhibitId = Model.Item.Id, id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
                     <a href="@Url.Action("DeleteArticle", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                    <a href="javascript:void(0)" class="button button-small" onclick="changeImage(@item.Id, @((string.IsNullOrEmpty(item.ApplicationType) ? "false" : "true")), '@Url.Action("GetArticleImage", "Exhibit", new { id = item.Id, area = "" })', '@Url.Action("RemoveArticleImage", new { id = item.Id })')"><i class="fa fa-camera"></i></a>
                 </td>
                 <td>@item.Title</td>
+                <td>@((string.IsNullOrEmpty(item.ApplicationType) ? "Нет" : "Есть"))</td>
             </tr>
         }
     </table>
@@ -41,3 +42,48 @@ else
 <p>
     @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
 </p>
+
+@section popup_windows {
+    @foreach (var item in Model.List)
+    {
+        <div id="description_@item.Id" class="popup_window">
+            <h2>@item.Name</h2>
+            @Html.Raw(item.Description)
+        </div>
+    }
+    <div class="popup_window" id="ApplicationUpload">
+        <div class="popup_head">
+            Иллюстрация
+            <div class="popup_close">Х</div>
+        </div>
+        <div class="popup_cont">
+            <div id="ApplicationUploadShow">
+                <img src="#" alt="" id="ApplicationUploadImage" style="text-align: center" />
+                <p>Вы также можете <a href="#" id="ApplicationUploadRemoveLink">удалить иллюстрацию</a>.</p>
+                <hr />
+            </div>
+            <h3>Изменение иллюстрации</h3>
+            @using (Html.BeginForm("ChangeArticleImage", "Exhibit", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" name="id" id="ApplicationUploadId" value="-1" />
+                <input type="file" id="Photo" name="Photo" />
+                <div>
+                    <button>Загрузить</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        changeImage = function (id, haveApplication, applicatioinLink, removeLink) {
+            if (haveApplication) $('#ApplicationUploadShow').show();
+            else $('#ApplicationUploadShow').hide();
+            $('#ApplicationUploadId').val(id);
+            $('#ApplicationUploadRemoveLink').attr('href', removeLink);
+            $('#ApplicationUploadImage').attr('src', applicatioinLink);
+            openPopup("#ApplicationUpload");
+        }
+    </script>
+}

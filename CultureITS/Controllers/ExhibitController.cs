@@ -28,5 +28,29 @@ namespace CultureITS.Controllers
                 return RedirectToAction("Index");
             return View(new ExhibitViewModel(item));
         }
+
+        //
+        // GET: /Exhibit/GetImage/1
+        public FileContentResult GetImage(int id)
+        {
+            var item = db.Exhibits.Find(id);
+            if (item == null)
+                return null;
+            if (item.ApplicationType == null)
+                return null;
+            return File(item.ApplicationData, item.ApplicationType);
+        }
+
+        //
+        // GET: /Exhibit/GetArticleImage/1
+        public FileContentResult GetArticleImage(int id)
+        {
+            var item = db.Articles.Find(id);
+            if (item == null)
+                return null;
+            if (item.ApplicationType == null)
+                return null;
+            return File(item.ApplicationData, item.ApplicationType);
+        }
     }
 }
