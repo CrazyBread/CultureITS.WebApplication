@@ -272,8 +272,7 @@ namespace CultureITS.Areas.Admin.Controllers
         public ActionResult ChangeArticleImage(int id, HttpPostedFileBase Photo)
         {
             var item = db.Articles.Find(id);
-#warning Вторая часть проверки бредовая, но без этого не работает. Почему-то.
-            if (item == null || item.Exhibit.Id == 0) 
+            if (item == null || item.Exhibit.Id == 0) //lazyloading fail
                 return RedirectToAction("Index");
 
             if (Photo.IsImage())
@@ -325,7 +324,7 @@ namespace CultureITS.Areas.Admin.Controllers
         public ActionResult RemoveArticleImage(int id)
         {
             var item = db.Articles.Find(id);
-            if (item == null || item.Exhibit.Id == 0)
+            if (item == null || item.Exhibit.Id == 0) //lazyloading fail
                 return RedirectToAction("Index");
             if (item.ApplicationType == null)
                 return RedirectToAction("Index");

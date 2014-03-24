@@ -282,23 +282,33 @@ namespace CultureITS.Controllers
                 if (testQuestion == null)
                     throw new Exception("Ошибка при выборе вопроса из БД.");
 
+                var markedAnswers = new bool[dataIn.answersNumbers.Count()];
                 foreach (var rightItem in testQuestion.Answers.Where(i => i.Right))
                 {
-                    foreach (var item in dataIn.answersNumbers)
+                    for(int i = 0; i < dataIn.answersNumbers.Count(); i++)
                     {
+                        if (markedAnswers[i]) continue;
+
+                        var item = dataIn.answersNumbers[i];
                         if (item == rightItem.Id)
                         {
                             testData.Queue[dataIn.questionNumber - 1].result++;
+                            markedAnswers[i] = true;
                             break;
                         }
                     }
                 }
+                testData.Queue[dataIn.questionNumber - 1].result -= markedAnswers.Count(i => !i);
+                if (testData.Queue[dataIn.questionNumber - 1].result < 0) testData.Queue[dataIn.questionNumber - 1].result = 0;
                 testData.Queue[dataIn.questionNumber - 1].complete = true;
 
                 testSession.Data = JsonConvert.SerializeObject(testData);
                 testSession.QuestionsLeft--;
                 if (testSession.QuestionsLeft == 0)
+                {
                     testSession.Complete = true;
+                    testSession.Percent = Convert.ToDouble(testData.Queue.Sum(i => i.result)) / testData.Queue.Sum(i => i.maxResult);
+                }
                 db.Entry<Session>(testSession).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
 

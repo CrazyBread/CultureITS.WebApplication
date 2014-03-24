@@ -46,7 +46,12 @@
     }
     else
     {
-    <p>adfsdf</p>
+    <p>
+        @foreach (var item in Model.ItemStudent.TestSessions)
+        {
+            <span>@item.Complete | @item.Date | @item.Percent </span><br />
+        }
+    </p>
     }
 }
 
