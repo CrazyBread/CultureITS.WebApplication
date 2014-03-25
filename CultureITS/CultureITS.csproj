@@ -153,6 +153,7 @@
     <Compile Include="Helpers\RightsManager.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Models\AccessRight.cs" />
+    <Compile Include="Models\Api\ExhibitSubsystem.cs" />
     <Compile Include="Models\Api\TestSubsystem.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Context\DataContext.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style2.css" />
     <Content Include="Content\images\advant1.png" />
     <Content Include="Content\images\advant2.png" />
     <Content Include="Content\images\advant3.png" />

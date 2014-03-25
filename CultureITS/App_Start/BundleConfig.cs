@@ -24,6 +24,7 @@ namespace CultureITS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/css/reset.css",
                         "~/Content/css/style.css",
+                        "~/Content/css/style2.css",
                         "~/Content/css/font-awesome.css",
                         "~/Content/css/jquery.fancybox.css"));
 

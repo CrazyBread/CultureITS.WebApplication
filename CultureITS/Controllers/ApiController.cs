@@ -36,67 +36,106 @@ namespace CultureITS.Controllers
         //
         // POST: /Api/markExhibit/5
         [HttpPost]
-        public JsonResult markExhibit(int id)
+        public JsonResult markExhibit(string data)
         {
-            var item = db.Exhibits.Find(id);
-            if (item == null)
-                return Json(new { success = false, message = "Игровой объект не найден в системе." });
+            try
+            {
+                var dataIn = JsonConvert.DeserializeObject<ExhibitMarkIn>(data);
 
-            var sessionUser = System.Web.HttpContext.Current.Session.GetUser();
-            if (sessionUser == null)
-                return Json(new { success = false, message = "Доступ неавторизованным пользователям запрещён." });
+                if (System.Web.HttpContext.Current.Session.GetUserRole() != AccountStatus.Student)
+                    throw new Exception("Доступ разрешен только студентам.");
+                var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
 
-            var user = db.Users.Find(sessionUser.Id);
-            if (user is Student == false)
-                return Json(new { success = false, message = "Пользователь не является студентом." });
+                var exhibit = db.Exhibits.Find(dataIn.id);
+                if (exhibit == null)
+                    throw new Exception("Экспонат с таким идентификатором не найден.");
 
-            Student student = user as Student;
-            if (student.Exhibits.Count(i => i.Id == item.Id) > 0)
-                student.Exhibits.Remove(item);
-            else
-                student.Exhibits.Add(item);
-            db.SaveChanges();
+                ExhibitMarkOut dataOut = new ExhibitMarkOut();
+                dataOut.success = true;
 
-            return Json(new { success = true });
+                if (user.Exhibits.Count(i => i.Id == exhibit.Id) > 0)
+                {
+                    user.Exhibits.Remove(exhibit);
+                    dataOut.state = false;
+                }
+                else
+                {
+                    user.Exhibits.Add(exhibit);
+                    dataOut.state = true;
+                }
+                db.SaveChanges();
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
         }
 
         //
         // POST: /Api/checkExhibit/5
         [HttpPost]
-        public JsonResult checkExhibit(int id)
+        public JsonResult checkExhibit(string data)
         {
-            var item = db.Exhibits.Find(id);
-            if (item == null)
-                return Json(new { success = false, message = "Игровой объект не найден в системе." });
+            try
+            {
+                var dataIn = JsonConvert.DeserializeObject<ExhibitCheckIn>(data);
 
-            var sessionUser = System.Web.HttpContext.Current.Session.GetUser();
-            if (sessionUser == null)
-                return Json(new { success = false, message = "Доступ неавторизованным пользователям запрещён." });
+                if (System.Web.HttpContext.Current.Session.GetUserRole() != AccountStatus.Student)
+                    throw new Exception("Доступ разрешен только студентам.");
+                var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
 
-            var user = db.Users.Find(sessionUser.Id);
-            if (user is Student == false)
-                return Json(new { success = false, message = "Пользователь не является студентом." });
+                var exhibit = db.Exhibits.Find(dataIn.id);
+                if (exhibit == null)
+                    throw new Exception("Экспонат с таким идентификатором не найден.");
 
-            Student student = user as Student;
-            if (student.Exhibits.Count(i => i.Id == item.Id) > 0)
-                return Json(new { success = true, state = true });
-            return Json(new { success = true, state = false });
+                ExhibitCheckOut dataOut = new ExhibitCheckOut();
+                dataOut.success = true;
+
+                dataOut.state = (user.Exhibits.Count(i => i.Id == exhibit.Id) > 0);
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
         }
 
         //
         // POST: /Api/getExhibitInfo/5
         [HttpPost]
-        public JsonResult getExhibitInfo(string code)
+        public JsonResult getExhibitInfo(string data)
         {
-            var sessionUser = System.Web.HttpContext.Current.Session.GetUser();
-            if (sessionUser == null)
-                return Json(new { success = false, message = "Доступ неавторизованным пользователям запрещён." });
+            try
+            {
+                var dataIn = JsonConvert.DeserializeObject<ExhibitInfoIn>(data);
 
-            var item = db.Exhibits.SingleOrDefault(i => i.Code == code);
-            if (item == null)
-                return Json(new { success = false, message = "Экспонат не найден в системе." });
-            
-            return Json(new { success = true, id = item.Id, name = item.Name, description = item.Description });
+                if (System.Web.HttpContext.Current.Session.GetUserRole() != AccountStatus.Student)
+                    throw new Exception("Доступ разрешен только студентам.");
+                var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+
+                var exhibit = db.Exhibits.SingleOrDefault(i => i.Code == dataIn.code);
+                if (exhibit == null)
+                    throw new Exception("Экспонат с таким идентификатором не найден.");
+
+                ExhibitInfoOut dataOut = new ExhibitInfoOut();
+                dataOut.success = true;
+
+                dataOut.id = exhibit.Id;
+                dataOut.name = exhibit.Name;
+                dataOut.description = exhibit.Description;
+                dataOut.location = exhibit.Location;
+                dataOut.haveApplication = (!string.IsNullOrEmpty(exhibit.ApplicationType));
+                dataOut.state = (user.Exhibits.Count(i => i.Id == exhibit.Id) > 0);
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
         }
         #endregion
 

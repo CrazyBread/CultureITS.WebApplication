@@ -16,13 +16,22 @@
     </div>
 </div>
 
-<a href="#" id="markExhibit1" class="button">markExhibit1</a>
-<a href="#" id="checkExhibit1" class="button">checkExhibit1</a>
-<a href="#" id="getGameObjectInfo1" class="button">getExhibitInfo1</a>
-
-<a href="#" id="showTestPopup1" class="button">TEST</a>
+<a href="javascript:void(0)" id="showExhibitPopup1" class="button">EXHIBIT</a>
+<a href="javascript:void(0)" id="showTestPopup1" class="button">TEST</a>
 
 @section popup_windows {
+    <div class="popup_window" id="ExhibitPopup">
+        <div class="popup_head">
+            <span id="ExhibitHeader"></span>
+            <div class="popup_close">Х</div>
+        </div>
+        <div class="popup_cont">
+            <span id="ExhibitApplication"></span>
+            <div id="ExhibitInfo"></div>
+            <hr />
+            <div id="ExhibitLike"></div>
+        </div>
+    </div>
     <div class="popup_window" id="TestPopup">
         <div class="popup_head">
             <span id="TestHeader"></span>
@@ -31,36 +40,7 @@
         <div class="popup_cont">
             <div id="TestStart" style="display: none">
                 <h3>Основные сведения о тестировании</h3>
-                <table class="little-table">
-                    <tr>
-                        <th>Название</th>
-                        <td><span id="TestStartTitle"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Название</th>
-                        <td><span id="TestStartTopic"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Число вопросов</th>
-                        <td><span id="TestStartQuestionsCount"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Автор</th>
-                        <td><span id="TestStartAuthor"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Попытки прохождения</th>
-                        <td><span id="TestStartResultsCount"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Дата последней попытки</th>
-                        <td><span id="TestLastDate"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Продолжение предыдущей попытки?</th>
-                        <td><span id="TestStartOpened"></span></td>
-                    </tr>
-                </table>
+                @Helpers.TestInfoTable()
                 <button id="TestStartButton">Начать тестирование</button>
             </div>
             <div id="TestMain" style="display: none">
@@ -71,13 +51,7 @@
             </div>
             <div id="TestResult" style="display: none">
                 <h2>Результаты тестирования</h2>
-                <table class="little-table" id="TestResultTable">
-                    <tr>
-                        <th>Вопрос</th>
-                        <th>Баллов набрано</th>
-                        <th>Баллов максимально</th>
-                    </tr>
-                </table>
+                @Helpers.TestResultTable()
             </div>
         </div>
     </div>
@@ -90,9 +64,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         //fake functions
-        $('#markGameObject1').click(function () { markGameObject(1); });
-        $('#checkGameObject1').click(function () { checkGameObject(1); });
-        $('#getGameObjectInfo1').click(function () { getGameObjectInfo(1, false); });
+        $('#showExhibitPopup1').click(function () { showExhibitPopup('2'); });
         $('#showTestPopup1').click(function () { showTestPopup('t1'); });
     </script>
 

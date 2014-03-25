@@ -453,19 +453,6 @@ hr {
             background: #f8f8f8;
         }
 
-            .little-table tr td.warning {
-                background: #fffff0;
-            }
-
-            .little-table tr td.error {
-                background: #fff0f0;
-            }
-
-            .little-table tr td.success {
-                background: #f0fff0;
-            }
-
-
         .little-table tr.even td {
             background: #f6f6f6;
             background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
@@ -653,16 +640,16 @@ button, input[type="submit"], .button {
     box-shadow: 0px 5px 0px #62b9b0;
 }
 
-    input[type="submit"]:hover, .button:hover {
-        color: #fff;
-        background-color: #e8645a;
-        -webkit-box-shadow: 0px 5px 0px #e2534b;
-        -moz-box-shadow: 0px 5px 0px #e2534b;
-        box-shadow: 0px 5px 0px #e2534b;
-    }
-
 .button-small {
     padding: 5px 8px;
+}
+
+input[type="submit"]:hover, .button:hover {
+    color: #fff;
+    background-color: #e8645a;
+    -webkit-box-shadow: 0px 5px 0px #e2534b;
+    -moz-box-shadow: 0px 5px 0px #e2534b;
+    box-shadow: 0px 5px 0px #e2534b;
 }
 
 input[type="checkbox"],
@@ -720,5 +707,3 @@ input[type="radio"] {
     input[type="radio"]:checked:disabled + label::before {
         background-position: -56px -19px;
     }
-
-​

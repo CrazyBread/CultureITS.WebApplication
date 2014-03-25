@@ -10,6 +10,44 @@ Request = function (command, data, result) {
 };
 
 //unity interaction
+showExhibitPopup = function (code) {
+    getExhibitInfo(code, function (data) {
+        $('#ExhibitHeader').text(data.name + " (" + data.location + ")");
+        $('#ExhibitApplication *').remove();
+
+        if (data.haveApplication) {
+            $('#ExhibitApplication').append($('<img>').attr('src', '/Exhibit/GetImage/' + data.id));
+        }
+        $('#ExhibitInfo').html(data.description);
+        $('#ExhibitLike *').remove();
+
+        var $button = $('<a>');
+        $button.attr('src', 'javascript:void(0)');
+        $button.attr('id', 'ExhibitLikeButton');
+        $button.attr('class', 'button');
+
+        exhibitContig["Id"] = data.id;
+        $button.click(function () {
+            markExhibit(exhibitContig["Id"], function (data) {
+                if (data.state) {
+                    $button.text('Снять отметку');
+                } else {
+                    $button.text('Отметить для себя');
+                }
+            });
+        });
+
+        if (data.state) {
+            $button.text('Снять отметку');
+        } else {
+            $button.text('Отметить для себя');
+        }
+        $('#ExhibitLike').append($button);
+
+        openPopup("#ExhibitPopup");
+    });
+}
+
 showTestPopup = function (code) {
     if (testConfig["State"] == false) {
         getTestInfo(code);
@@ -19,28 +57,31 @@ showTestPopup = function (code) {
 };
 
 //exhibit subsystem
-markExhibit = function (id) {
+var exhibitContig = [];
+exhibitContig["Id"] = 0;
+
+markExhibit = function (id, func) {
     Request("markExhibit", { id: id }, function (data) {
         if (data.success)
-            alert('ok');
+            func(data);
         else
             alert(data.message);
     });
 };
 
-checkExhibit = function (id) {
+checkExhibit = function (id, func) {
     Request("checkExhibit", { id: id }, function (data) {
         if (data.success)
-            alert(data.state);
+            func(data);
         else
             alert(data.message);
     });
 };
 
-getExhibitInfo = function (id, full) {
-    Request("getExhibitInfo", { id: id, full: full }, function (data) {
+getExhibitInfo = function (code, func) {
+    Request("getExhibitInfo", { code: code }, function (data) {
         if (data.success)
-            alert(data.name + " " + data.canNotified + " " + data.description);
+            func(data);
         else
             alert(data.message);
     });

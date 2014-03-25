@@ -1,0 +1,16 @@
+.little-table tr td.warning {
+    background: #fffff0;
+}
+
+.little-table tr td.error {
+    background: #fff0f0;
+}
+
+.little-table tr td.success {
+    background: #f0fff0;
+}
+
+#ExhibitApplication img {
+    padding: 0 10px 10px 10px;
+    float: left;
+}
