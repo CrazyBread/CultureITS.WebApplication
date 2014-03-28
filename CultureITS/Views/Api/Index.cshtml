@@ -21,31 +21,6 @@
         <th>Описание</th>
     </tr>
     <tr>
-        <th colspan="4">Основная информация о пользователе</th>
-    </tr>
-    <tr>
-        <td><code>getUserName</code></td>
-        <td>-</td>
-        <td>
-            <ul class="clear">
-                <li><strong>name</strong> — имя пользователя</li>
-            </ul>
-        </td>
-        <td>Возвращает имя пользователя.</td>
-    </tr>
-    <tr>
-        <td><code>getVisitorInfo</code></td>
-        <td>-</td>
-        <td>
-            <ul class="clear">
-                <li><strong>group</strong> — группа</li>
-                <li><strong>course</strong> — курс</li>
-                <li><strong>age</strong> — возраст</li>
-            </ul>
-        </td>
-        <td>Получает более подробную информацию о посетителе музея.</td>
-    </tr>
-    <tr>
         <th colspan="4">Работа с музейными экспонатами и материалами, связанными с ними</th>
     </tr>
     <tr>
@@ -199,6 +174,29 @@
         </td>
         <td>Получает отчёт о проведении тестирования.</td>
     </tr>
+    <tr>
+        <th colspan="4">Подсистема для работы с игровыми объектами</th>
+    </tr>
+    <tr>
+        <td>putItemInBag</td>
+        <td>
+            <ul class="clear">
+                <li><strong>name</strong> — имя игрового объекта.</li>
+            </ul>
+        </td>
+        <td>-</td>
+        <td>Кладёт игровой объект в сумку пользователя.</td>
+    </tr>
+    <tr>
+        <td>getItemsInBag</td>
+        <td>-</td>
+        <td>
+            <ul class="clear">
+                <li><strong>items</strong> — строка с названиями объектов.</li>
+            </ul>
+        </td>
+        <td>Получает список всех объектов в сумке игрока.</td>
+    </tr>
 </table>
 
 <h3>Взаимодействие JavaScript и Unity</h3>
@@ -218,7 +216,7 @@
     </tr>
     <tr>
         <td>requestError</td>
-        <td class="cnt"><span class="button button-small">Unity</span></td>
+        <td><span class="button button-small">Unity</span></td>
         <td>
             <ul class="clear">
                 <li><strong>text</strong> — текст ошибки.</li>
@@ -228,7 +226,7 @@
     </tr>
     <tr>
         <td>setItemsInBag</td>
-        <td class="cnt"><span class="button button-small">Unity</span></td>
+        <td><span class="button button-small">Unity</span></td>
         <td>
             <ul class="clear">
                 <li><strong>items</strong> — строка с названиями объектов.</li>
@@ -238,7 +236,7 @@
     </tr>
     <tr>
         <td>showTestPopup</td>
-        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td><span class="button button-small">JS</span></td>
         <td>
             <ul class="clear">
                 <li><strong>code</strong> — идентификатор теста.</li>
@@ -248,7 +246,7 @@
     </tr>
     <tr>
         <td>showExhibitPopup</td>
-        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td><span class="button button-small">JS</span></td>
         <td>
             <ul class="clear">
                 <li><strong>code</strong> — идентификатор экспоната.</li>
@@ -258,7 +256,7 @@
     </tr>
     <tr>
         <td>putItemInBag</td>
-        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td><span class="button button-small">JS</span></td>
         <td>
             <ul class="clear">
                 <li><strong>name</strong> — название объекта.</li>
@@ -268,7 +266,7 @@
     </tr>
     <tr>
         <td>getItemsInBag</td>
-        <td class="cnt"><span class="button button-small">JS</span></td>
+        <td><span class="button button-small">JS</span></td>
         <td>-</td>
         <td>Отправляет запрос на получение всех объектов из сумки пользователя для Unity.</td>
     </tr>

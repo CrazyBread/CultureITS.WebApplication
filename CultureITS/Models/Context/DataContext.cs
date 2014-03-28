@@ -25,6 +25,8 @@ namespace CultureITS.Models.Context
         public DbSet<Answer> TestAnswer { set; get; }
         public DbSet<Session> TestSessions { set; get; }
 
+        public DbSet<GameItem> GameItems { set; get; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

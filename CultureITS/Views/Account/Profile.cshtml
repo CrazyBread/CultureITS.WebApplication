@@ -4,73 +4,74 @@
     ViewBag.Title = "Профиль пользователя";
 }
 
-<p>Добро пожаловать на страницу Вашего профиля. Здесь можно посмотреть основную информацию об учётной записи, статистику по использованию системы, а также есть возможнсть сменить некоторые данные.</p>
-<fieldset class="user-info">
-    <legend>Информация о пользователе</legend>
-
+<div class="column2">
+    <h3 class="headline">Информация о пользователе</h3>
     @Helpers.WriteUserInfoTable(Model.Item)
-</fieldset>
+</div>
+<div class="column2">
+    <h3 class="headline">Изображение профиля</h3>
+    @if (Model.Item.PhotoMime != null)
+    {
+        <img src="@Url.Action("GetImage", "Account", new { id = Model.Item.Id })" alt="" />
+        <div>
+            <a href="@Url.Action("RemoveImage", "Account")">Удалить изображение</a> |
+        <a href="#PhotoUpload" class="fancybox">Изменить изображение</a>
+        </div>
+    }
+    else
+    {
+        <a href="#PhotoUpload" class="fancybox">Добавить изображение</a>
+    }
+</div>
+<hr />
 
 @if (Model.ItemStudent != null)
 {
-    <h3>Вы отметили для себя</h3>
-    if (Model.ItemStudent.Exhibits.Count == 0)
-    {
-    <p>Здесь будут показываться предметы музея, которые вы отметили для себя. Отмечайте экспонаты музея, чтобы прочитать про них подробную информацию!</p>
-    }
-    else
-    {
-    <table class="little-table">
-        <tr>
-            <th>Название</th>
-            <th>Местоположение</th>
-            <th>&nbsp;</th>
-        </tr>
-        @foreach (var item in Model.ItemStudent.Exhibits)
+    <div class="column2">
+        <h3 class="headline">Рекомендуется к прочтению</h3>
+        @if (Model.ItemStudent.Exhibits.Count == 0)
         {
-            <tr>
-                <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
-                <td>@item.Location</td>
-                <td>
-                    <a href="#" class="button">Подробная информация</a>
-                </td>
-            </tr>
+            <p>Здесь будут показываться предметы музея, которые вы отметили для себя, а также материалы, которые тем или иным образом связаны с ними. Отмечайте экспонаты музея, чтобы прочитать про них подробную информацию!</p>
         }
-    </table>
-    }
-
-    <h3>Тестирование</h3>
-    if (Model.ItemStudent.TestSessions.Count == 0)
-    {
-    <p>Здесь будут показаны результаты тестирования. Его можно пройти в каждой комнате музея у специального стенда. Также Вы можете посмотреть детальную статистику прохождения тестирования.</p>
-    }
-    else
-    {
-    <p>
-        @foreach (var item in Model.ItemStudent.TestSessions)
+        else
         {
-            <span>@item.Complete | @item.Date | @item.Percent </span><br />
+            <table class="little-table">
+                @foreach (var item in Model.ItemStudent.Exhibits)
+                {
+                    <tr>
+                        <th>@item.Name (@item.Location)</th>
+                    </tr>
+                    foreach (var subitem in item.Article)
+                    {
+                    <tr>
+                        <td>@subitem.Title</td>
+                    </tr>
+                    }
+                }
+            </table>
         }
-    </p>
-    }
+    </div>
+    
+    <div class="column2">
+        <h3 class="headline">Тестирование</h3>
+        @if (Model.ItemStudent.TestSessions.Count == 0)
+        {
+            <p>Здесь будут показаны результаты тестирования. Его можно пройти в каждой комнате музея у специального стенда. Также Вы можете посмотреть детальную статистику прохождения тестирования.</p>
+        }
+        else
+        {
+            <p>
+                @foreach (var item in Model.ItemStudent.TestSessions)
+                {
+                    <span>@item.Complete | @item.Date | @item.Percent </span>
+                    <br />
+                }
+            </p>
+        }
+    </div>
 }
 
 @section popup_windows {
-    @if (Model.ItemStudent != null)
-    {
-        foreach (var item in Model.ItemStudent.Exhibits)
-        {
-        <div id="description_@item.Id" class="popup_window">
-            <div class="popup_head">
-                @item.Name
-                <div class="popup_close">Х</div>
-            </div>
-            <div class="popup_cont">
-                @Html.Raw(item.Description)
-            </div>
-        </div>
-        }
-    }
     <div class="popup_window" id="PhotoUpload">
         <div class="popup_head">
             Изображение профиля

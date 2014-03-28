@@ -413,5 +413,69 @@ namespace CultureITS.Controllers
             }
         }
         #endregion
+
+        #region Подсистема работы с игровыми объектами
+        //
+        // POST: /Api/putItemInBag/5
+        [HttpPost]
+        public JsonResult putItemInBag(string data)
+        {
+            try
+            {
+                var dataIn = JsonConvert.DeserializeObject<ItemPutIn>(data);
+
+                if (System.Web.HttpContext.Current.Session.GetUserRole() != AccountStatus.Student)
+                    throw new Exception("Доступ разрешен только студентам.");
+                var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+
+                var gameItem = db.GameItems.SingleOrDefault(i => i.Name == dataIn.name);
+                if (gameItem == null)
+                {
+                    gameItem = new GameItem() { Name = dataIn.name };
+                    db.GameItems.Add(gameItem);
+                }
+
+                ItemPutOut dataOut = new ItemPutOut();
+                dataOut.success = true;
+
+                user.GameItems.Add(gameItem);
+                db.SaveChanges();
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
+        }
+
+        //
+        // POST: /Api/getItemsInBag/5
+        [HttpPost]
+        public JsonResult getItemsInBag(string data)
+        {
+            try
+            {
+                if (System.Web.HttpContext.Current.Session.GetUserRole() != AccountStatus.Student)
+                    throw new Exception("Доступ разрешен только студентам.");
+                var user = db.Students.Find(System.Web.HttpContext.Current.Session.GetUser().Id);
+
+                ItemGetOut dataOut = new ItemGetOut();
+                dataOut.success = true;
+
+                dataOut.items = string.Empty;
+                foreach (var item in user.GameItems.Select(i => i.Name))
+                    dataOut.items += item + "|";
+                if (dataOut.items.Length > 0)
+                    dataOut.items = dataOut.items.Substring(0, dataOut.items.Length - 1);
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
+        }
+        #endregion
     }
 }

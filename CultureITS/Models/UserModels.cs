@@ -68,6 +68,7 @@ namespace CultureITS.Models
 
         public virtual ICollection<Exhibit> Exhibits { set; get; }
         public virtual ICollection<Session> TestSessions { set; get; }
+        public virtual ICollection<GameItem> GameItems { set; get; }
     }
 
     public class Teacher : User

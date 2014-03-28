@@ -56,6 +56,25 @@ showTestPopup = function (code) {
     }
 };
 
+putItemInBag = function (name) {
+    Request("putItemInBag", { name: name }, function (data) {
+        if (!data.success)
+            alert(data.message);
+    });
+};
+
+getItemsInBag = function () {
+    Request("getItemsInBag", null, function (data) {
+        if (data.success) {
+            if (typeof u != 'undefined') {
+                u.getUnity().SendMessage("ApiGameObject", "getItemsInBag", data.items);
+            }
+        } else {
+            alert(data.message);
+        }
+    });
+};
+
 //exhibit subsystem
 var exhibitContig = [];
 exhibitContig["Id"] = 0;

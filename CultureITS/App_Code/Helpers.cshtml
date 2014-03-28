@@ -32,20 +32,7 @@
 @helper WriteUserInfoTable(User user)
 {
     var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
-    var Url = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Url;
 
-    if (user.PhotoMime != null)
-    {
-    <img src="@Url.Action("GetImage", "Account", new { id = user.Id })" alt="" />
-    <div>
-        <a href="@Url.Action("RemoveImage", "Account")">Удалить изображение</a> |
-        <a href="#PhotoUpload" class="fancybox">Изменить изображение</a>
-    </div>
-    }
-    else
-    {
-    <a href="#PhotoUpload" class="fancybox">Добавить изображение</a>   
-    }
     <table class="little-table">
         <tr>
             <th>Имя</th>
@@ -92,50 +79,5 @@
                 <td>@((user as Administrator).Telephone)</td>
             </tr> 
         }
-    </table>
-}
-
-@helper TestInfoTable()
-{
-    <table class="little-table">
-        <tr>
-            <th>Название</th>
-            <td><span id="TestStartTitle"></span></td>
-        </tr>
-        <tr>
-            <th>Название</th>
-            <td><span id="TestStartTopic"></span></td>
-        </tr>
-        <tr>
-            <th>Число вопросов</th>
-            <td><span id="TestStartQuestionsCount"></span></td>
-        </tr>
-        <tr>
-            <th>Автор</th>
-            <td><span id="TestStartAuthor"></span></td>
-        </tr>
-        <tr>
-            <th>Попытки прохождения</th>
-            <td><span id="TestStartResultsCount"></span></td>
-        </tr>
-        <tr>
-            <th>Дата последней попытки</th>
-            <td><span id="TestLastDate"></span></td>
-        </tr>
-        <tr>
-            <th>Продолжение предыдущей попытки?</th>
-            <td><span id="TestStartOpened"></span></td>
-        </tr>
-    </table>
-}
-
-@helper TestResultTable()
-{
-    <table class="little-table" id="TestResultTable">
-        <tr>
-            <th>Вопрос</th>
-            <th>Баллов набрано</th>
-            <th>Баллов максимально</th>
-        </tr>
     </table>
 }

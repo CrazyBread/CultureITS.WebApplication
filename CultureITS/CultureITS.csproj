@@ -154,10 +154,12 @@
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Models\AccessRight.cs" />
     <Compile Include="Models\Api\ExhibitSubsystem.cs" />
+    <Compile Include="Models\Api\ItemSubsystem.cs" />
     <Compile Include="Models\Api\TestSubsystem.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Context\DataContext.cs" />
     <Compile Include="Models\Exhibit.cs" />
+    <Compile Include="Models\GameItem.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Test\Answer.cs" />
     <Compile Include="Models\Test\Question.cs" />
@@ -315,6 +317,8 @@
     <Content Include="Views\Exhibit\Index.cshtml" />
     <Content Include="Views\Exhibit\Details.cshtml" />
     <Content Include="Views\Api\Test.cshtml" />
+    <Content Include="Views\Shared\_TestInfoTable.cshtml" />
+    <Content Include="Views\Shared\_TestResultTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

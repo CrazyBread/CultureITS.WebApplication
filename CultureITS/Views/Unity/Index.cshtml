@@ -40,7 +40,7 @@
         <div class="popup_cont">
             <div id="TestStart" style="display: none">
                 <h3>Основные сведения о тестировании</h3>
-                @Helpers.TestInfoTable()
+                @Html.Partial("_TestInfoTable")
                 <button id="TestStartButton">Начать тестирование</button>
             </div>
             <div id="TestMain" style="display: none">
@@ -51,7 +51,7 @@
             </div>
             <div id="TestResult" style="display: none">
                 <h2>Результаты тестирования</h2>
-                @Helpers.TestResultTable()
+                @Html.Partial("_TestResultTable")
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         //fake functions
-        $('#showExhibitPopup1').click(function () { showExhibitPopup('2'); });
+        $('#showExhibitPopup1').click(function () { showExhibitPopup('S1'); });
         $('#showTestPopup1').click(function () { showTestPopup('t1'); });
     </script>
 
