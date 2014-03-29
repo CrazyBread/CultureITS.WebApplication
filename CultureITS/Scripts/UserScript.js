@@ -18,9 +18,10 @@ openPopup = function (pWindow) {
     $(".popup").show();
 
     if (typeof u != 'undefined') {
-        $(u.getUnity()).width(0);
-        $(u.getUnity()).height(0);
-        unityObj.SendMessage("ApiGameObject", "PopupOpened");
+        var unityObj = u.getUnity();
+        $(unityObj).width(0);
+        $(unityObj).height(0);
+        unityObj.SendMessage("ApiGameObject", "PopupOpened", "");
     }
 }
 
@@ -32,6 +33,6 @@ closePopup = function () {
         var unityObj = u.getUnity();
         $(unityObj).width(unityConfig.width);
         $(unityObj).height(unityConfig.height);
-        unityObj.SendMessage("ApiGameObject", "PopupClosed");
+        unityObj.SendMessage("ApiGameObject", "PopupClosed", "");
     }
 }
