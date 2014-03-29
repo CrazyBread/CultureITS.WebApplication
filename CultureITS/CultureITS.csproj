@@ -183,6 +183,7 @@
     <Content Include="Content\images\museum_bg.png" />
     <Content Include="Content\images\ul_bg.png" />
     <Content Include="Content\images\ul_foot_bg.png" />
+    <Content Include="Scripts\dygraph.js" />
     <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\UnityAPI.js" />
     <Compile Include="ViewModels\AccountViewModel.cs" />

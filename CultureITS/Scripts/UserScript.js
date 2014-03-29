@@ -20,6 +20,7 @@ openPopup = function (pWindow) {
     if (typeof u != 'undefined') {
         $(u.getUnity()).width(0);
         $(u.getUnity()).height(0);
+        unityObj.SendMessage("ApiGameObject", "PopupOpened");
     }
 }
 
@@ -28,7 +29,9 @@ closePopup = function () {
     $(".popup_window").hide();
 
     if (typeof u != 'undefined') {
-        $(u.getUnity()).width(unityConfig.width);
-        $(u.getUnity()).height(unityConfig.height);
+        var unityObj = u.getUnity();
+        $(unityObj).width(unityConfig.width);
+        $(unityObj).height(unityConfig.height);
+        unityObj.SendMessage("ApiGameObject", "PopupClosed");
     }
 }

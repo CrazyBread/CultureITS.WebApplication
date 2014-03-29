@@ -11,10 +11,6 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>TestMain</legend>
-
         @Html.HiddenFor(model => model.Item.Id)
 
         <div class="editor-label">
@@ -48,15 +44,13 @@
             @Html.EditorFor(model => model.Item.Author)
             @Html.ValidationMessageFor(model => model.Item.Author)
         </div>
-    </fieldset>
+    
+    <hr />
     <p>
         <button class="button">Отправить</button>
+        @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
     </p>
 }
-
-<div>
-    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

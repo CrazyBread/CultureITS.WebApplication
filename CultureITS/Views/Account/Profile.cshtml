@@ -61,15 +61,24 @@
         }
         else
         {
-            <p>
-                @foreach (var item in Model.ItemStudent.TestSessions)
-                {
-                    <span>@item.Complete | @item.Date | @item.Percent </span>
-                    <br />
-                }
-            </p>
+            <div id="graphdiv"></div>
         }
     </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        g = new Dygraph(
+            document.getElementById("graphdiv"),
+            '@Html.Raw(Model.TestData)',
+            {
+                legend: 'always',
+                ylabel: 'Процент',
+                xlabel: 'Номер попытки',
+                valueRange: [0, 110]
+            }
+        );
+    </script>
 }
 
 @section popup_windows {

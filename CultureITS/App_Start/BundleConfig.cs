@@ -9,6 +9,7 @@ namespace CultureITS
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/dygraph.js",
                         "~/Scripts/UserScript.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
