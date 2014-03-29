@@ -53,10 +53,10 @@ namespace CultureITS.Models.Context
                 context.Users.Add(new Student() { Login = "student", Password = "student", Name = "Студент студентыч", UserRole = AccountStatus.Student, Age = 19, Course = 3, Group = "ИСТбд-32" });
                 context.SaveChanges();
 
-                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "В музей!", Controller = "Unity", Action = "Index", AccessMask = 1 << (int)AccountStatus.Student });
+                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "В музей!", Controller = "Unity", Action = "Index", AccessMask = 1 << (int)AccountStatus.Student, AdditionalUrl = "#UnityPlayer" });
                 context.MenuItems.Add(new MenuItem() { Order = 1, Title = "Профиль", Controller = "Account", Action = "Profile", AccessMask = -2 });
                 context.MenuItems.Add(new MenuItem() { Order = 2, Title = "Экспонаты", Controller = "Exhibit", Action = "Index", AccessMask = -2 });
-                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Администрирование", Area = "Admin", Controller = "Home", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
+                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Управление", Area = "Admin", Controller = "Home", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin + 1 << (int)AccountStatus.Teacher });
                 context.MenuItems.Add(new MenuItem() { Order = 3, Title = "API", Controller = "Api", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
                 context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
                 context.SaveChanges();

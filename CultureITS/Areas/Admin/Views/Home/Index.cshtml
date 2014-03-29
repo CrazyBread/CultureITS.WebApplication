@@ -1,12 +1,39 @@
 ﻿@{
-    ViewBag.Title = "Панель администрирования";
+    ViewBag.Title = "Панель управления";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Generate(ViewBag.Title);
 }
 
-<h2>@ViewBag.Title</h2>
-
-<ul>
-    <li><a class="external" href="@Url.Action("Index", "User")">Пользователи</a></li>
-    <li><a class="external" href="@Url.Action("Index", "Rights")">Права</a></li>
-    <li><a class="external" href="@Url.Action("Index", "Exhibit")">Музейные экспонаты и материалы, связанные с ними</a></li>
-    <li><a class="external" href="@Url.Action("Index", "Test")">Тесты</a></li>
-</ul>
+<div class="advant cont">
+    <div class="advant_item">
+        <div class="item_icon advant1">&nbsp;</div>
+        <p class="advant_title">Музейные экспонаты</p>
+        <p class="advant_text">
+            Вот уже 1
+        </p>
+        <a href="@Url.Action("Index", "Exhibit")" class="advant_more_btn fancybox">Перейти</a>
+    </div>
+    <div class="advant_item">
+        <div class="item_icon advant2">&nbsp;</div>
+        <p class="advant_title">Права</p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+        </p>
+        <a href="@Url.Action("Index", "Rights")" class="advant_more_btn fancybox">Перейти</a>
+    </div>
+    <div class="advant_item">
+        <div class="item_icon advant3">&nbsp;</div>
+        <p class="advant_title">Пользователи</p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+        </p>
+        <a href="@Url.Action("Index", "User")" class="advant_more_btn">Перейти</a>
+    </div>
+    <div class="advant_item">
+        <div class="item_icon advant4">&nbsp;</div>
+        <p class="advant_title">Тесты</p>
+        <p class="advant_text">
+            Вот уже 100500 лет мы дарим людям цветную радугу и сладкую вату. Будьте с нами, и мы захватим мир. И придем к вам домой с печеньем.
+        </p>
+        <a href="@Url.Action("Index", "Test")" class="advant_more_btn">Перейти</a>
+    </div>
+</div>

@@ -20,7 +20,6 @@ openPopup = function (pWindow) {
     if (typeof u != 'undefined') {
         $(u.getUnity()).width(0);
         $(u.getUnity()).height(0);
-        $("#unityPlayer").height(700);
     }
 }
 
@@ -29,7 +28,7 @@ closePopup = function () {
     $(".popup_window").hide();
 
     if (typeof u != 'undefined') {
-        $(u.getUnity()).width(1170);
-        $(u.getUnity()).height(700);
+        $(u.getUnity()).width(unityConfig.width);
+        $(u.getUnity()).height(unityConfig.height);
     }
 }

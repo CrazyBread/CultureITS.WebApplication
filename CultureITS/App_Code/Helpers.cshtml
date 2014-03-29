@@ -21,11 +21,12 @@
 
 @helper TopMenu()
 {
-    var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+    var Url = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Url;
 
     foreach (var i in HttpContext.Current.Session.GetMenu())
     {
-    <li>@Html.ActionLink(i.Title, i.Action, i.Controller, new { Area = i.Area ?? "" }, null)</li>   
+@*@Html.ActionLink(i.Title, i.Action, i.Controller, new { Area = i.Area ?? "" }, null)</li>*@
+    <li><a href="@Url.Action(i.Action, i.Controller, new { Area = i.Area ?? "" }, null)@i.AdditionalUrl">@i.Title</a></li>
     }
 }
 

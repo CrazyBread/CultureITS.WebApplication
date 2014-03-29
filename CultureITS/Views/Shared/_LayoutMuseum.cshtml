@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        #unityPlayer {
+            width: 1120px;
+            height: 670px;
+            padding: 55px 35px;
+            background-image: url(/Content/images/museum_bg.png);
+            background-repeat: no-repeat;
+        }
+
+        .museum-back {
+            height: 20px;
+            padding-top: 20px;
+            width: 1170px;
+            margin: 0 auto;
+        }
+
+        a.button-museum {
+            background-color: #222;
+            padding: 15px;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: #000 1px 1px;
+            cursor: pointer;
+        }
+
+            a.button-museum:hover {
+                background-color: #444;
+                box-shadow: #222 1px 1px;
+            }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        @RenderSection("popup_windows", required: false)
+    </div>
+    <div class="museum-back"><a class="button-museum" href="@Url.Action("Index", "Home")"><i class="fa fa-arrow-left"></i>&nbsp;Вернуться в систему</a></div>
+    <div class="cont">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

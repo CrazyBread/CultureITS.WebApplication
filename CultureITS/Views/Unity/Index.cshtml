@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Музей";
-    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Generate(ViewBag.Title);
+    Layout = "~/Views/Shared/_LayoutMuseum.cshtml";
 }
 
 <div id="unityPlayer">
@@ -69,13 +69,13 @@
     </script>
 
     <script type="text/javascript">
-        var config = {
-            width: 1170,
-            height: 700,
+        var unityConfig = {
+            width: 1120,
+            height: 670,
             params: { enableDebugging: "0" }
 
         };
-        var u = new UnityObject2(config);
+        var u = new UnityObject2(unityConfig);
 
         jQuery(function () {
             var $missingScreen = jQuery("#unityPlayer").find(".missing");

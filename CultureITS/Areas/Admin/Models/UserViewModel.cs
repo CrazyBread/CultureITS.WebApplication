@@ -10,6 +10,8 @@ namespace CultureITS.Areas.Admin.Models
 {
     public class UserViewModel
     {
+        public bool CanManage { set; get; }
+
         public User Item { set; get; }
         public IEnumerable<User> List { set; get; }
 

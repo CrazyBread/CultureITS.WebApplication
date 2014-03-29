@@ -26,6 +26,15 @@
     }
 </div>
 
+<div class="cont">
+    <h2>Автологин</h2>
+    <ul>
+        <li>@Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "external" })</li>
+        <li>@Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "external" })</li>
+        <li>@Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "external" })</li>
+    </ul>
+</div>
+
 <div class="advant cont">
     <div class="advant_item">
         <div class="item_icon advant1">&nbsp;</div>
@@ -77,7 +86,7 @@
     </div>
 </div>
 
-<div class="cont">
+@*<div class="cont">
 
     @if (Model.ShowStylePageLink)
     {
@@ -197,3 +206,4 @@
         </ol>
     </div>
 </div>
+*@

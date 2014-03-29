@@ -9,6 +9,5 @@ namespace CultureITS.ViewModels
     {
         public bool ShowPromo { set; get; }
         public bool ShowGameButton { set; get; }
-        public bool ShowStylePageLink { set; get; }
     }
 }

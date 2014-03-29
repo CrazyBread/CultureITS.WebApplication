@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CultureITS.Helpers;
 using CultureITS.Models;
 using CultureITS.Models.Context;
 using CultureITS.Areas.Admin.Models;
@@ -20,7 +21,7 @@ namespace CultureITS.Areas.Admin.Controllers
         // GET: /Admin/User/
         public ActionResult Index()
         {
-            return View(new UserViewModel(db));
+            return View(new UserViewModel(db) { CanManage = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Admin) });
         }
 
         //

@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Права пользователей";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Управление", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
 }
-
-<h2>@ViewBag.Title</h2>
 
 @if (Model.List == null || Model.List.Count() == 0)
 {

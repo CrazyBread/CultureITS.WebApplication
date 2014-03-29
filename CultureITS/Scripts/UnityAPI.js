@@ -67,7 +67,7 @@ getItemsInBag = function () {
     Request("getItemsInBag", null, function (data) {
         if (data.success) {
             if (typeof u != 'undefined') {
-                u.getUnity().SendMessage("ApiGameObject", "getItemsInBag", data.items);
+                u.getUnity().SendMessage("ApiGameObject", "setItemsInBag", data.items);
             }
         } else {
             alert(data.message);

@@ -174,10 +174,12 @@
     <Content Include="Content\images\advant2.png" />
     <Content Include="Content\images\advant3.png" />
     <Content Include="Content\images\advant4.png" />
+    <Content Include="Content\images\checkradio_sprite.png" />
     <Content Include="Content\images\footer_bg.png" />
     <Content Include="Content\images\head_bg.png" />
     <Content Include="Content\images\head_big_img.jpg" />
     <Content Include="Content\images\line2_angle.png" />
+    <Content Include="Content\images\museum_bg.png" />
     <Content Include="Content\images\ul_bg.png" />
     <Content Include="Content\images\ul_foot_bg.png" />
     <Content Include="Scripts\UserScript.js" />
@@ -308,7 +310,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Styles.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -319,6 +320,7 @@
     <Content Include="Views\Api\Test.cshtml" />
     <Content Include="Views\Shared\_TestInfoTable.cshtml" />
     <Content Include="Views\Shared\_TestResultTable.cshtml" />
+    <Content Include="Views\Shared\_LayoutMuseum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

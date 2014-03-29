@@ -26,7 +26,7 @@ namespace CultureITS.Models
         [Required]
         public string Action { set; get; }
 
-        [Display(Name = "Дополнительные параметры (после ?)")]
+        [Display(Name = "Дополнительные параметры ссылки (якорь, параметры)")]
         public string AdditionalUrl { set; get; }
 
         [Display(Name = "Порядок")]
