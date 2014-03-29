@@ -13,26 +13,23 @@
 <p><strong>Внимание!</strong> Удаление экспоната из системы не удалит его из музея. Экспонаты из музея удаляются отдельно другими средствами.</p>
 <p><strong>Внимание!</strong> Удаление экспоната, который представлен в музее, может привести к нарушению работы музея!</p>
 
-<fieldset>
-    <legend>Информация об экспонате</legend>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Item.Name)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Item.Name)
+</div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Item.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Item.Name)
-    </div>
-
-    <div class="editor-label">
-        @Html.DisplayNameFor(model => model.Item.Code)
-    </div>
-    <div class="editor-field">
-        @Html.DisplayFor(model => model.Item.Code)
-    </div>
-</fieldset>
+<div class="editor-label">
+    @Html.DisplayNameFor(model => model.Item.Code)
+</div>
+<div class="editor-field">
+    @Html.DisplayFor(model => model.Item.Code)
+</div>
 
 @using (Html.BeginForm())
 {
+    <hr />
     <p>
         <button class="button">Удалить</button>
         @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })

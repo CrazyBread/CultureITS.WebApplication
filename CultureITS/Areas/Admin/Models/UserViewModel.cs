@@ -1,4 +1,5 @@
-﻿using CultureITS.Models;
+﻿using CultureITS.Helpers;
+using CultureITS.Models;
 using CultureITS.Models.Context;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace CultureITS.Areas.Admin.Models
         public UserViewModel(DataContext db)
         {
             List = db.Users;
+            CanManage = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Admin);
         }
 
         public UserViewModel(DataContext db, User item) : this(db)

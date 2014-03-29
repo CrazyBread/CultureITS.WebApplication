@@ -13,7 +13,7 @@
 }
 else
 {
-    <table>
+    <table class="little-table">
         <tr>
             <th>&nbsp;</th>
             <th>Область</th>
@@ -25,8 +25,8 @@ else
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Remove", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a> |
-                    <a href="@Url.Action("Change", new { id = item.Id })" class="button button-small">@(item.IsAllowed ? "+" : "-")</a>
+                    <a title="Удалить" href="@Url.Action("Remove", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>&nbsp;
+                    <a title="Запоет/Разрешение" href="@Url.Action("Change", new { id = item.Id })" class="button button-small">@(item.IsAllowed ? "+" : "-")</a>
                 </td>
                 <td>@(item.Area ?? "-")</td>
                 <td>@item.Controller</td>

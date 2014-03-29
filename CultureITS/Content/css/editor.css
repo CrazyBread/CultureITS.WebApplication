@@ -1,0 +1,57 @@
+﻿body {
+    font-family: OpenSans, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 30px;
+    padding: 20px 0;
+}
+
+h2 {
+    font-size: 26px;
+    padding: 15px 0;
+}
+
+h3 {
+    font-size: 22px;
+    padding: 10px 0;
+}
+
+h4 {
+    font-size: 20px;
+    padding: 8px 0;
+}
+
+h5 {
+    font-size: 18px;
+    padding: 6px 0;
+}
+
+h6 {
+    font-size: 16px;
+    padding: 4px 0;
+}
+
+a {
+    color: #7f8c8c;
+}
+
+    a:hover {
+        color: #666;
+    }
+
+ul, ol {
+    margin-left: 20px;
+}
+
+ul {
+    list-style-image: url("../images/ul_bg.png");
+}
+
+    ul.clear {
+        list-style-type: none;
+        list-style-image: none;
+        text-align: left;
+    }

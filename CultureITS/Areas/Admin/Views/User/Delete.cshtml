@@ -8,28 +8,25 @@
         .Generate(ViewBag.Title);
 }
 
-<h2>@ViewBag.Title</h2>
-
 <h3>Вы действительно хотите удалить этого пользователя?</h3>
-<fieldset>
-    <legend>Информация о пользователе</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Item.Login)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Item.Login)
-    </div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Item.Login)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Item.Login)
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Item.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Item.Name)
-    </div>
-</fieldset>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Item.Name)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Item.Name)
+</div>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
+    <hr />
     <p>
         <button class="button">Удалить</button>
         @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })

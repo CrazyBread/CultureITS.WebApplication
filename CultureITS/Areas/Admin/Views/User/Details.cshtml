@@ -8,32 +8,28 @@
         .Generate(ViewBag.Title);
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Login)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Login)
+</div>
 
-<fieldset>
-    <legend>User</legend>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Name)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Name)
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Login)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Login)
-    </div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.UserRole)
+</div>
+<div class="display-field">
+    @Model.UserRole.ToDescription()
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserRole)
-    </div>
-    <div class="display-field">
-        @Model.UserRole.ToDescription()
-    </div>
-</fieldset>
+<hr />
 <p>
     @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
     @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })

@@ -7,9 +7,12 @@
         .Generate(ViewBag.Title);
 }
 
-<p>
-    <a href="@Url.Action("Edit")" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
-</p>
+@if (Model.CanManage)
+{
+    <p>
+        <a href="@Url.Action("Edit")" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
+    </p>
+}
 @if (Model.List == null || Model.List.Count() == 0)
 {
     <p>Нет данных.</p>
@@ -28,10 +31,13 @@ else
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
-                    <a href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
-                    <a href="javascript:void(0)" class="button button-small" onclick="changeImage(@item.Id, @((string.IsNullOrEmpty(item.ApplicationType) ? "false" : "true")), '@Url.Action("GetImage", "Exhibit", new { id = item.Id, area = "" })', '@Url.Action("RemoveImage", new { id = item.Id })')"><i class="fa fa-camera"></i></a>
-                    <a href="@Url.Action("Articles", new { id = item.Id })" class="button button-small"><i class="fa fa-list"></i></a>
+                    <a title="Изменить" href="@Url.Action("Edit", new { id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
+                    @if (Model.CanManage)
+                    {
+                        <a title="Удалить" href="@Url.Action("Delete", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                    }
+                    <a title="Иллюстрация" href="javascript:void(0)" class="button button-small" onclick="changeImage(@item.Id, @((string.IsNullOrEmpty(item.ApplicationType) ? "false" : "true")), '@Url.Action("GetImage", "Exhibit", new { id = item.Id, area = "" })', '@Url.Action("RemoveImage", new { id = item.Id })')"><i class="fa fa-camera"></i></a>
+                    <a title="Материалы" href="@Url.Action("Articles", new { id = item.Id })" class="button button-small"><i class="fa fa-list"></i></a>
                 </td>
                 <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
                 <td>@item.Code</td>
@@ -39,7 +45,13 @@ else
                 <td>@((string.IsNullOrEmpty(item.ApplicationType) ? "Нет" : "Есть"))</td>
             </tr>
         }
-    </table>  
+    </table>
+        if (Model.CanManage)
+        {
+    <p>
+        <a href="@Url.Action("Edit")" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
+    </p>
+        }
 }
 
 @section popup_windows {

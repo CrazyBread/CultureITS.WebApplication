@@ -1,4 +1,6 @@
-﻿using CultureITS.Models.Context;
+﻿using CultureITS.Helpers;
+using CultureITS.Models;
+using CultureITS.Models.Context;
 using CultureITS.Models.Test;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,8 @@ namespace CultureITS.Areas.Admin.Models
 {
     public class TestViewModel
     {
+        public bool CanManage { set; get; }
+
         public TestMain Item { set; get; }
         public IEnumerable<TestMain> List { set; get; }
         public Question Question { set; get; }
@@ -17,6 +21,7 @@ namespace CultureITS.Areas.Admin.Models
         public TestViewModel(DataContext db)
         {
             List = db.TestMain;
+            CanManage = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Admin);
         }
 
         public TestViewModel(DataContext db, TestMain item)

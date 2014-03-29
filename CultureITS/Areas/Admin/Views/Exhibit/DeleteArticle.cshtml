@@ -9,19 +9,17 @@
 }
 
 <h3>Вы уверены, что хотите удалить запись об этом материале?</h3>
-<fieldset>
-    <legend>TestMain</legend>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Article.Title)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Article.Title)
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Article.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Article.Title)
-    </div>
-</fieldset>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     <p>
+        <hr />
         <button class="button">Удалить</button>
         @Html.ActionLink("Вернуться", "Articles", new { id = Model.Item.Id }, new { @class = "button" })
     </p>

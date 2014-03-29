@@ -1,4 +1,5 @@
-﻿using CultureITS.Models;
+﻿using CultureITS.Helpers;
+using CultureITS.Models;
 using CultureITS.Models.Context;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace CultureITS.Areas.Admin.Models
 {
     public class ExhibitViewModel
     {
+        public bool CanManage { set; get; }
+
         public Exhibit Item { set; get; }
         public IEnumerable<Exhibit> List { set; get; }
         public Article Article { set; get; }
@@ -20,6 +23,7 @@ namespace CultureITS.Areas.Admin.Models
         public ExhibitViewModel(DataContext db)
         {
             List = db.Exhibits;
+            CanManage = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Admin);
         }
 
         public ExhibitViewModel(DataContext db, Exhibit item)

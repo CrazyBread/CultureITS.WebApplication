@@ -28,9 +28,9 @@ else
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("EditArticle", new { exhibitId = Model.Item.Id, id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
-                    <a href="@Url.Action("DeleteArticle", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
-                    <a href="javascript:void(0)" class="button button-small" onclick="changeImage(@item.Id, @((string.IsNullOrEmpty(item.ApplicationType) ? "false" : "true")), '@Url.Action("GetArticleImage", "Exhibit", new { id = item.Id, area = "" })', '@Url.Action("RemoveArticleImage", new { id = item.Id })')"><i class="fa fa-camera"></i></a>
+                    <a title="Изменить" href="@Url.Action("EditArticle", new { exhibitId = Model.Item.Id, id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
+                    <a title="Удалить" href="@Url.Action("DeleteArticle", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                    <a title="Иллюстрация" href="javascript:void(0)" class="button button-small" onclick="changeImage(@item.Id, @((string.IsNullOrEmpty(item.ApplicationType) ? "false" : "true")), '@Url.Action("GetArticleImage", "Exhibit", new { id = item.Id, area = "" })', '@Url.Action("RemoveArticleImage", new { id = item.Id })')"><i class="fa fa-camera"></i></a>
                 </td>
                 <td>@item.Title</td>
                 <td>@((string.IsNullOrEmpty(item.ApplicationType) ? "Нет" : "Есть"))</td>

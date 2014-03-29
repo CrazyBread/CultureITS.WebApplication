@@ -167,6 +167,7 @@
     <Compile Include="Models\Test\TestMain.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\css\editor.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\style2.css" />

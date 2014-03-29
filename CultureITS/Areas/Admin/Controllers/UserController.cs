@@ -21,7 +21,7 @@ namespace CultureITS.Areas.Admin.Controllers
         // GET: /Admin/User/
         public ActionResult Index()
         {
-            return View(new UserViewModel(db) { CanManage = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Admin) });
+            return View(new UserViewModel(db));
         }
 
         //

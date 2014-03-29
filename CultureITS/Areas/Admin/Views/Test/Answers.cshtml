@@ -8,33 +8,41 @@
         .Generate(ViewBag.Title);
 }
 
+@if (Model.Question.Answers == null || Model.Question.Answers.Count() == 0)
+{
+    <p>Нет данных.</p>
+}
+else
+{
+    <p>
+        <a href="@Url.Action("EditAnswer", new { questionId = Model.Question.Id })" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
+    </p>
+    <table class="little-table">
+        <tr>
+            <th>&nbsp;</th>
+            <th>
+                @Html.DisplayNameFor(i => i.Answer.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => i.Answer.Right)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Question.Answers)
+        {
+            <tr>
+                <td>
+                    <a title="Изменить" href="@Url.Action("EditAnswer", new { questionId = Model.Question.Id, id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
+                    <a title="Удалить" href="@Url.Action("DeleteAnswer", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
+                </td>
+                <td>@item.Text</td>
+                <td>@item.Right</td>
+            </tr>
+        }
+    </table>
+}
+
 <p>
     <a href="@Url.Action("EditAnswer", new { questionId = Model.Question.Id })" class="button"><i class="fa fa-plus"></i>&nbsp;Добавить</a>
-</p>
-<table class="little-table">
-    <tr>
-        <th>&nbsp;</th>
-        <th>
-            @Html.DisplayNameFor(i => i.Answer.Text)
-        </th>
-        <th>
-            @Html.DisplayNameFor(i => i.Answer.Right)
-        </th>
-    </tr>
-
-    @foreach (var item in Model.Question.Answers)
-    {
-        <tr>
-            <td>
-                <a href="@Url.Action("EditAnswer", new { questionId = Model.Question.Id, id = item.Id })" class="button button-small"><i class="fa fa-pencil-square-o"></i></a>
-                <a href="@Url.Action("DeleteAnswer", new { id = item.Id })" class="button button-small"><i class="fa fa-trash-o"></i></a>
-            </td>
-            <td>@item.Text</td>
-            <td>@item.Right</td>
-        </tr>
-    }
-</table>
-
-<p>
     @Html.ActionLink("Вернуться", "Questions", new { id = Model.Item.Id }, new { @class = "button" })
 </p>

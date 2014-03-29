@@ -13,7 +13,6 @@ using System.Web.Script.Serialization;
 
 namespace CultureITS.Controllers
 {
-    [AuthorizeFilterAttribute]
     public class ApiController : Controller
     {
         private DataContext db = new DataContext();
