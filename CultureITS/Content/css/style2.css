@@ -14,3 +14,12 @@
     padding: 0 10px 10px 10px;
     float: left;
 }
+
+.applicationWrapper {
+    max-height: 120px;
+    overflow: hidden;
+}
+
+    .applicationWrapper img {
+        width: 100px;
+    }

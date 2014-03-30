@@ -42,7 +42,14 @@ else
                 <td><a href="#description_@item.Id" class="fancybox">@item.Name</a></td>
                 <td>@item.Code</td>
                 <td>@item.Location</td>
-                <td>@((string.IsNullOrEmpty(item.ApplicationType) ? "Нет" : "Есть"))</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ApplicationType))
+                    {
+                        <div class="applicationWrapper">
+                            <img src="@Url.Action("GetImage", "Exhibit", new { area = "" , id = item.Id }, null)" alt="" title="@item.Name" />
+                        </div>
+                    }
+                </td>
             </tr>
         }
     </table>
@@ -57,9 +64,22 @@ else
 @section popup_windows {
     @foreach (var item in Model.List)
     {
-        <div id="description_@item.Id" class="popup_window">
-            <h2>@item.Name</h2>
-            @Html.Raw(item.Description)
+        <div class="popup_window" id="description_@item.Id">
+            <div class="popup_head">
+                <span id="ExhibitHeader">@item.Name (@item.Location)</span>
+                <div class="popup_close">Х</div>
+            </div>
+            <div class="popup_cont">
+                <span id="ExhibitApplication">
+                    @if (!string.IsNullOrEmpty(item.ApplicationType))
+                    {
+                        <img src="@Url.Action("GetImage", "Exhibit", new { area = "" , id = item.Id }, null)" alt="" />
+                    }
+                </span>
+                <div id="ExhibitInfo">
+                    @Html.Raw(item.Description)
+                </div>
+            </div>
         </div>
     }
     <div class="popup_window" id="ApplicationUpload">

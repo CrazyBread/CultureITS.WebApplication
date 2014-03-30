@@ -6,7 +6,7 @@
 
 <div class="cont big_img">
     <div class="bi_text">
-        <span class="bi_title">CultureITS. Христианство в 3D</span>
+        <span class="bi_title">Chriseum. Христианство в 3D</span>
     </div>
     <div class="bi_text2">
         Данная информационная система направлена на получение информации о христианстве, изучении ее основ и прочей лабуды. Будет очень много поелезного и интересного, особенно в 3D. так что не упустите шанс и поиграйте в наши квесты.
@@ -20,19 +20,13 @@
     {
         <a href="@Url.Action("Register", "Account")" class="bi_btn">Регистрация</a>
     }
-    else
-    {
-        <a href="@Url.Action("About", "Home")" class="bi_btn">Знакомство с сайтом</a>
-    }
 </div>
 
 <div class="cont">
     <h2>Автологин</h2>
-    <ul>
-        <li>@Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "external" })</li>
-        <li>@Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "external" })</li>
-        <li>@Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "external" })</li>
-    </ul>
+    @Html.ActionLink("Как студент", "AutoLogOn", "Account", new { login = "student" }, new { @class = "button" })
+    @Html.ActionLink("Как преподаватель", "AutoLogOn", "Account", new { login = "teacher" }, new { @class = "button" })
+    @Html.ActionLink("Как администратор", "AutoLogOn", "Account", new { login = "admin" }, new { @class = "button" })
 </div>
 
 <div class="advant cont">

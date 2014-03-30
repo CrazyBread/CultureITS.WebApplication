@@ -2,74 +2,70 @@
 
 @{
     ViewBag.Title = "Регистрация";
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Generate(ViewBag.Title);
 }
-
-<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Информация о пользователе</legend>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegisterItem.Login)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RegisterItem.Login)
+        @Html.ValidationMessageFor(model => model.RegisterItem.Login)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegisterItem.Login)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RegisterItem.Login)
-            @Html.ValidationMessageFor(model => model.RegisterItem.Login)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegisterItem.Password)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.RegisterItem.Password)
+        @Html.ValidationMessageFor(model => model.RegisterItem.Password)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegisterItem.Password)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(model => model.RegisterItem.Password)
-            @Html.ValidationMessageFor(model => model.RegisterItem.Password)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegisterItem.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RegisterItem.Name)
+        @Html.ValidationMessageFor(model => model.RegisterItem.Name)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegisterItem.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RegisterItem.Name)
-            @Html.ValidationMessageFor(model => model.RegisterItem.Name)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegisterItem.Group)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RegisterItem.Group)
+        @Html.ValidationMessageFor(model => model.RegisterItem.Group)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegisterItem.Group)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RegisterItem.Group)
-            @Html.ValidationMessageFor(model => model.RegisterItem.Group)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegisterItem.Course)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RegisterItem.Course)
+        @Html.ValidationMessageFor(model => model.RegisterItem.Course)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegisterItem.Course)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RegisterItem.Course)
-            @Html.ValidationMessageFor(model => model.RegisterItem.Course)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegisterItem.Age)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RegisterItem.Age)
+        @Html.ValidationMessageFor(model => model.RegisterItem.Age)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegisterItem.Age)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RegisterItem.Age)
-            @Html.ValidationMessageFor(model => model.RegisterItem.Age)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Photo)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+        @Html.ValidationMessageFor(model => model.Photo)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Photo)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Photo, new { type = "file" })
-            @Html.ValidationMessageFor(model => model.Photo)
-        </div>
-    </fieldset>
-    
+    <hr />    
     <div>
         <button class="button">Зарегистрироваться</button>
     </div>

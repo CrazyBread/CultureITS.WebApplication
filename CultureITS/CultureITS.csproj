@@ -176,12 +176,16 @@
     <Content Include="Content\images\advant3.png" />
     <Content Include="Content\images\advant4.png" />
     <Content Include="Content\images\checkradio_sprite.png" />
+    <Content Include="Content\images\error-box-bg.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\favicon.png" />
     <Content Include="Content\images\footer_bg.png" />
     <Content Include="Content\images\head_bg.png" />
     <Content Include="Content\images\head_big_img.jpg" />
-    <Content Include="Content\images\line2_angle.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\museum_bg.png" />
     <Content Include="Content\images\ul_bg.png" />
+    <Content Include="Content\images\ul_bg_white.png" />
     <Content Include="Content\images\ul_foot_bg.png" />
     <Content Include="Scripts\dygraph.js" />
     <Content Include="Scripts\UserScript.js" />

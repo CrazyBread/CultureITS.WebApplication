@@ -20,12 +20,6 @@ body {
     font-size: 14px;
 }
 
-    body > .cont {
-        margin-top: 20px;
-        padding: 0 10px;
-        width: 1190px;
-    }
-
 .head {
     width: 100%;
     height: 80px;
@@ -81,7 +75,7 @@ h6 {
     padding: 4px 0;
 }
 
-a {
+a, a:visited {
     color: #7f8c8c;
 }
 
@@ -97,6 +91,10 @@ a {
         text-decoration: none;
     }
 
+p {
+    margin-bottom: 15px;
+}
+
 .alignleft {
     text-align: left;
 }
@@ -107,10 +105,14 @@ a {
 }
 
 .logo {
+    padding-left: 45px;
+    background-color: rgb(118, 199, 192);
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-position: left center;
     font-size: 40px;
     margin: 5px 0px 0px 0px;
     display: inline-block;
-    background-color: rgb(118, 199, 192);
     text-shadow: rgb(93, 157, 152) 1px 1px, rgb(93, 157, 152) 2px 2px, rgb(96, 162, 157) 3px 3px, rgb(99, 167, 162) 4px 4px, rgb(102, 172, 167) 5px 5px, rgb(105, 178, 172) 6px 6px, rgb(108, 183, 177) 7px 7px, rgb(111, 188, 182) 8px 8px, rgb(114, 193, 187) 9px 9px, rgb(118, 199, 192) 10px 10px;
 }
 
@@ -160,6 +162,7 @@ a {
     color: #7f8c8c;
     font-family: OpenSans, Arial, sans-serif;
     font-weight: normal;
+    margin-bottom: 20px;
 }
 
     .line2 .title {
@@ -180,14 +183,6 @@ a {
             .line2 .breadcrumbs a:hover {
                 text-decoration: none;
             }
-
-    .line2 .line2_angle {
-        width: 24px;
-        height: 12px;
-        background-color: transparent;
-        background-image: url("../images/line2_angle.png");
-        margin: 20px 0px 0px 0px;
-    }
 
 .big_img {
     width: 1170px;
@@ -487,12 +482,6 @@ hr {
         text-decoration: none;
     }
 
-    .little-table a:visited {
-        color: #999999;
-        font-weight: bold;
-        text-decoration: none;
-    }
-
     .little-table a:active,
     .little-table a:hover {
         color: #bd5a35;
@@ -506,6 +495,10 @@ ul, ol {
 ul {
     list-style-image: url("../images/ul_bg.png");
 }
+
+    ul.white {
+        list-style-image: url("../images/ul_bg_white.png");
+    }
 
     ul.clear {
         list-style-type: none;
@@ -606,6 +599,10 @@ ul {
             padding: 10px;
         }
 
+input[type="file"] {
+    padding: 10px 0px;
+}
+
 input[type="text"], input[type="password"], input[type="number"] {
     width: 250px;
     padding: 10px 15px;
@@ -642,6 +639,7 @@ button, input[type="submit"], .button {
 
 .button-small {
     padding: 5px 8px;
+    font-size: 13px;
 }
 
 input[type="submit"]:hover, .button:hover {
@@ -707,3 +705,45 @@ input[type="radio"] {
     input[type="radio"]:checked:disabled + label::before {
         background-position: -56px -19px;
     }
+
+.validation-summary-errors {
+    background-color: #e8645a;
+    background-image: url("../images/error-box-bg.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    -webkit-box-shadow: 0px 5px 0px #e2534b;
+    -moz-box-shadow: 0px 5px 0px #e2534b;
+    box-shadow: 0px 5px 0px #e2534b;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 10px 15px 10px 80px;
+    min-height: 60px;
+}
+
+    .validation-summary-errors .fa {
+        font-size: 50px;
+    }
+
+    .validation-summary-errors ul {
+        list-style-image: url("../images/ul_bg_white.png");
+    }
+
+.input-validation-error {
+    -webkit-box-shadow: 0px 5px 0px #e2534b !important;
+    -moz-box-shadow: 0px 5px 0px #e2534b !important;
+    box-shadow: 0px 5px 0px #e2534b !important;
+    background-color: #fff4f3 !important;
+}
+
+span.field-validation-error {
+    color: #cd4c42;
+    font-size: 12px;
+    padding: 0px 0px 0px 10px;
+}
+
+.editor-label {
+    font-size: 16px;
+    padding: 10px 0px;
+}
