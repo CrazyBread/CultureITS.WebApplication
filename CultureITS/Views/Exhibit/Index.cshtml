@@ -5,6 +5,15 @@
     ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder().Generate(ViewBag.Title);
 }
 
+<div class="cont big_img big_img_exhibit">
+    <div class="bi_text">
+        <span class="bi_title">Экспонаты</span>
+    </div>
+    <div class="bi_text2">
+        Данная информационная система направлена на получение информации о христианстве, изучении ее основ и прочей лабуды. Будет очень много поелезного и интересного, особенно в 3D. так что не упустите шанс и поиграйте в наши квесты.
+    </div>
+</div>
+
 @if (Model.List.Count() == 0)
 {
     <p>Нет данных</p>
@@ -13,13 +22,28 @@ else
 {
     <table class="little-table">
         <tr>
+            <th>&nbsp;</th>
+            <th>Иллюстрация</th>
             <th>Название</th>
+            <th>Описание</th>
             <th>Местоположение</th>
         </tr>
         @foreach (var item in Model.List)
         {
             <tr>
+                <td>
+                    <a title="Подробности" href="@Url.Action("Details", new { id = item.Id })" class="button button-small"><i class="fa fa-ellipsis-h"></i></a>
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ApplicationType))
+                    {
+                        <div class="applicationWrapper">
+                            <img src="@Url.Action("GetImage", "Exhibit", new { area = "", id = item.Id }, null)" alt="" title="@item.Name" />
+                        </div>
+                    }
+                </td>
                 <td>@item.Name</td>
+                <td>@Html.Raw(item.Description)</td>
                 <td>@item.Location</td>
             </tr>
         }

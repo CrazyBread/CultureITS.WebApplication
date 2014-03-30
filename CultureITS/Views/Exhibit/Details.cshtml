@@ -1,5 +1,50 @@
-﻿@{
-    ViewBag.Title = "Details";
+﻿@model CultureITS.ViewModels.ExhibitViewModel
+
+@{
+    ViewBag.Title = Model.Item.Name;
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Экспонаты", Uri = @Url.Action("Index", "Exhibit") })
+        .Generate(ViewBag.Title);
 }
 
-<h2>Details</h2>
+@if (!string.IsNullOrEmpty(Model.Item.ApplicationType))
+{
+    <img src="@Url.Action("GetImage", "Exhibit", new { id = Model.Item.Id }, null)" alt="" class="ExhibitApplication" />
+}
+@Html.Raw(Model.Item.Description)
+
+@if (Model.Item.Article != null && Model.Item.Article.Count > 0)
+{
+    <hr />
+    <h2>Материалы, связанные с этим экспонатом</h2>
+    
+    <table class="little-table">
+        <tr>
+            <th>&nbsp;</th>
+            <th>Иллюстрация</th>
+            <th>Заголовок</th>
+        </tr>
+        @foreach (var item in Model.Item.Article)
+        {
+            <tr>
+                <td>
+                    <a title="Прочитать" href="@Url.Action("Article", new { id = item.Id })" class="button button-small"><i class="fa fa-ellipsis-h"></i></a>
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ApplicationType))
+                    {
+                        <div class="applicationWrapper">
+                            <img src="@Url.Action("GetArticleImage", "Exhibit", new { area = "", id = item.Id }, null)" alt="" title="@item.Title" />
+                        </div>
+                    }
+                </td>
+                <td>@item.Title</td>
+            </tr>
+        }
+    </table>
+}
+
+<hr />
+<p>
+    <a href="@Url.Action("Index", "Exhibit")" class="button">Вернуться</a>
+</p>

@@ -1,0 +1,20 @@
+﻿@model CultureITS.ViewModels.ExhibitViewModel
+
+@{
+    ViewBag.Title = Model.Article.Title;
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Экспонаты", Uri = @Url.Action("Index", "Exhibit") })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = Model.Item.Name, Uri = @Url.Action("Details", "Exhibit", new { id = Model.Item.Id }) })
+        .Generate(ViewBag.Title);
+}
+
+@if (!string.IsNullOrEmpty(Model.Article.ApplicationType))
+{
+    <img src="@Url.Action("GetArticleImage", "Exhibit", new { id = Model.Article.Id }, null)" alt="" class="ExhibitApplication" />
+}
+@Html.Raw(Model.Article.Text)
+
+<hr />
+<p>
+    <a href="@Url.Action("Details", "Exhibit", new { id = Model.Item.Id })" onclick="window.history.go(-1); return false;" class="button">Вернуться</a>
+</p>

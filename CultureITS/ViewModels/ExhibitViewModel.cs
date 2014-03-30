@@ -11,11 +11,19 @@ namespace CultureITS.ViewModels
         public Exhibit Item { set; get; }
         public IEnumerable<Exhibit> List { set; get; }
 
+        public Article Article { set; get; }
+
         public int? Page { set; get; }
 
         public ExhibitViewModel(Exhibit item)
         {
             Item = item;
+        }
+
+        public ExhibitViewModel(Exhibit item, Article article) : this(item)
+        {
+            Item = item;
+            Article = article;
         }
 
         public ExhibitViewModel(IEnumerable<Exhibit> list, int? page)

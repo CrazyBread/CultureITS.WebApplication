@@ -182,6 +182,10 @@
     <Content Include="Content\images\footer_bg.png" />
     <Content Include="Content\images\head_bg.png" />
     <Content Include="Content\images\head_big_img.jpg" />
+    <Content Include="Content\images\head_big_img_exhibit.jpg" />
+    <Content Include="Content\images\head_big_img_login.jpg" />
+    <Content Include="Content\images\head_big_img_profile.jpg" />
+    <Content Include="Content\images\head_big_img_reg.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\museum_bg.png" />
     <Content Include="Content\images\ul_bg.png" />
@@ -198,7 +202,6 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\images\about.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -327,6 +330,7 @@
     <Content Include="Views\Shared\_TestInfoTable.cshtml" />
     <Content Include="Views\Shared\_TestResultTable.cshtml" />
     <Content Include="Views\Shared\_LayoutMuseum.cshtml" />
+    <Content Include="Views\Exhibit\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,6 +30,16 @@ namespace CultureITS.Controllers
         }
 
         //
+        // GET: /Exhibit/Article/5
+        public ActionResult Article(int id)
+        {
+            var item = db.Articles.Find(id);
+            if (item == null)
+                return RedirectToAction("Index");
+            return View(new ExhibitViewModel(item.Exhibit, item));
+        }
+
+        //
         // GET: /Exhibit/GetImage/1
         public FileContentResult GetImage(int id)
         {

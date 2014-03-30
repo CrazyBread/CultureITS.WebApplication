@@ -46,7 +46,7 @@ else
                     @if (!string.IsNullOrEmpty(item.ApplicationType))
                     {
                         <div class="applicationWrapper">
-                            <img src="@Url.Action("GetImage", "Exhibit", new { area = "" , id = item.Id }, null)" alt="" title="@item.Name" />
+                            <img src="@Url.Action("GetImage", "Exhibit", new { area = "", id = item.Id }, null)" alt="" title="@item.Name" />
                         </div>
                     }
                 </td>
@@ -66,17 +66,15 @@ else
     {
         <div class="popup_window" id="description_@item.Id">
             <div class="popup_head">
-                <span id="ExhibitHeader">@item.Name (@item.Location)</span>
+                <span>@item.Name (@item.Location)</span>
                 <div class="popup_close">Х</div>
             </div>
             <div class="popup_cont">
-                <span id="ExhibitApplication">
-                    @if (!string.IsNullOrEmpty(item.ApplicationType))
-                    {
-                        <img src="@Url.Action("GetImage", "Exhibit", new { area = "" , id = item.Id }, null)" alt="" />
-                    }
-                </span>
-                <div id="ExhibitInfo">
+                @if (!string.IsNullOrEmpty(item.ApplicationType))
+                {
+                    <img src="@Url.Action("GetImage", "Exhibit", new { area = "", id = item.Id }, null)" alt="" class="ExhibitApplication" />
+                }
+                <div>
                     @Html.Raw(item.Description)
                 </div>
             </div>

@@ -747,3 +747,24 @@ span.field-validation-error {
     font-size: 16px;
     padding: 10px 0px;
 }
+
+.big_img_registration, .big_img_login, .big_img_profile, .big_img_exhibit {
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.big_img_registration {
+    background-image: url("../images/head_big_img_reg.jpg");
+}
+
+.big_img_login {
+    background-image: url("../images/head_big_img_login.jpg");
+}
+
+.big_img_profile {
+    background-image: url("../images/head_big_img_profile.jpg");
+}
+
+.big_img_exhibit {
+    background-image: url("../images/head_big_img_exhibit.jpg");
+}
