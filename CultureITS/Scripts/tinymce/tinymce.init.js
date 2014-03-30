@@ -9,5 +9,6 @@ tinymce.init({
         { title: 'Header 1', block: 'h3' },
         { title: 'Header 2', block: 'h4' },
         { title: 'Header 3', block: 'h5' }
-    ]
+    ],
+    force_p_newlines: true
 });
