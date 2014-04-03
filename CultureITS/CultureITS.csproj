@@ -294,6 +294,7 @@
     <Content Include="Areas\Admin\Views\Exhibit\Articles.cshtml" />
     <Content Include="Areas\Admin\Views\Exhibit\EditArticle.cshtml" />
     <Content Include="Areas\Admin\Views\Exhibit\DeleteArticle.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Results.cshtml" />
     <None Include="Properties\PublishProfiles\MYASP.NET.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

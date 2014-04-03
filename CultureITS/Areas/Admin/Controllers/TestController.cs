@@ -355,5 +355,16 @@ namespace CultureITS.Areas.Admin.Controllers
             return RedirectToAction("Answers", new { id = questionId });
         }
 
+        //
+        // GET: /Admin/Test/Results/5
+        public ActionResult Results(int id)
+        {
+            var item = db.TestMain.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index");
+
+            return View(new TestViewModel(db, item));
+        }
     }
 }

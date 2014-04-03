@@ -12,6 +12,7 @@ namespace CultureITS.Areas.Admin.Models
     public class TestViewModel
     {
         public bool CanManage { set; get; }
+        public bool CanShowTests { set; get; }
 
         public TestMain Item { set; get; }
         public IEnumerable<TestMain> List { set; get; }
@@ -22,6 +23,7 @@ namespace CultureITS.Areas.Admin.Models
         {
             List = db.TestMain;
             CanManage = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Admin);
+            CanShowTests = (System.Web.HttpContext.Current.Session.GetUserRole() == AccountStatus.Teacher);
         }
 
         public TestViewModel(DataContext db, TestMain item)

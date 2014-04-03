@@ -1,0 +1,44 @@
+﻿@model CultureITS.Areas.Admin.Models.TestViewModel
+
+@{
+    ViewBag.Title = string.Format("Результаты тестирования \"{0}\"", Model.Item.Title);
+    ViewBag.BreadCrumbs = new CultureITS.Helpers.BreadCrumbsBuilder()
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Управление", Uri = @Url.Action("Index", "Home", new { area = "Admin" }) })
+        .Add(new CultureITS.Helpers.BreadCrumb() { Text = "Тесты", Uri = @Url.Action("Index", "Test", new { area = "Admin" }) })
+        .Generate(ViewBag.Title);
+}
+
+@if (Model.Item.Sessions == null || Model.Item.Sessions.Count == 0)
+{
+    <p>Нет данных.</p>
+}
+else
+{
+    <table class="little-table">
+        <tr>
+            <th>Студент</th>
+            <th>Дата прохождения</th>
+            <th>Процент правильных ответов</th>
+            <th>Пройден до конца</th>
+        </tr>
+        @foreach (var item in Model.Item.Sessions.OrderBy(i => i.Student.Id).ThenByDescending(i => i.Date))
+        {
+            <tr>
+                <td>@item.Student.Name (@item.Student.Group)</td>
+                <td>@item.Date</td>
+                <td>@(string.Format("{0}", Convert.ToInt16(item.Percent * 100)))</td>
+                <td>@(item.Complete ? "+" : "-")</td>
+            </tr>
+        }
+    </table>
+    
+    <hr />
+}
+
+<p>
+    @Html.ActionLink("Вернуться", "Index", null, new { @class = "button" })
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

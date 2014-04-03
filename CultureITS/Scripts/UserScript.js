@@ -1,14 +1,20 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $(".fancybox").click(function () {
         openPopup($(this).attr("href"));
     });
 
-    $(".popup_close, .popup").click(function(){
+    $(".popup_close, .popup").click(function () {
         closePopup();
     });
 
-    $(".popup_window").click(function(e){
+    $(".popup_window").click(function (e) {
         e.stopPropagation();
+    });
+
+    $('a[href^="#"]').click(function () {
+        var target = $(this).attr('href');
+        $('html, body').animate({ scrollTop: $(target).offset().top }, 300);
+        return false;
     });
 });
 
@@ -36,3 +42,8 @@ closePopup = function () {
         unityObj.SendMessage("ApiGameObject", "PopupClosed", "");
     }
 }
+
+
+/*$(function () {
+    
+});*/
