@@ -37,49 +37,4 @@ namespace CultureITS.Models.Context
             modelBuilder.Entity<Student>().ToTable("Students");
         }
     }
-
-    public class DataContextInitializer : IDatabaseInitializer<DataContext>
-    {
-        public void InitializeDatabase(DataContext context)
-        {
-            if (!context.Database.Exists() || !context.Database.CompatibleWithModel(false))
-            {
-                context.Database.Delete();
-                context.Database.Create();
-
-                // Adding data
-                context.Users.Add(new Administrator() { Login = "admin", Password = "admin", Name = "Админ админыч", UserRole = AccountStatus.Admin, Telephone = "322-22-23", Email = "admin@localhost" });
-                context.Users.Add(new Teacher() { Login = "teacher", Password = "teacher", Name = "Учитель учителич", UserRole = AccountStatus.Teacher, University = "УлГТУ", Department = "IVK" });
-                context.Users.Add(new Student() { Login = "student", Password = "student", Name = "Студент студентыч", UserRole = AccountStatus.Student, Age = 19, Course = 3, Group = "ИСТбд-32" });
-                context.SaveChanges();
-
-                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "В музей!", Controller = "Unity", Action = "Index", AccessMask = 1 << (int)AccountStatus.Student, AdditionalUrl = "#UnityPlayer" });
-                context.MenuItems.Add(new MenuItem() { Order = 1, Title = "Профиль", Controller = "Account", Action = "Profile", AccessMask = -2 });
-                context.MenuItems.Add(new MenuItem() { Order = 2, Title = "Экспонаты", Controller = "Exhibit", Action = "Index", AccessMask = -2 });
-                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "Управление", Area = "Admin", Controller = "Home", Action = "Index", AccessMask = (1 << (int)AccountStatus.Admin) + (1 << (int)AccountStatus.Teacher) });
-                context.MenuItems.Add(new MenuItem() { Order = 3, Title = "API", Controller = "Api", Action = "Index", AccessMask = 1 << (int)AccountStatus.Admin });
-                context.MenuItems.Add(new MenuItem() { Order = 0, Title = "О системе", Controller = "Home", Action = "About", AccessMask = -1 });
-                context.SaveChanges();
-
-                context.Exhibits.Add(new Exhibit() { Code = "S1", Name = "Свиток Судьбы", Location = "Зал католицизма", Description = "<p>Какая-та херь</p>" });
-                context.Exhibits.Add(new Exhibit() { Code = "S2", Name = "Свиток Верности", Location = "Зал православия", Description = "<p>Какая-та неведомая херь</p>" });
-                context.SaveChanges();
-
-                var test = new TestMain() { Code = "T1", Author = "Бобик Ёбик", Title = "Проверочный тест", Topic = "Публичная жизни Вручтель Серафимы" };
-                context.TestMain.Add(test);
-                var question1 = new Question() { Test = test, Text = "Как зовут кошку Симы?" };
-                var question2 = new Question() { Test = test, Text = "У Симы есть кошка?" };
-                context.TestQuestion.Add(question1);
-                context.TestQuestion.Add(question2);
-                context.TestAnswer.Add(new Answer() { Question = question1, Right = true, Text = "Люська." });
-                context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Муська." });
-                context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Пуська." });
-                context.TestAnswer.Add(new Answer() { Question = question1, Right = false, Text = "Барабуська." });
-                context.TestAnswer.Add(new Answer() { Question = question2, Right = true, Text = "Конечно!" });
-                context.TestAnswer.Add(new Answer() { Question = question2, Right = true, Text = "Нет." });
-                context.TestAnswer.Add(new Answer() { Question = question2, Right = false, Text = "А что это?" });
-                context.SaveChanges();
-            }
-        }
-    }
 }

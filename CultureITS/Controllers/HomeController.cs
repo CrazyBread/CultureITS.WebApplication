@@ -26,12 +26,5 @@ namespace CultureITS.Controllers
 
             return View(model);
         }
-
-        //
-        // GET: /Home/About
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }

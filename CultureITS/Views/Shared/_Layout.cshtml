@@ -3,7 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>@ViewBag.Title — Chriseum</title>
-    @Styles.Render("~/Content/css")
+    @*Styles.Render("~/Content/css")*@
+    <link href="@Url.Content("~/Content/css/reset.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/style2.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/font-awesome.css")" rel="stylesheet"/>
+
     @Scripts.Render("~/bundles/modernizr")
     <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.png")" type="image/png" />
     <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" />

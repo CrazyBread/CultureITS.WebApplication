@@ -46,14 +46,30 @@
         else
         {
             <table class="little-table">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Иллюстрация</th>
+                    <th>Заголовок</th>
+                </tr>
                 @foreach (var item in Model.ItemStudent.Exhibits)
                 {
                     <tr>
-                        <th>@item.Name (@item.Location)</th>
+                        <th colspan="3">@item.Name (@item.Location)</th>
                     </tr>
                     foreach (var subitem in item.Article)
                     {
                     <tr>
+                        <td>
+                            <a title="Прочитать" href="@Url.Action("Article", "Exhibit", new { id = subitem.Id })" class="button button-small"><i class="fa fa-ellipsis-h"></i></a>
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(subitem.ApplicationType))
+                            {
+                                <div class="applicationWrapper">
+                                    <img src="@Url.Action("GetArticleImage", "Exhibit", new { area = "", id = subitem.Id }, null)" alt="" title="@subitem.Title" />
+                                </div>
+                            }
+                        </td>
                         <td>@subitem.Title</td>
                     </tr>
                     }
