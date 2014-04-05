@@ -51,7 +51,7 @@
                     <th>Иллюстрация</th>
                     <th>Заголовок</th>
                 </tr>
-                @foreach (var item in Model.ItemStudent.Exhibits)
+                @foreach (var item in Model.ItemStudent.Exhibits.Where(p => p.Article.Count() > 0))
                 {
                     <tr>
                         <th colspan="3">@item.Name (@item.Location)</th>

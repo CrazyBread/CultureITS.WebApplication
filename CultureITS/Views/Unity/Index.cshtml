@@ -16,9 +16,6 @@
     </div>
 </div>
 
-<a href="javascript:void(0)" id="showExhibitPopup1" class="button">EXHIBIT</a>
-<a href="javascript:void(0)" id="showTestPopup1" class="button">TEST</a>
-
 @section popup_windows {
     <div class="popup_window" id="ExhibitPopup">
         <div class="popup_head">
@@ -65,12 +62,6 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/UnityAPI.js")"></script>
 
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-        //fake functions
-        $('#showExhibitPopup1').click(function () { showExhibitPopup('S1'); });
-        $('#showTestPopup1').click(function () { showTestPopup('t1'); });
-    </script>
-
     <script type="text/javascript">
         var unityConfig = {
             width: 1120,
