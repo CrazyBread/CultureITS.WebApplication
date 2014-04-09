@@ -19,6 +19,7 @@ namespace CultureITS.Models.Api
         public string location { set; get; }
         public string description { set; get; }
         public bool haveApplication { set; get; }
+        public bool haveArticles { set; get; }
         public bool state { set; get; }
     }
 

@@ -21,28 +21,30 @@ showExhibitPopup = function (code) {
         $('#ExhibitInfo').html(data.description);
         $('#ExhibitLike *').remove();
 
-        var $button = $('<a>');
-        $button.attr('src', 'javascript:void(0)');
-        $button.attr('id', 'ExhibitLikeButton');
-        $button.attr('class', 'button');
+        if (data.haveArticles) {
+            var $button = $('<a>');
+            $button.attr('src', 'javascript:void(0)');
+            $button.attr('id', 'ExhibitLikeButton');
+            $button.attr('class', 'button');
 
-        exhibitContig["Id"] = data.id;
-        $button.click(function () {
-            markExhibit(exhibitContig["Id"], function (data) {
-                if (data.state) {
-                    $button.text('Снять отметку');
-                } else {
-                    $button.text('Отметить для себя');
-                }
+            exhibitContig["Id"] = data.id;
+            $button.click(function () {
+                markExhibit(exhibitContig["Id"], function (data) {
+                    if (data.state) {
+                        $button.text('Снять отметку');
+                    } else {
+                        $button.text('Отметить для себя');
+                    }
+                });
             });
-        });
 
-        if (data.state) {
-            $button.text('Снять отметку');
-        } else {
-            $button.text('Отметить для себя');
+            if (data.state) {
+                $button.text('Снять отметку');
+            } else {
+                $button.text('Отметить для себя');
+            }
+            $('#ExhibitLike').append($button);
         }
-        $('#ExhibitLike').append($button);
 
         openPopup("#ExhibitPopup");
     });
@@ -229,6 +231,11 @@ getTestResult = function (sessionId) {
             $table.append($row1);
             $table.append($row2);
             $table.append($row3);
+
+            if (typeof u != 'undefined') {
+                var unityObj = u.getUnity();
+                unityObj.SendMessage("ApiGameObject", "TestPassed", testConfig["Code"] + "|" + data.percent);
+            }
         } else {
             alert(data.message);
         }

@@ -79,6 +79,7 @@ namespace CultureITS.Models.Api
         public bool success { set; get; }
 
         public DateTime date { set; get; }
+        public double percent { set; get; }
         public TestResults[] questionsResults { set; get; }
     }
 

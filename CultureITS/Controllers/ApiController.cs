@@ -127,6 +127,7 @@ namespace CultureITS.Controllers
                 dataOut.description = exhibit.Description;
                 dataOut.location = exhibit.Location;
                 dataOut.haveApplication = (!string.IsNullOrEmpty(exhibit.ApplicationType));
+                dataOut.haveArticles = (exhibit.Article.Count() > 0);
                 dataOut.state = (user.Exhibits.Count(i => i.Id == exhibit.Id) > 0);
 
                 return Json(dataOut);
@@ -394,6 +395,7 @@ namespace CultureITS.Controllers
                 dataOut.success = true;
 
                 dataOut.date = testSession.Date;
+                dataOut.percent = testSession.Percent;
                 dataOut.questionsResults = new TestResults[testData.Queue.Count()];
                 int j = 0;
                 foreach (var item in testData.Queue)
