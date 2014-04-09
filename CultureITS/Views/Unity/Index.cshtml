@@ -107,4 +107,14 @@
             u.initPlugin(jQuery("#unityPlayer")[0], '@Url.Content("~/Content/Unity.bin")');
         });
     </script>
+    <script type="text/javascript">
+        setInterval(function () {
+            Request("getUserRole", null, function (data) {
+                if (data.role != 1) {
+                    alert('Доступ разрешён только студентам. Вы будете перенаправлены на главную страницу.');
+                    window.location.assign('/');
+                }
+            });
+        }, 30000);
+    </script>
 }

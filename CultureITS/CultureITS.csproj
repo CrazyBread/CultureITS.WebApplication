@@ -161,6 +161,7 @@
     <Compile Include="Models\Api\ExhibitSubsystem.cs" />
     <Compile Include="Models\Api\ItemSubsystem.cs" />
     <Compile Include="Models\Api\TestSubsystem.cs" />
+    <Compile Include="Models\Api\UserSubsystem.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Context\DataContext.cs" />
     <Compile Include="Models\Exhibit.cs" />

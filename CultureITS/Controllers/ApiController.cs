@@ -31,6 +31,29 @@ namespace CultureITS.Controllers
             return View();
         }
 
+        #region Подсистема работы с пользователем
+        //
+        // POST: /Api/getUserRole/5
+        [HttpPost]
+        public JsonResult getUserRole(string data)
+        {
+            try
+            {
+                var role = System.Web.HttpContext.Current.Session.GetUserRole();
+
+                UserGetRoleOut dataOut = new UserGetRoleOut();
+                dataOut.success = true;
+                dataOut.role = (int)role;
+
+                return Json(dataOut);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = e.Message });
+            }
+        }
+        #endregion
+
         #region Подсистема работы с экспонатами музея
         //
         // POST: /Api/markExhibit/5
@@ -324,7 +347,7 @@ namespace CultureITS.Controllers
                 var markedAnswers = new bool[dataIn.answersNumbers.Count()];
                 foreach (var rightItem in testQuestion.Answers.Where(i => i.Right))
                 {
-                    for(int i = 0; i < dataIn.answersNumbers.Count(); i++)
+                    for (int i = 0; i < dataIn.answersNumbers.Count(); i++)
                     {
                         if (markedAnswers[i]) continue;
 
