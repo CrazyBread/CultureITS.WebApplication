@@ -194,6 +194,7 @@
     <Content Include="Content\images\head_big_img_reg.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\museum_bg.png" />
+    <Content Include="Content\images\profile_picture.png" />
     <Content Include="Content\images\ul_bg.png" />
     <Content Include="Content\images\ul_bg_white.png" />
     <Content Include="Content\images\ul_foot_bg.png" />

@@ -33,10 +33,10 @@
         <a href="#PhotoUpload" class="fancybox">Добавить изображение</a>
     }
 </div>
-<hr />
 
 @if (Model.ItemStudent != null)
 {
+    <hr />
     <div class="column2">
         <h3 class="headline">Рекомендуется к прочтению</h3>
         @if (Model.ItemStudent.Exhibits.Count == 0)
@@ -113,10 +113,14 @@
             <div class="popup_close">Х</div>
         </div>
         <div class="popup_cont">
-            <p>В этом окне вы можете изменить или добавить изображение собственного профиля. Сделать это можно ниже.</p>
+            <img class="ProfileApplication" alt="" src="@Url.Content("~/Content/images/profile_picture.png")" />
+            <p>В этом окне вы можете изменить или добавить изображение собственного профиля. Сделать это легко и просто! Вам всего лишь необходимо выбрать файл в поле ниже и нажать на кнопку "Сохранить".</p>
+            <p><strong>Ограничения:</strong> формат изображения JPEG, PNG или GIF; объём файла не более 10 Мб.</p>
+            <hr />
             @using (Html.BeginForm("ChangeImage", "Account", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <input type="file" id="Photo" name="Photo" />
+                <strong>Файл с изображением профиля:</strong> <input type="file" id="Photo" name="Photo" />
+                <hr />
                 <div>
                     <button>Загрузить</button>
                 </div>

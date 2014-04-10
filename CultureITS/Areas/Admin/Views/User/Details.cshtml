@@ -8,25 +8,22 @@
         .Generate(ViewBag.Title);
 }
 
-<div class="display-label">
-    @Html.DisplayNameFor(model => model.Login)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.Login)
-</div>
+<div class="column2">
+    <h3 class="headline">Информация о пользователе</h3>
 
-<div class="display-label">
-    @Html.DisplayNameFor(model => model.Name)
+    @Helpers.WriteUserInfoTable(Model)
 </div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.Name)
-</div>
+<div class="column2">
+    <h3 class="headline">Изображение профиля</h3>
 
-<div class="display-label">
-    @Html.DisplayNameFor(model => model.UserRole)
-</div>
-<div class="display-field">
-    @Model.UserRole.ToDescription()
+    @if (!string.IsNullOrEmpty(Model.PhotoMime))
+    {
+        <img src="@Url.Action("GetImage", "Account", new { id = Model.Id, area = "" })" alt="" />
+    }
+    else
+    {
+        <p>Отсутствует.</p>   
+    }
 </div>
 
 <hr />

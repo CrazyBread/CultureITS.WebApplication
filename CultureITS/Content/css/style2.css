@@ -15,9 +15,16 @@ p {
 }
 
 #ExhibitApplication img,
-.ExhibitApplication {
+.ExhibitApplication,
+.ProfileApplication {
     padding: 0 10px 10px 10px;
     float: left;
+}
+
+.ExhibitDescription {
+    padding: 3px;
+    max-height: 100px;
+    overflow: auto;
 }
 
 .applicationWrapper {
@@ -31,4 +38,16 @@ p {
 
 .line2 {
     overflow: hidden;
+}
+
+.display-label {
+    font-weight: bold;
+}
+
+.display-field {
+    margin-bottom: 1em;
+}
+
+#MainContentWrapper {
+    min-height: 200px;
 }

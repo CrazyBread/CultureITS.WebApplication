@@ -16,7 +16,7 @@
 
 @if (Model.List.Count() == 0)
 {
-    <p>Нет данных</p>
+    <p>Нет данных.</p>
 }
 else
 {
@@ -43,7 +43,7 @@ else
                     }
                 </td>
                 <td>@item.Name</td>
-                <td>@Html.Raw(item.Description)</td>
+                <td class="alignleft"><div class="ExhibitDescription">@Html.Raw(item.Description)</div></td>
                 <td>@item.Location</td>
             </tr>
         }
